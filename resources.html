@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources — AXIS Independent Advisory</title>
+  <meta name="description" content="Practical guides on business valuation for owners and the professionals who advise them. Puerto Rico focused.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --slate: #2B3A52; --muted: #5A6E82; --ivory: #FAF8F2; --white: #FFFFFF; --accent: #8FA3B8; --light-rule: #D6DDE4; --font: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--slate); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .site-header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--light-rule); }
+    .header-inner { max-width: 1120px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo-link { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-mark { height: 42px; width: auto; }
+    .logo-text { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); line-height: 1.15; }
+    .logo-text span { display: block; font-size: 0.55rem; font-weight: 400; letter-spacing: 0.18em; color: var(--muted); margin-top: 1px; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); transition: color 0.2s; position: relative; }
+    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--slate); transition: width 0.25s ease; }
+    nav a:hover { color: var(--slate); } nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--slate); } nav a.active::after { width: 100%; }
+    .nav-cta { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; color: var(--white) !important; background: var(--slate); padding: 0.5rem 1.25rem; border-radius: 4px; transition: background 0.2s; }
+    .nav-cta::after { display: none !important; } .nav-cta:hover { background: var(--muted) !important; color: var(--white) !important; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger svg { width: 24px; height: 24px; stroke: var(--slate); }
+
+    .page-hero { background: var(--slate); padding: 4rem 2rem 3.5rem; text-align: center; }
+    .page-hero h1 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; color: var(--ivory); max-width: 600px; margin: 0 auto; line-height: 1.35; animation: fadeUp 0.7s ease both; }
+    .page-hero p { font-size: 1rem; color: var(--accent); margin-top: 0.75rem; max-width: 520px; margin-left: auto; margin-right: auto; animation: fadeUp 0.7s 0.1s ease both; }
+
+    .articles-section { padding: 4.5rem 2rem; background: var(--white); }
+    .articles-inner { max-width: 960px; margin: 0 auto; }
+    .articles-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
+    .articles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .article-card { border: 1px solid var(--light-rule); border-radius: 8px; padding: 2rem 1.75rem; transition: box-shadow 0.3s, transform 0.3s; display: flex; flex-direction: column; }
+    .article-card:hover { box-shadow: 0 8px 30px rgba(43,58,82,0.08); transform: translateY(-2px); }
+    .article-audience { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: var(--slate); padding: 0.2rem 0.6rem; border-radius: 3px; display: inline-block; margin-bottom: 0.75rem; align-self: flex-start; }
+    .article-audience.cpa { background: var(--muted); }
+    .article-audience.both { background: var(--accent); color: var(--slate); }
+    .article-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--slate); margin-bottom: 0.5rem; line-height: 1.35; }
+    .article-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .article-link { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.25rem; font-size: 0.82rem; font-weight: 600; color: var(--slate); transition: gap 0.2s; }
+    .article-link:hover { gap: 0.6rem; }
+    .article-link svg { width: 14px; height: 14px; stroke: var(--slate); fill: none; }
+
+    .faq-section { padding: 4.5rem 2rem; background: var(--ivory); }
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-category-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--light-rule); }
+    .faq-item { border-bottom: 1px solid var(--light-rule); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 1.25rem 2.5rem 1.25rem 0; font-family: var(--font); font-size: 1rem; font-weight: 600; color: var(--slate); cursor: pointer; position: relative; line-height: 1.45; transition: color 0.2s; }
+    .faq-question:hover { color: var(--muted); }
+    .faq-question::after { content: ''; position: absolute; right: 0; top: 50%; width: 12px; height: 12px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-65%) rotate(45deg); transition: transform 0.3s ease; }
+    .faq-item.open .faq-question::after { transform: translateY(-35%) rotate(-135deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 600px; }
+    .faq-answer-inner { padding: 0 0 1.5rem 0; font-size: 0.92rem; color: var(--muted); line-height: 1.75; }
+    .faq-answer-inner p { margin-bottom: 0.75rem; } .faq-answer-inner p:last-child { margin-bottom: 0; }
+    .faq-answer-inner a { color: var(--slate); font-weight: 600; border-bottom: 1px solid var(--light-rule); transition: border-color 0.2s; }
+    .faq-answer-inner a:hover { border-color: var(--slate); }
+
+    .cta-strip { background: var(--slate); padding: 3.5rem 2rem; text-align: center; }
+    .cta-strip p { font-size: 1.15rem; font-weight: 500; color: var(--ivory); margin-bottom: 0.5rem; }
+    .cta-strip .cta-sub { font-size: 0.9rem; color: var(--accent); margin-bottom: 1.5rem; }
+    .cta-strip a.cta-btn { display: inline-block; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; padding: 0.7rem 2rem; border-radius: 4px; background: var(--ivory); color: var(--slate); transition: background 0.2s; }
+    .cta-strip a.cta-btn:hover { background: var(--white); }
+
+    .site-footer { background: var(--slate); border-top: 1px solid rgba(250,248,242,0.08); padding: 2.5rem 2rem; }
+    .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .footer-left { font-size: 0.75rem; color: rgba(250,248,242,0.5); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: rgba(250,248,242,0.5); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--ivory); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid var(--light-rule); box-shadow: 0 8px 24px rgba(43,58,82,0.08); }
+      nav.open { display: flex; } nav a::after { display: none; }
+      .articles-grid { grid-template-columns: 1fr; }
+      .articles-section, .faq-section { padding: 3rem 1.5rem; }
+      .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+    @media (max-width: 480px) { .logo-text { font-size: 0.9rem; } .logo-text span { font-size: 0.5rem; } .logo-mark { height: 36px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a href="index.html" class="logo-link"><img src="logo.png" alt="AXIS" class="logo-mark"><div class="logo-text">AXIS<span>Independent Advisory</span></div></a>
+    <button class="hamburger" aria-label="Toggle navigation" onclick="document.querySelector('nav').classList.toggle('open')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <nav><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html" class="active">Resources</a><a href="contact.html" class="nav-cta">Contact</a></nav>
+  </div></header>
+
+  <section class="page-hero">
+    <h1>Resources</h1>
+    <p>Practical guides on business valuation for owners and the professionals who advise them.</p>
+  </section>
+
+  <section class="articles-section"><div class="articles-inner">
+    <div class="articles-label">Guides &amp; Articles</div>
+    <div class="articles-grid">
+      <a href="article-what-is-valuation.html" class="article-card">
+        <div class="article-audience">For Business Owners</div>
+        <h3>What Is a Business Valuation?</h3>
+        <p>What a valuation actually is, when you need one, what drives the value of a small business, and what the process looks like from start to finish.</p>
+        <span class="article-link">Read article <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="article-when-client-needs-valuation.html" class="article-card">
+        <div class="article-audience cpa">For CPAs</div>
+        <h3>When Does Your Client Need a Valuation?</h3>
+        <p>A practical guide for identifying when a referral to a valuation specialist is warranted — and the triggers you are probably already seeing.</p>
+        <span class="article-link">Read article <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="article-calcreport-vs-full.html" class="article-card">
+        <div class="article-audience both">For Everyone</div>
+        <h3>CalcReport vs. Full Valuation: Which Do You Need?</h3>
+        <p>A straightforward decision guide. Not every situation requires a full appraisal — here is how to determine the right scope.</p>
+        <span class="article-link">Read article <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="article-valuation-puerto-rico.html" class="article-card">
+        <div class="article-audience">Puerto Rico Focus</div>
+        <h3>Business Valuation in Puerto Rico: What's Different?</h3>
+        <p>The island's tax structure, regulatory environment, and business culture create distinct considerations that a generic mainland approach will miss.</p>
+        <span class="article-link">Read article <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+    </div>
+  </div></section>
+
+  <section class="faq-section"><div class="faq-inner">
+    <div class="faq-category-label">Quick Answers</div>
+    <div class="faq-item"><button class="faq-question">How much does a valuation cost?</button><div class="faq-answer"><div class="faq-answer-inner"><p>CalcReport engagements are quoted at a fixed fee before work begins. Fees depend on complexity, industry, and data availability. Full valuations are scoped per engagement. In both cases, you will know the cost upfront with no surprises. <a href="contact.html">Contact us</a> for a quote.</p></div></div></div>
+    <div class="faq-item"><button class="faq-question">What documents will you need from me?</button><div class="faq-answer"><div class="faq-answer-inner"><p>Typically: 3–5 years of tax returns, financial statements, a current aged receivables/payables report, details on owner compensation and benefits, and any relevant legal agreements. We provide a detailed, tailored document request list at engagement kickoff.</p></div></div></div>
+    <div class="faq-item"><button class="faq-question">Is a CalcReport sufficient for my needs?</button><div class="faq-answer"><div class="faq-answer-inner"><p>For most internal, planning, and transactional purposes — yes. If your situation involves litigation, regulatory requirements, or formal financing applications, a full valuation may be appropriate. We will help you determine the right scope. See our <a href="article-calcreport-vs-full.html">comparison guide</a> for details.</p></div></div></div>
+    <div class="faq-item"><button class="faq-question">How long does the process take?</button><div class="faq-answer"><div class="faq-answer-inner"><p>A CalcReport typically takes 2–3 weeks from receipt of complete data. A full valuation takes 4–6 weeks. Timelines can vary depending on business complexity and how quickly documents are provided.</p></div></div></div>
+    <div class="faq-item"><button class="faq-question">Can you deliver the report in Spanish?</button><div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Reports, engagement letters, and all client communications are available in English or Spanish.</p></div></div></div>
+    <div class="faq-item"><button class="faq-question">What professional standards govern your work?</button><div class="faq-answer"><div class="faq-answer-inner"><p>All engagements follow NACVA Professional Standards, consistent with AICPA SSVS-1 and USPAP. These standards define the scope, methodology, documentation, and reporting requirements for every engagement.</p></div></div></div>
+  </div></section>
+
+  <section class="cta-strip">
+    <p>Have a question not covered here?</p>
+    <p class="cta-sub">We are happy to help. No commitment required.</p>
+    <a href="mailto:info@axisadvisorypr.com" class="cta-btn">info@axisadvisorypr.com →</a>
+  </section>
+
+  <footer class="site-footer"><div class="footer-inner">
+    <div class="footer-left">© 2025 AXIS Independent Advisory. All rights reserved.</div>
+    <div class="footer-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div>
+  </div></footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        item.closest('.faq-inner').querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/resources"
+  to = "/resources.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/article-what-is-valuation"
+  to = "/article-what-is-valuation.html"
+  status = 200
+
+[[redirects]]
+  from = "/article-when-client-needs-valuation"
+  to = "/article-when-client-needs-valuation.html"
+  status = 200
+
+[[redirects]]
+  from = "/article-calcreport-vs-full"
+  to = "/article-calcreport-vs-full.html"
+  status = 200
+
+[[redirects]]
+  from = "/article-valuation-puerto-rico"
+  to = "/article-valuation-puerto-rico.html"
+  status = 200

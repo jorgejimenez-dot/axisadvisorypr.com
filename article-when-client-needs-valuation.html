@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>When Does Your Client Need a Valuation? — AXIS Independent Advisory</title>
+  <meta name="description" content="A practical guide for CPAs: identifying when a client needs a business valuation referral, choosing the right scope, and what to look for in a valuation partner.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --slate: #2B3A52; --muted: #5A6E82; --ivory: #FAF8F2; --white: #FFFFFF; --accent: #8FA3B8; --light-rule: #D6DDE4; --font: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--slate); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; } a { color: inherit; text-decoration: none; }
+    .site-header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--light-rule); }
+    .header-inner { max-width: 1120px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo-link { display: flex; align-items: center; gap: 0.75rem; } .logo-mark { height: 42px; width: auto; }
+    .logo-text { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); line-height: 1.15; }
+    .logo-text span { display: block; font-size: 0.55rem; font-weight: 400; letter-spacing: 0.18em; color: var(--muted); margin-top: 1px; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); transition: color 0.2s; position: relative; }
+    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--slate); transition: width 0.25s ease; }
+    nav a:hover { color: var(--slate); } nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--slate); } nav a.active::after { width: 100%; }
+    .nav-cta { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; color: var(--white) !important; background: var(--slate); padding: 0.5rem 1.25rem; border-radius: 4px; transition: background 0.2s; }
+    .nav-cta::after { display: none !important; } .nav-cta:hover { background: var(--muted) !important; color: var(--white) !important; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; } .hamburger svg { width: 24px; height: 24px; stroke: var(--slate); }
+    .article-hero { background: var(--slate); padding: 4rem 2rem 3.5rem; text-align: center; }
+    .article-hero .breadcrumb { font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem; }
+    .article-hero .breadcrumb a { color: var(--accent); border-bottom: 1px solid rgba(143,163,184,0.3); transition: border-color 0.2s; } .article-hero .breadcrumb a:hover { border-color: var(--accent); }
+    .article-hero .audience-tag { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: var(--muted); padding: 0.25rem 0.7rem; border-radius: 3px; margin-bottom: 1rem; }
+    .article-hero h1 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 600; color: var(--ivory); max-width: 640px; margin: 0 auto; line-height: 1.3; }
+    .article-body { padding: 3.5rem 2rem 4.5rem; } .article-inner { max-width: 680px; margin: 0 auto; }
+    .article-inner h2 { font-size: 1.2rem; font-weight: 600; color: var(--slate); margin: 2.5rem 0 0.75rem; line-height: 1.35; } .article-inner h2:first-child { margin-top: 0; }
+    .article-inner p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; } .article-inner p:last-child { margin-bottom: 0; }
+    .article-inner strong { color: var(--slate); }
+    .article-inner ul { list-style: none; margin: 0.5rem 0 1.25rem; padding: 0; }
+    .article-inner ul li { font-size: 0.92rem; color: var(--muted); line-height: 1.7; padding: 0.3rem 0 0.3rem 1.5rem; position: relative; }
+    .article-inner ul li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--light-rule); }
+    .article-inner .callout { background: var(--ivory); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 6px 6px 0; margin: 1.5rem 0; }
+    .article-inner .callout p { font-size: 0.9rem; margin-bottom: 0; font-style: italic; }
+    .article-inner a.inline-link { color: var(--slate); font-weight: 600; border-bottom: 1px solid var(--light-rule); transition: border-color 0.2s; } .article-inner a.inline-link:hover { border-color: var(--slate); }
+    .article-cta { background: var(--ivory); border: 1px solid var(--light-rule); border-radius: 8px; padding: 2rem; text-align: center; margin-top: 3rem; }
+    .article-cta p { font-size: 1rem; font-weight: 500; color: var(--slate); margin-bottom: 1rem; }
+    .article-cta a { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--white); background: var(--slate); padding: 0.6rem 1.75rem; border-radius: 4px; transition: background 0.2s; } .article-cta a:hover { background: var(--muted); }
+    .site-footer { background: var(--slate); border-top: 1px solid rgba(250,248,242,0.08); padding: 2.5rem 2rem; }
+    .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .footer-left { font-size: 0.75rem; color: rgba(250,248,242,0.5); } .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: rgba(250,248,242,0.5); transition: color 0.2s; } .footer-links a:hover { color: var(--ivory); }
+    @media (max-width: 768px) { .hamburger { display: block; } nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid var(--light-rule); box-shadow: 0 8px 24px rgba(43,58,82,0.08); } nav.open { display: flex; } nav a::after { display: none; } .article-body { padding: 2.5rem 1.5rem 3.5rem; } .footer-inner { flex-direction: column; gap: 1rem; text-align: center; } }
+    @media (max-width: 480px) { .logo-text { font-size: 0.9rem; } .logo-text span { font-size: 0.5rem; } .logo-mark { height: 36px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a href="index.html" class="logo-link"><img src="logo.png" alt="AXIS" class="logo-mark"><div class="logo-text">AXIS<span>Independent Advisory</span></div></a>
+    <button class="hamburger" aria-label="Toggle navigation" onclick="document.querySelector('nav').classList.toggle('open')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <nav><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html" class="active">Resources</a><a href="contact.html" class="nav-cta">Contact</a></nav>
+  </div></header>
+
+  <section class="article-hero">
+    <div class="breadcrumb"><a href="resources.html">Resources</a> &nbsp;/&nbsp; Article</div>
+    <div class="audience-tag">For CPAs &amp; Advisors</div>
+    <h1>When Does Your Client Need a Valuation?</h1>
+  </section>
+
+  <section class="article-body"><div class="article-inner">
+
+    <p>Your clients ask valuation-adjacent questions more often than you might expect. "What do you think the business is worth?" comes up in tax planning conversations, partner meetings, succession discussions, and transaction negotiations. The question is whether the answer requires a credentialed specialist — and the honest answer is that it usually does.</p>
+    <p>This is a practical guide for identifying when a referral to a valuation analyst is warranted, how to choose the right scope, and what the referral process actually looks like.</p>
+
+    <h2>Triggers You Are Already Seeing</h2>
+    <p>Most CPA firms encounter these situations regularly. Each one warrants at least a conversation with a valuation specialist:</p>
+    <ul>
+      <li><strong>Client considering selling or receiving an offer</strong> — they need a baseline independent of the buyer's number</li>
+      <li><strong>Partnership disputes or partner exits</strong> — equitable resolution demands an independent third-party analysis</li>
+      <li><strong>Estate planning for aging business owners</strong> — IRS expects defensible documentation for closely-held business interests</li>
+      <li><strong>Divorce filings involving business ownership</strong> — courts require standards-compliant, independent valuations</li>
+      <li><strong>Buy-sell agreements referencing FMV</strong> — many agreements require periodic valuation but lack a current determination</li>
+      <li><strong>SBA or bank financing requiring valuation</strong> — lenders often mandate a formal conclusion of value</li>
+      <li><strong>Tax elections or restructuring involving business interests</strong> — proper documentation protects the client and the firm</li>
+    </ul>
+    <div class="callout"><p>If the question involves "What is it worth?" — the answer should come from a credentialed analyst, not a rule of thumb.</p></div>
+
+    <h2>Situations That Get Missed</h2>
+    <p>Beyond the obvious triggers, several situations warrant proactive valuation conversations that often go unraised:</p>
+    <ul>
+      <li><strong>Buy-sell agreements with stale or missing valuation provisions</strong> — a ticking liability for all parties</li>
+      <li><strong>Key-person loss and continuity risk</strong> — quantifying the impact before it becomes an emergency</li>
+      <li><strong>Act 60 decree holders needing to document enterprise value</strong> — regulatory scrutiny demands formal support</li>
+      <li><strong>Family businesses approaching transition with no plan</strong> — the earlier the baseline, the more options available</li>
+      <li><strong>Charitable contributions of business interests</strong> — IRS requirements are specific and enforced</li>
+      <li><strong>Shareholder disputes before they become litigation</strong> — early valuation work often prevents escalation</li>
+    </ul>
+    <p>Raising the valuation question proactively earns client trust and demonstrates the kind of forward-looking advisory that distinguishes your practice. You are not creating a problem — you are identifying a risk your client did not know they had.</p>
+
+    <h2>Choosing the Right Scope</h2>
+    <p>Not every situation requires the same level of analysis. The two primary options:</p>
+    <p><strong>CalcReport (Calculation of Value):</strong> A streamlined, standards-compliant analysis producing a defensible indication of value. Appropriate for planning, buy-sell compliance, internal decisions, and most transactions. Lower cost, faster turnaround (2–3 weeks typical).</p>
+    <p><strong>Full Valuation (Conclusion of Value):</strong> A comprehensive analysis considering all three valuation approaches, producing a formal opinion of value. Required for litigation, contested proceedings, SBA/bank lending, and regulatory mandates. Higher cost, longer timeline (4–6 weeks typical).</p>
+    <div class="callout"><p>When in doubt, start with a CalcReport. It is often sufficient, and the analytical work product can typically be expanded to a full valuation if circumstances change — without starting over.</p></div>
+
+    <h2>What to Look for in a Valuation Partner</h2>
+    <p>When referring your client, the specialist you choose reflects on your judgment. Key criteria:</p>
+    <ul>
+      <li><strong>Active credential</strong> (CVA, ABV, or ASA) with relevant experience in closely-held businesses</li>
+      <li><strong>Independence</strong> — no brokerage activity, no transaction-contingent fees, no conflicts of interest</li>
+      <li><strong>Standards compliance</strong> — adherence to NACVA, SSVS-1, and USPAP</li>
+      <li><strong>Communication and transparency</strong> — clear methodology explanation, no black-box outputs</li>
+      <li><strong>Defined scope, timeline, and fee structure</strong> — quoted upfront before engagement begins</li>
+      <li><strong>Willingness to operate as an embedded partner</strong> — supporting your practice, not competing for your client</li>
+    </ul>
+
+    <h2>How the Referral Works</h2>
+    <p>The process is designed to keep you at the center of the client relationship:</p>
+    <ul>
+      <li>You identify the need and make the introduction</li>
+      <li>The valuation analyst conducts a no-cost initial consultation with you and/or the client</li>
+      <li>An engagement letter defines scope, fee, and timeline — no surprises</li>
+      <li>Data collection, analysis, and report delivery follow a structured timeline</li>
+      <li>An analyst walkthrough is available to you and/or the client directly</li>
+    </ul>
+    <p>You remain the primary advisor throughout. The valuation specialist operates behind the scenes, delivering the technical analysis and professional deliverable while you maintain the client relationship.</p>
+
+    <div class="article-cta">
+      <p>When a valuation question comes up, having a credentialed specialist ready protects your client and adds value to your practice.</p>
+      <a href="contact.html">Let's discuss a partnership →</a>
+    </div>
+
+  </div></section>
+
+  <footer class="site-footer"><div class="footer-inner">
+    <div class="footer-left">© 2025 AXIS Independent Advisory. All rights reserved.</div>
+    <div class="footer-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div>
+  </div></footer>
+</body>
+</html>
