@@ -36,8 +36,8 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid var(--light-rule);
+      background: var(--slate);
+      border-bottom: 1px solid rgba(250,248,242,0.08);
     }
 
     .header-inner {
@@ -51,14 +51,14 @@
     }
 
     .logo-link { display: flex; align-items: center; gap: 0.75rem; }
-    .logo-mark { height: 42px; width: auto; }
+    .logo-mark { height: 56px; width: auto; }
 
     .logo-text {
-      font-size: 1.05rem;
+      font-size: 1.3rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--slate);
+      color: var(--ivory);
       line-height: 1.15;
     }
 
@@ -67,7 +67,7 @@
       font-size: 0.55rem;
       font-weight: 400;
       letter-spacing: 0.18em;
-      color: var(--muted);
+      color: rgba(250,248,242,0.65);
       margin-top: 1px;
     }
 
@@ -77,7 +77,7 @@
       font-size: 0.85rem;
       font-weight: 500;
       letter-spacing: 0.04em;
-      color: var(--muted);
+      color: rgba(250,248,242,0.7);
       transition: color 0.2s;
       position: relative;
     }
@@ -89,31 +89,31 @@
       left: 0;
       width: 0;
       height: 1.5px;
-      background: var(--slate);
+      background: var(--ivory);
       transition: width 0.25s ease;
     }
 
-    nav a:hover { color: var(--slate); }
+    nav a:hover { color: var(--ivory); }
     nav a:hover::after { width: 100%; }
-    nav a.active { color: var(--slate); }
+    nav a.active { color: var(--ivory); }
     nav a.active::after { width: 100%; }
 
     .nav-cta {
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.06em;
-      color: var(--white) !important;
-      background: var(--slate);
+      color: var(--slate) !important;
+      background: var(--ivory);
       padding: 0.5rem 1.25rem;
       border-radius: 4px;
       transition: background 0.2s;
     }
 
     .nav-cta::after { display: none !important; }
-    .nav-cta:hover { background: var(--muted) !important; color: var(--white) !important; }
+    .nav-cta:hover { background: var(--white) !important; color: var(--slate) !important; }
 
     .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger svg { width: 24px; height: 24px; stroke: var(--slate); }
+    .hamburger svg { width: 24px; height: 24px; stroke: var(--ivory); }
 
     /* ── PAGE HERO ─────────────────────────────── */
     .page-hero {
@@ -178,8 +178,21 @@
       font-size: 1rem;
       color: var(--muted);
       line-height: 1.75;
-      margin-bottom: 2rem;
+      margin-bottom: 0.75rem;
       max-width: 640px;
+    }
+
+    .service-owner-note {
+      font-size: 0.92rem;
+      color: var(--slate);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 2rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--ivory);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
     }
 
     /* Use cases */
@@ -419,12 +432,12 @@
         top: 72px;
         left: 0;
         right: 0;
-        background: var(--white);
+        background: var(--slate);
         flex-direction: column;
         padding: 1.5rem 2rem;
         gap: 1rem;
-        border-bottom: 1px solid var(--light-rule);
-        box-shadow: 0 8px 24px rgba(43,58,82,0.08);
+        border-bottom: 1px solid rgba(250,248,242,0.08);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
       }
 
       nav.open { display: flex; }
@@ -437,9 +450,9 @@
     }
 
     @media (max-width: 480px) {
-      .logo-text { font-size: 0.9rem; }
+      .logo-text { font-size: 1.1rem; }
       .logo-text span { font-size: 0.5rem; }
-      .logo-mark { height: 36px; }
+      .logo-mark { height: 48px; }
     }
   </style>
 </head>
@@ -480,6 +493,7 @@
       <div class="service-badge">CalcReport</div>
       <h2>A professional calculation of value for internal decisions, planning, and negotiations.</h2>
       <p class="service-desc">The CalcReport delivers a defensible, standards-compliant calculation of value — the practical tool business owners and their advisors need for the decisions that don't require a full opinion of value, but still demand rigor.</p>
+      <p class="service-owner-note">If you need a credible answer to "what's my business worth?" for planning purposes — without a six-figure engagement — this is designed for you. Fixed pricing, clear timeline, professional result.</p>
 
       <div class="use-cases">
         <h3>Common Use Cases</h3>
@@ -545,6 +559,7 @@
       <div class="service-badge">Full Valuation</div>
       <h2>When the situation demands a fully developed opinion of value.</h2>
       <p class="service-desc">A comprehensive valuation engagement that considers all three approaches to value — income, market, and asset-based — and produces a formal conclusion of value. Designed for situations where the analysis will face external scrutiny.</p>
+      <p class="service-owner-note">If your valuation will be reviewed by a court, a lender, or a regulatory body — or if the transaction stakes are high enough that you need the most thorough analysis available — this is the right scope.</p>
 
       <div class="use-cases">
         <h3>Common Use Cases</h3>
@@ -638,7 +653,7 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-left">© 2025 AXIS Independent Advisory. All rights reserved.</div>
+      <div class="footer-left">© 2026 AXIS Independent Advisory. All rights reserved.</div>
       <div class="footer-links">
         <a href="services.html">Services</a>
         <a href="about.html">About</a>
