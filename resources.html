@@ -16,8 +16,8 @@
     .site-header { position: sticky; top: 0; z-index: 100; background: var(--slate); border-bottom: 1px solid rgba(250,248,242,0.08); }
     .header-inner { max-width: 1120px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .logo-link { display: flex; align-items: center; gap: 0.75rem; }
-    .logo-mark { height: 56px; width: auto; }
-    .logo-text { font-size: 1.3rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ivory); line-height: 1.15; }
+    .logo-mark { height: 64px; width: auto; }
+    .logo-text { font-size: 1.5rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ivory); line-height: 1.15; }
     .logo-text span { display: block; font-size: 0.55rem; font-weight: 400; letter-spacing: 0.18em; color: rgba(250,248,242,0.65); margin-top: 1px; }
     nav { display: flex; align-items: center; gap: 2rem; }
     nav a { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; color: rgba(250,248,242,0.7); transition: color 0.2s; position: relative; }
@@ -33,7 +33,7 @@
     .page-hero h1 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; color: var(--ivory); max-width: 640px; margin: 0 auto; line-height: 1.35; animation: fadeUp 0.7s ease both; }
     .page-hero p { font-size: 1rem; color: var(--accent); margin-top: 0.75rem; max-width: 640px; margin-left: auto; margin-right: auto; animation: fadeUp 0.7s 0.1s ease both; }
 
-    .articles-section { padding: 4.5rem 2rem; background: var(--white); }
+    .articles-section { padding: 3.5rem 2rem; background: var(--white); }
     .articles-inner { max-width: 960px; margin: 0 auto; }
     .articles-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
     .articles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -43,12 +43,12 @@
     .article-audience.cpa { background: var(--muted); }
     .article-audience.both { background: var(--accent); color: var(--slate); }
     .article-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--slate); margin-bottom: 0.5rem; line-height: 1.35; }
-    .article-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .article-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; flex: 1; }
     .article-link { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.25rem; font-size: 0.82rem; font-weight: 600; color: var(--slate); transition: gap 0.2s; }
     .article-link:hover { gap: 0.6rem; }
     .article-link svg { width: 14px; height: 14px; stroke: var(--slate); fill: none; }
 
-    .faq-section { padding: 4.5rem 2rem; background: var(--ivory); }
+    .faq-section { padding: 3.5rem 2rem; background: var(--ivory); }
     .faq-inner { max-width: 820px; margin: 0 auto; }
     .faq-category-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--light-rule); }
     .faq-item { border-bottom: 1px solid var(--light-rule); }
@@ -86,13 +86,13 @@
 
     @media (max-width: 768px) {
       .hamburger { display: block; }
-      nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--slate); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid rgba(250,248,242,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+      nav { display: none; position: absolute; top: 80px; left: 0; right: 0; background: var(--slate); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid rgba(250,248,242,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
       nav.open { display: flex; } nav a::after { display: none; }
       .articles-grid { grid-template-columns: 1fr; }
-      .articles-section, .faq-section { padding: 3rem 1.5rem; }
+      .articles-section, .faq-section { padding: 2.5rem 1.5rem; }
       .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
     }
-    @media (max-width: 480px) { .logo-text { font-size: 1.1rem; } .logo-text span { font-size: 0.5rem; } .logo-mark { height: 48px; } }
+    @media (max-width: 480px) { .logo-text { font-size: 1.25rem; } .logo-text span { font-size: 0.55rem; } .logo-mark { height: 52px; } }
   </style>
 </head>
 <body>

@@ -51,10 +51,10 @@
     }
 
     .logo-link { display: flex; align-items: center; gap: 0.75rem; }
-    .logo-mark { height: 56px; width: auto; }
+    .logo-mark { height: 64px; width: auto; }
 
     .logo-text {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -64,7 +64,7 @@
 
     .logo-text span {
       display: block;
-      font-size: 0.55rem;
+      font-size: 0.6rem;
       font-weight: 400;
       letter-spacing: 0.18em;
       color: rgba(250,248,242,0.65);
@@ -161,7 +161,7 @@
 
     /* ── OUR APPROACH ──────────────────────────── */
     .approach {
-      padding: 4.5rem 2rem;
+      padding: 3.5rem 2rem;
       background: var(--ivory);
     }
 
@@ -274,7 +274,7 @@
 
     /* ── CREDENTIALS ──────────────────────────── */
     .credentials {
-      padding: 4.5rem 2rem;
+      padding: 3.5rem 2rem;
       background: var(--ivory);
     }
 
@@ -289,33 +289,62 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       text-align: center;
     }
 
-    .cred-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
+    .cred-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
     }
 
-    .cred-card {
-      background: var(--white);
-      border: 1px solid var(--light-rule);
-      border-radius: 6px;
-      padding: 1.75rem 1.5rem;
+    .cred-badge {
       text-align: center;
-      transition: box-shadow 0.3s;
+      padding: 0 2rem;
+      position: relative;
     }
 
-    .cred-card:hover {
-      box-shadow: 0 4px 20px rgba(43,58,82,0.06);
+    .cred-badge:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: var(--light-rule);
+    }
+
+    .cred-abbr {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--slate);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.2rem;
+    }
+
+    .cred-full {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.4;
+      max-width: 140px;
+      margin: 0 auto;
+    }
+
+    .cred-issuer {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 0.3rem;
     }
 
     .standards-note {
-      margin-top: 1.75rem;
+      margin-top: 2rem;
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       color: var(--muted);
       line-height: 1.6;
       max-width: 640px;
@@ -323,47 +352,6 @@
       margin-right: auto;
       padding-top: 1.5rem;
       border-top: 1px solid var(--light-rule);
-    }
-
-    .cred-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--ivory);
-      border: 1px solid var(--light-rule);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 0.75rem;
-    }
-
-    .cred-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--slate);
-      fill: none;
-    }
-
-    .cred-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--slate);
-      margin-bottom: 0.25rem;
-    }
-
-    .cred-org {
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-weight: 400;
-    }
-
-    /* Wide card for 2-column remaining */
-    .cred-grid .cred-card:nth-child(4) {
-      grid-column: 1 / 2;
-    }
-
-    .cred-grid .cred-card:nth-child(5) {
-      grid-column: 2 / 4;
     }
 
     /* ── PHILOSOPHY ────────────────────────────── */
@@ -477,7 +465,7 @@
       nav {
         display: none;
         position: absolute;
-        top: 72px;
+        top: 80px;
         left: 0;
         right: 0;
         background: var(--slate);
@@ -491,15 +479,13 @@
       nav.open { display: flex; }
       nav a::after { display: none; }
 
-      .narrative, .credentials, .philosophy { padding: 3rem 1.5rem; }
-      .approach { padding: 3rem 1.5rem; }
+      .narrative, .credentials, .philosophy { padding: 2.5rem 1.5rem; }
+      .approach { padding: 2.5rem 1.5rem; }
       .pillar-grid { grid-template-columns: 1fr; }
 
-      .cred-grid { grid-template-columns: 1fr 1fr; }
-
-      .cred-grid .cred-card:nth-child(5) {
-        grid-column: 1 / 3;
-      }
+      .cred-row { gap: 1.5rem 0; }
+      .cred-badge { padding: 0.75rem 1.5rem; }
+      .cred-badge:not(:last-child)::after { display: none; }
 
       .numbers-inner { gap: 1.5rem 0; }
 
@@ -516,16 +502,14 @@
     }
 
     @media (max-width: 480px) {
-      .logo-text { font-size: 1.1rem; }
-      .logo-text span { font-size: 0.5rem; }
-      .logo-mark { height: 48px; }
+      .logo-text { font-size: 1.25rem; }
+      .logo-text span { font-size: 0.55rem; }
+      .logo-mark { height: 52px; }
 
-      .cred-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cred-grid .cred-card:nth-child(5) {
-        grid-column: auto;
+      .cred-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
       }
 
       .numbers-inner {
@@ -643,45 +627,31 @@
     <div class="credentials-inner">
       <div class="credentials-label">Credentials &amp; Qualifications</div>
 
-      <div class="cred-grid">
-        <div class="cred-card">
-          <div class="cred-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="cred-title">CVA</div>
-          <div class="cred-org">Certified Valuation Analyst — NACVA</div>
+      <div class="cred-row">
+        <div class="cred-badge">
+          <div class="cred-abbr">CVA</div>
+          <div class="cred-full">Certified Valuation Analyst</div>
+          <div class="cred-issuer">NACVA</div>
         </div>
-
-        <div class="cred-card">
-          <div class="cred-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          </div>
-          <div class="cred-title">FPAC</div>
-          <div class="cred-org">Financial Planning &amp; Analysis — AFP</div>
+        <div class="cred-badge">
+          <div class="cred-abbr">FPAMC</div>
+          <div class="cred-full">FP&amp;A Modeling Certification</div>
+          <div class="cred-issuer">Wall Street Prep</div>
         </div>
-
-        <div class="cred-card">
-          <div class="cred-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <div class="cred-title">Data Analytics</div>
-          <div class="cred-org">Google Professional Certificate</div>
+        <div class="cred-badge">
+          <div class="cred-abbr">Data Analytics</div>
+          <div class="cred-full">Professional Certificate</div>
+          <div class="cred-issuer">Google</div>
         </div>
-
-        <div class="cred-card">
-          <div class="cred-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
-          </div>
-          <div class="cred-title">B.S. Finance</div>
-          <div class="cred-org">Risk Management Minor</div>
+        <div class="cred-badge">
+          <div class="cred-abbr">Python</div>
+          <div class="cred-full">Programming Certificate</div>
+          <div class="cred-issuer">— Confirm Issuer —</div>
         </div>
-
-        <div class="cred-card">
-          <div class="cred-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div class="cred-title">Fully Bilingual</div>
-          <div class="cred-org">English &amp; Spanish</div>
+        <div class="cred-badge">
+          <div class="cred-abbr">Bilingual</div>
+          <div class="cred-full">English &amp; Spanish</div>
+          <div class="cred-issuer">Native Fluency</div>
         </div>
       </div>
 
