@@ -429,6 +429,123 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+
+    /* ── COMPARISON TABLE ──────────────────────── */
+    .section-label-sm {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .compare-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .compare-table thead th {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--slate);
+      padding: 0.75rem 1rem;
+      text-align: center;
+    }
+
+    .compare-table thead th:first-child {
+      background: transparent;
+    }
+
+    .compare-table tbody td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--light-rule);
+      text-align: center;
+      color: var(--slate);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .compare-table tbody td.row-label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .compare-table tbody tr:last-child td { border-bottom: none; }
+
+    .compare-table tbody tr:nth-child(even) td {
+      background: var(--ivory);
+    }
+
+    .compare-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 1.25rem;
+      line-height: 1.5;
+    }
+
+    /* ── PARTNERSHIP STEPS ──────────────────────── */
+    .partnership-steps {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .p-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--light-rule);
+      border-radius: 5px;
+    }
+
+    .service-section:nth-child(odd) .p-step {
+      background: var(--ivory);
+    }
+
+    .p-step-num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--slate);
+      color: var(--ivory);
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .p-step-text {
+      font-size: 0.88rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    .p-step-text strong {
+      display: block;
+      margin-bottom: 0.15rem;
+    }
     /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 768px) {
       .hamburger { display: block; }
@@ -453,6 +570,8 @@
       .service-section { padding: 2.5rem 1.5rem; }
       .service-details { gap: 1.5rem; }
       .cpa-features { grid-template-columns: 1fr; }
+      .compare-table { font-size: 0.8rem; }
+      .compare-table thead th, .compare-table tbody td { padding: 0.5rem 0.6rem; }
       .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
     }
 
@@ -490,7 +609,7 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero">
-    <h1>Two levels of service. One standard of quality.</h1>
+    <h1>Three levels of service. One standard of quality.</h1>
     <p>Every engagement is governed by NACVA professional standards.</p>
   </section>
 
@@ -537,7 +656,7 @@
           <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           <div class="detail-text">
             <strong>Pricing</strong>
-            Fixed fee, quoted upfront
+            $1,500 – $2,500 fixed fee
           </div>
         </div>
         <div class="detail-item">
@@ -592,7 +711,7 @@
           <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           <div class="detail-text">
             <strong>Pricing</strong>
-            Fixed fee, quoted upfront
+            Starting at $4,000
           </div>
         </div>
         <div class="detail-item">
@@ -610,6 +729,70 @@
 
       <a href="mailto:info@axisadvisorypr.com" class="service-cta">
         Start with a conversation
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ANNUAL UPDATE -->
+  <section class="service-section" id="annual-update">
+    <div class="service-inner">
+      <div class="service-badge">Annual Update</div>
+      <h2>Keep your valuation current without starting from scratch.</h2>
+      <p class="service-desc">A streamlined refresh of a prior CalcReport using updated financials. Designed for buy-sell agreements, recurring compliance, and businesses that need an annual fair market value determination.</p>
+      <p class="service-owner-note">If you already have a CalcReport from AXIS and need it updated with the latest year's numbers — same methodology, same rigor, faster turnaround, lower cost.</p>
+
+      <div class="use-cases">
+        <h3>Common Use Cases</h3>
+        <ul class="use-case-list">
+          <li>Annual buy-sell agreement updates</li>
+          <li>Recurring estate &amp; gift tax compliance</li>
+          <li>Year-over-year value tracking</li>
+          <li>Partner equity reconciliation</li>
+        </ul>
+      </div>
+
+      <div class="use-cases" style="margin-top:0">
+        <h3>What's Included</h3>
+        <ul class="use-case-list">
+          <li>Updated financial analysis with current-year data</li>
+          <li>Revised market multiples and risk assessment</li>
+          <li>Comparison to prior-year conclusion</li>
+          <li>Professional update report with methodology notes</li>
+        </ul>
+      </div>
+
+      <div class="service-details">
+        <div class="detail-item">
+          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="detail-text">
+            <strong>Turnaround</strong>
+            1–2 weeks typical
+          </div>
+        </div>
+        <div class="detail-item">
+          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div class="detail-text">
+            <strong>Pricing</strong>
+            $750 – $1,250 fixed fee
+          </div>
+        </div>
+        <div class="detail-item">
+          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <div class="detail-text">
+            <strong>Prerequisite</strong>
+            Prior AXIS CalcReport
+          </div>
+        </div>
+      </div>
+
+      <div class="service-note">
+        Annual updates use the same methodology and standards as the original CalcReport. Available to clients with a prior AXIS engagement completed within the last 24 months. For businesses requiring a new baseline analysis, see CalcReport.
+      </div>
+
+      <a href="mailto:info@axisadvisorypr.com" class="service-cta">
+        Schedule an update
         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
@@ -643,10 +826,91 @@
 
       <p class="service-desc" style="margin-top:1.5rem">Whether it's a one-time engagement or an ongoing relationship, we scale to your needs without adding headcount to your firm.</p>
 
-      <a href="mailto:info@axisadvisorypr.com" class="service-cta">
+      <div class="use-cases" style="margin-top:2rem">
+        <h3>How the Partnership Works</h3>
+      </div>
+      <div class="partnership-steps">
+        <div class="p-step">
+          <div class="p-step-num">1</div>
+          <div class="p-step-text"><strong>You introduce us by email.</strong> A brief introduction to your client is all we need to get started.</div>
+        </div>
+        <div class="p-step">
+          <div class="p-step-num">2</div>
+          <div class="p-step-text"><strong>We handle data collection directly.</strong> Your client receives a tailored document request list. We manage follow-ups and questions.</div>
+        </div>
+        <div class="p-step">
+          <div class="p-step-num">3</div>
+          <div class="p-step-text"><strong>You review the draft before delivery.</strong> The report comes to you first. Flag questions, request clarifications — we revise until you're satisfied.</div>
+        </div>
+        <div class="p-step">
+          <div class="p-step-num">4</div>
+          <div class="p-step-text"><strong>Your client receives the final report.</strong> Delivered under AXIS letterhead with your firm referenced as the referring advisor. Your relationship stays intact.</div>
+        </div>
+      </div>
+
+      <a href="mailto:info@axisadvisorypr.com" class="service-cta" style="margin-top:2rem">
         Let's talk
         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="service-section" id="compare" style="background: var(--white);">
+    <div class="service-inner" style="max-width:900px;">
+      <div class="section-label-sm">Compare Services</div>
+      <h2 style="text-align:center; margin-bottom:2rem;">Which engagement is right for your situation?</h2>
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>CalcReport</th>
+              <th>Annual Update</th>
+              <th>Full Valuation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Best for</td>
+              <td>Planning, buy-sell, negotiations</td>
+              <td>Recurring updates to prior CalcReport</td>
+              <td>Litigation, financing, regulatory</td>
+            </tr>
+            <tr>
+              <td class="row-label">Deliverable</td>
+              <td>Calculation of value</td>
+              <td>Updated calculation of value</td>
+              <td>Conclusion of value (formal opinion)</td>
+            </tr>
+            <tr>
+              <td class="row-label">Approaches</td>
+              <td>Income &amp; market (as appropriate)</td>
+              <td>Same as original CalcReport</td>
+              <td>All three: income, market, asset</td>
+            </tr>
+            <tr>
+              <td class="row-label">Timeline</td>
+              <td>2–3 weeks</td>
+              <td>1–2 weeks</td>
+              <td>4–6 weeks</td>
+            </tr>
+            <tr>
+              <td class="row-label">Pricing</td>
+              <td><strong>$1,500 – $2,500</strong></td>
+              <td><strong>$750 – $1,250</strong></td>
+              <td><strong>Starting at $4,000</strong></td>
+            </tr>
+            <tr>
+              <td class="row-label">External use</td>
+              <td>Internal / planning only</td>
+              <td>Internal / planning only</td>
+              <td>Courts, lenders, regulators</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="compare-note">All engagements include fixed-fee pricing, bilingual delivery (EN/ES), and compliance with NACVA Professional Standards.</p>
     </div>
   </section>
 

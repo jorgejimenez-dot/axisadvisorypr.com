@@ -214,6 +214,25 @@
 
     .hero-btn.secondary:hover { border-color: var(--ivory); }
 
+
+    .hero-education {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: rgba(250,248,242,0.5);
+      animation: fadeUp 0.8s 0.25s ease both;
+    }
+
+    .hero-education a {
+      color: rgba(250,248,242,0.75);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s;
+    }
+
+    .hero-education a:hover {
+      color: var(--ivory);
+    }
+
     /* ── CREDIBILITY BAR ──────────────────────── */
     .cred-bar {
       background: var(--ivory);
@@ -319,8 +338,8 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
       margin-top: 2rem;
     }
 
@@ -592,6 +611,8 @@
     @media (max-width: 768px) {
       .hamburger { display: block; }
 
+      .cards-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+
       nav {
         display: none;
         position: absolute;
@@ -665,12 +686,13 @@
   <section class="hero">
     <img src="logo.png" alt="" class="hero-watermark" aria-hidden="true">
     <div class="hero-inner">
-      <h1>Defensible business valuations for Puerto Rico's closely-held businesses — delivered in weeks, not months.</h1>
-      <p class="hero-tagline">Whether you're planning an exit, structuring a buyout, or just want to know where you stand — we'll give you a number you can trust.</p>
+      <h1>Know what your business is worth.</h1>
+      <p class="hero-tagline">Defensible, standards-compliant valuations for Puerto Rico's closely-held businesses. Delivered in weeks, not months.</p>
       <div class="hero-sub">
         <a href="services.html" class="hero-btn primary">Our Services</a>
         <a href="contact.html" class="hero-btn secondary">Start a Conversation</a>
       </div>
+      <p class="hero-education">New to business valuations? <a href="bv-what-is.html">Start here →</a></p>
     </div>
   </section>
 
@@ -720,7 +742,7 @@
   <!-- TWO WAYS WE HELP -->
   <section class="section two-ways">
     <div class="section-inner">
-      <div class="section-label">Two Ways We Help</div>
+      <div class="section-label">Three Ways We Help</div>
       <h2 class="section-title">The right level of analysis for the situation at hand.</h2>
 
       <div class="cards-grid">
@@ -751,6 +773,20 @@
             <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
+
+        <!-- Annual Update -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </div>
+          <h3>Annual Update</h3>
+          <div class="card-tagline">Keep your valuation current.</div>
+          <p>A streamlined refresh of a prior CalcReport with updated financials. Faster turnaround, lower cost. From $750.</p>
+          <a href="services.html#annual-update" class="card-link">
+            Learn more
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -765,7 +801,7 @@
         <div class="step">
           <div class="step-number">1</div>
           <h4>Initial Consultation</h4>
-          <p>We discuss the purpose, scope, and timeline. No engagement begins without a clear understanding of what you need and why.</p>
+          <p>We discuss the purpose, scope, and timeline. You'll get a fixed-fee quote and a plain-language engagement letter — no jargon, no surprises.</p>
         </div>
         <div class="step-connector">
           <svg viewBox="0 0 40 24" fill="none"><path d="M0 12h32m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -773,7 +809,7 @@
         <div class="step">
           <div class="step-number">2</div>
           <h4>Data Collection</h4>
-          <p>We provide a focused data request list. You provide financials, tax returns, and key operating details. We handle the rest.</p>
+          <p>You'll receive a focused 15-item data request list. Provide financials, tax returns, and key operating details — we handle the analysis from there.</p>
         </div>
         <div class="step-connector">
           <svg viewBox="0 0 40 24" fill="none"><path d="M0 12h32m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -781,7 +817,7 @@
         <div class="step">
           <div class="step-number">3</div>
           <h4>Analysis &amp; Delivery</h4>
-          <p>We apply rigorous, standards-compliant methodology, produce a professional report, and walk you through the results.</p>
+          <p>You receive a professional report with documented methodology, stated assumptions, and a clear conclusion — plus a 30-minute walkthrough call.</p>
         </div>
       </div>
     </div>
