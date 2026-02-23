@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AXIS Independent Advisory — Business Valuations for Puerto Rico</title>
   <meta name="description" content="Defensible business valuations for Puerto Rico's closely-held businesses. NACVA-credentialed. Bilingual EN/ES. Fixed-fee pricing.">
-  <meta property="og:title" content="AXIS Independent Advisory — Business Valuations for Puerto Rico">
-  <meta property="og:description" content="Defensible business valuations for Puerto Rico's closely-held businesses. NACVA-credentialed. Bilingual EN/ES. Fixed-fee pricing.">
-  <meta property="og:image" content="https://axisadvisorypr.com/logo.png">
-  <meta property="og:url" content="https://axisadvisorypr.com/">
-  <meta property="og:type" content="website">
   <style>
     /* ── RESET & BASE ─────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -219,25 +214,6 @@
 
     .hero-btn.secondary:hover { border-color: var(--ivory); }
 
-
-    .hero-education {
-      margin-top: 1.25rem;
-      font-size: 0.85rem;
-      color: rgba(250,248,242,0.5);
-      animation: fadeUp 0.8s 0.25s ease both;
-    }
-
-    .hero-education a {
-      color: rgba(250,248,242,0.75);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      transition: color 0.2s;
-    }
-
-    .hero-education a:hover {
-      color: var(--ivory);
-    }
-
     /* ── CREDIBILITY BAR ──────────────────────── */
     .cred-bar {
       background: var(--ivory);
@@ -343,8 +319,8 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
       margin-top: 2rem;
     }
 
@@ -616,9 +592,6 @@
     @media (max-width: 768px) {
       .hamburger { display: block; }
 
-      .trigger-grid { grid-template-columns: 1fr; }
-      .cards-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
-
       nav {
         display: none;
         position: absolute;
@@ -639,7 +612,6 @@
       .hero { padding: 3.5rem 1.5rem 3rem; }
       .hero-sub { flex-direction: column; align-items: center; gap: 0.75rem; }
 
-      .trigger-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
       .audience-grid { grid-template-columns: 1fr; }
 
@@ -682,7 +654,6 @@
       <nav>
         <a href="index.html" class="active">Home</a>
         <a href="services.html">Services</a>
-        <a href="services.html#cpa-firms">For CPAs</a>
         <a href="about.html">About</a>
         <a href="resources.html">Resources</a>
         <a href="contact.html" class="nav-cta">Contact</a>
@@ -694,13 +665,12 @@
   <section class="hero">
     <img src="logo.png" alt="" class="hero-watermark" aria-hidden="true">
     <div class="hero-inner">
-      <h1>Know what your business is worth.</h1>
-      <p class="hero-tagline">Defensible, standards-compliant valuations for Puerto Rico's closely-held businesses. Delivered in weeks, not months.</p>
+      <h1>Defensible business valuations for Puerto Rico's closely-held businesses — delivered in weeks, not months.</h1>
+      <p class="hero-tagline">Whether you're planning an exit, structuring a buyout, or just want to know where you stand — we'll give you a number you can trust.</p>
       <div class="hero-sub">
         <a href="services.html" class="hero-btn primary">Our Services</a>
         <a href="contact.html" class="hero-btn secondary">Start a Conversation</a>
       </div>
-      <p class="hero-education">New to business valuations? <a href="bv-what-is.html">Start here →</a></p>
     </div>
   </section>
 
@@ -747,45 +717,10 @@
     </div>
   </section>
 
-
-  <!-- WHEN YOU NEED US -->
-  <section class="section urgency-triggers">
-    <div class="section-inner">
-      <div class="section-label">Sound Familiar?</div>
-      <h2 class="section-title">Moments when a valuation becomes urgent.</h2>
-      <div class="trigger-grid">
-        <div class="trigger-item">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span>A partner wants out — or wants to buy in.</span>
-        </div>
-        <div class="trigger-item">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
-          <span>You received a buy-sell trigger notice.</span>
-        </div>
-        <div class="trigger-item">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>You're thinking about selling in the next 2–3 years.</span>
-        </div>
-        <div class="trigger-item">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          <span>Someone made an unsolicited offer for your business.</span>
-        </div>
-        <div class="trigger-item">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>An estate or gift transfer requires a defensible value.</span>
-        </div>
-        <div class="trigger-item">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <span>Your CPA said you need one — and you're not sure why.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- TWO WAYS WE HELP -->
   <section class="section two-ways">
     <div class="section-inner">
-      <div class="section-label">Three Ways We Help</div>
+      <div class="section-label">Two Ways We Help</div>
       <h2 class="section-title">The right level of analysis for the situation at hand.</h2>
 
       <div class="cards-grid">
@@ -816,20 +751,6 @@
             <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
-
-        <!-- Annual Update -->
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-          </div>
-          <h3>Annual Update</h3>
-          <div class="card-tagline">Keep your valuation current.</div>
-          <p>A streamlined refresh of a prior CalcReport with updated financials. Faster turnaround, lower cost. From $750.</p>
-          <a href="services.html#annual-update" class="card-link">
-            Learn more
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -844,7 +765,7 @@
         <div class="step">
           <div class="step-number">1</div>
           <h4>Initial Consultation</h4>
-          <p>We discuss the purpose, scope, and timeline. You'll get a fixed-fee quote and a plain-language engagement letter — no jargon, no surprises.</p>
+          <p>We discuss the purpose, scope, and timeline. No engagement begins without a clear understanding of what you need and why.</p>
         </div>
         <div class="step-connector">
           <svg viewBox="0 0 40 24" fill="none"><path d="M0 12h32m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -852,7 +773,7 @@
         <div class="step">
           <div class="step-number">2</div>
           <h4>Data Collection</h4>
-          <p>You'll receive a focused 15-item data request list. Provide financials, tax returns, and key operating details — we handle the analysis from there.</p>
+          <p>We provide a focused data request list. You provide financials, tax returns, and key operating details. We handle the rest.</p>
         </div>
         <div class="step-connector">
           <svg viewBox="0 0 40 24" fill="none"><path d="M0 12h32m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -860,7 +781,7 @@
         <div class="step">
           <div class="step-number">3</div>
           <h4>Analysis &amp; Delivery</h4>
-          <p>You receive a professional report with documented methodology, stated assumptions, and a clear conclusion — plus a 30-minute walkthrough call.</p>
+          <p>We apply rigorous, standards-compliant methodology, produce a professional report, and walk you through the results.</p>
         </div>
       </div>
     </div>
@@ -928,7 +849,6 @@
       <div class="footer-left">© 2026 AXIS Independent Advisory. All rights reserved.</div>
       <div class="footer-links">
         <a href="services.html">Services</a>
-        <a href="services.html#cpa-firms">For CPAs</a>
         <a href="about.html">About</a>
         <a href="resources.html">Resources</a>
         <a href="contact.html">Contact</a>

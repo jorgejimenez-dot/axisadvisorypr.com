@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — AXIS Independent Advisory</title>
   <meta name="description" content="Start a conversation about a business valuation engagement. AXIS Independent Advisory serves Puerto Rico's closely-held businesses.">
+  <meta property="og:title" content="Contact — AXIS Independent Advisory">
+  <meta property="og:description" content="Start a conversation about a business valuation engagement. AXIS Independent Advisory serves Puerto Rico's closely-held businesses.">
+  <meta property="og:image" content="https://axisadvisorypr.com/logo.png">
+  <meta property="og:url" content="https://axisadvisorypr.com/contact.html">
+  <meta property="og:type" content="website">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -398,6 +403,110 @@
       line-height: 1.5;
     }
 
+
+    /* ── NOT READY SECTION ─────────────────────── */
+    .not-ready {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .not-ready h3 {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .not-ready-links {
+      display: grid;
+      gap: 0.65rem;
+      text-align: left;
+    }
+
+    .nr-link {
+      display: block;
+      padding: 0.85rem 1.15rem;
+      background: var(--ivory);
+      border: 1px solid var(--light-rule);
+      border-radius: 6px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .nr-link:hover {
+      border-color: var(--accent);
+      background: var(--white);
+    }
+
+    .nr-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 0.15rem;
+    }
+
+    .nr-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── WHAT TO EXPECT ────────────────────────── */
+    .what-to-expect {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .what-to-expect h3 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .expect-steps {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .expect-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      background: var(--ivory);
+      border-radius: 6px;
+    }
+
+    .expect-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--slate);
+      color: var(--ivory);
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .expect-step p {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.55;
+      margin: 0;
+    }
+
     /* ── FOOTER ────────────────────────────────── */
     .site-footer {
       background: var(--slate);
@@ -482,6 +591,7 @@
       <nav>
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
+        <a href="services.html#cpa-firms">For CPAs</a>
         <a href="about.html">About</a>
         <a href="resources.html">Resources</a>
         <a href="contact.html" class="nav-cta active">Contact</a>
@@ -512,6 +622,26 @@
           <p class="prefer-talk">Prefer to talk? Email us with your phone number and a good time to call — we'll reach out directly.</p>
         </div>
 
+
+        <!-- Not Ready -->
+        <div class="not-ready">
+          <h3>Not ready to reach out? Start here instead.</h3>
+          <div class="not-ready-links">
+            <a href="article-what-is-valuation.html" class="nr-link">
+              <span class="nr-label">What is a business valuation?</span>
+              <span class="nr-desc">What it is, when you need one, and how the process works.</span>
+            </a>
+            <a href="article-calcreport-vs-full.html" class="nr-link">
+              <span class="nr-label">CalcReport vs. Full Valuation</span>
+              <span class="nr-desc">A quick guide to choosing the right scope.</span>
+            </a>
+            <a href="article-valuation-puerto-rico.html" class="nr-link">
+              <span class="nr-label">Valuation in Puerto Rico</span>
+              <span class="nr-desc">What makes the local market different.</span>
+            </a>
+          </div>
+        </div>
+
         <!-- Trust seal -->
         <div class="trust-seal">
           <img src="logo.png" alt="AXIS" class="trust-mark">
@@ -537,6 +667,26 @@
             <div class="include-item">
               <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
               <span>Language preference</span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- What to Expect -->
+        <div class="what-to-expect">
+          <h3>What Happens After You Email</h3>
+          <div class="expect-steps">
+            <div class="expect-step">
+              <div class="expect-num">1</div>
+              <p>Within one business day, we respond with a few clarifying questions about your situation.</p>
+            </div>
+            <div class="expect-step">
+              <div class="expect-num">2</div>
+              <p>If a valuation makes sense, we send a fixed-fee quote and a plain-language engagement letter. No jargon.</p>
+            </div>
+            <div class="expect-step">
+              <div class="expect-num">3</div>
+              <p>If it doesn't make sense for your situation, we'll tell you that too — and suggest what might help instead.</p>
             </div>
           </div>
         </div>
@@ -584,6 +734,7 @@
       <div class="footer-left">© 2026 AXIS Independent Advisory. All rights reserved.</div>
       <div class="footer-links">
         <a href="services.html">Services</a>
+        <a href="services.html#cpa-firms">For CPAs</a>
         <a href="about.html">About</a>
         <a href="resources.html">Resources</a>
         <a href="contact.html">Contact</a>
