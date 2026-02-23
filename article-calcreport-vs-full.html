@@ -27,7 +27,8 @@
     .article-hero { background: var(--slate); padding: 4rem 2rem 3.5rem; text-align: center; }
     .article-hero .breadcrumb { font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem; }
     .article-hero .breadcrumb a { color: var(--accent); border-bottom: 1px solid rgba(143,163,184,0.3); transition: border-color 0.2s; } .article-hero .breadcrumb a:hover { border-color: var(--accent); }
-    .article-hero .audience-tag { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate); background: var(--accent); padding: 0.25rem 0.7rem; border-radius: 3px; margin-bottom: 1rem; }
+    .article-hero .audience-tag { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: rgba(255,255,255,0.12); padding: 0.25rem 0.7rem; border-radius: 3px; margin-bottom: 1rem; }
+    .article-byline { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1.25rem; } .article-byline img { height: 24px; width: auto; opacity: 0.5; } .article-byline span { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(250,248,242,0.5); text-transform: uppercase; }
     .article-hero h1 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 600; color: var(--ivory); max-width: 640px; margin: 0 auto; line-height: 1.3; }
     .article-body { padding: 3.5rem 2rem 4.5rem; } .article-inner { max-width: 680px; margin: 0 auto; }
     .article-inner h2 { font-size: 1.2rem; font-weight: 600; color: var(--slate); margin: 2.5rem 0 0.75rem; line-height: 1.35; } .article-inner h2:first-child { margin-top: 0; }
@@ -55,7 +56,7 @@
     .article-cta a { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--white); background: var(--slate); padding: 0.6rem 1.75rem; border-radius: 4px; transition: background 0.2s; } .article-cta a:hover { background: var(--muted); }
     .site-footer { background: var(--slate); border-top: 1px solid rgba(250,248,242,0.08); padding: 2.5rem 2rem; }
     .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .footer-left { font-size: 0.75rem; color: rgba(250,248,242,0.5); } .footer-links { display: flex; gap: 1.5rem; }
+    .footer-logo { text-align: center; margin-bottom: 1.25rem; max-width: 1120px; margin-left: auto; margin-right: auto; } .footer-mark { height: 32px; width: auto; opacity: 0.4; } .footer-left { font-size: 0.75rem; color: rgba(250,248,242,0.5); } .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a { font-size: 0.75rem; color: rgba(250,248,242,0.5); transition: color 0.2s; } .footer-links a:hover { color: var(--ivory); }
     @media (max-width: 768px) { .hamburger { display: block; } nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--slate); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid rgba(250,248,242,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.2); } nav.open { display: flex; } nav a::after { display: none; } .article-body { padding: 2.5rem 1.5rem 3.5rem; } .decision-grid { grid-template-columns: 1fr; } .footer-inner { flex-direction: column; gap: 1rem; text-align: center; } }
     @media (max-width: 480px) { .logo-text { font-size: 1.1rem; } .logo-text span { font-size: 0.5rem; } .logo-mark { height: 48px; } }
@@ -72,6 +73,7 @@
     <div class="breadcrumb"><a href="resources.html">Resources</a> &nbsp;/&nbsp; Article</div>
     <div class="audience-tag">For Owners &amp; Advisors</div>
     <h1>CalcReport vs. Full Valuation: Which Do You Need?</h1>
+    <div class="article-byline"><img src="logo.png" alt=""><span>AXIS Independent Advisory</span></div>
   </section>
 
   <section class="article-body"><div class="article-inner">
@@ -89,7 +91,7 @@
     <p>The word "calculation" refers to scope, not quality. A CalcReport applies the same analytical rigor, the same professional standards, and the same credentialed expertise as a full valuation. The difference is the breadth of analysis required.</p>
 
     <h2>Conclusion of Value (Full Valuation)</h2>
-    <p>A full valuation is a comprehensive analysis considering all three valuation approaches — income, market, and asset-based. It produces a formal <strong>conclusion of value</strong> with complete documentation. Key characteristics:</p>
+    <p>A full valuation considers all three valuation approaches — income, market, and asset-based. It produces a formal <strong>conclusion of value</strong> with complete documentation. Key characteristics:</p>
     <ul>
       <li>Requires evaluating and documenting all relevant approach and method decisions</li>
       <li>Higher cost and longer timeline (4–6 weeks typical)</li>
@@ -132,13 +134,15 @@
     <div class="callout"><p>The word "calculation" refers to scope — not quality, not rigor, and not credibility.</p></div>
 
     <div class="article-cta">
-      <p>Not sure which scope fits your situation? That is exactly what the initial consultation is for.</p>
+      <p>Not sure which scope fits your situation? That's exactly what the initial consultation is for.</p>
       <a href="contact.html">Request a consultation →</a>
     </div>
 
   </div></section>
 
-  <footer class="site-footer"><div class="footer-inner">
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="logo.png" alt="AXIS" class="footer-mark"></div>
+  <div class="footer-inner">
     <div class="footer-left">© 2026 AXIS Independent Advisory. All rights reserved.</div>
     <div class="footer-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div>
   </div></footer>

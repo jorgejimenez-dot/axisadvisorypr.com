@@ -133,7 +133,7 @@
       font-size: clamp(1.5rem, 3vw, 2rem);
       font-weight: 600;
       color: var(--ivory);
-      max-width: 540px;
+      max-width: 640px;
       margin: 0 auto;
       line-height: 1.35;
       animation: fadeUp 0.7s ease both;
@@ -218,6 +218,27 @@
       color: var(--muted);
       margin-top: 1.25rem;
       font-style: italic;
+    }
+
+    .trust-seal {
+      text-align: center;
+      padding: 1.75rem 0;
+      margin-bottom: 1rem;
+    }
+
+    .trust-mark {
+      height: 40px;
+      width: auto;
+      opacity: 0.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .trust-text {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
     /* What to include */
@@ -392,7 +413,7 @@
       justify-content: space-between;
     }
 
-    .footer-left { font-size: 0.75rem; color: rgba(250,248,242,0.5); }
+    .footer-logo { text-align: center; margin-bottom: 1.25rem; max-width: 1120px; margin-left: auto; margin-right: auto; } .footer-mark { height: 32px; width: auto; opacity: 0.4; } .footer-left { font-size: 0.75rem; color: rgba(250,248,242,0.5); }
 
     .footer-links { display: flex; gap: 1.5rem; }
 
@@ -491,6 +512,12 @@
           <p class="prefer-talk">Prefer to talk? Email us with your phone number and a good time to call — we'll reach out directly.</p>
         </div>
 
+        <!-- Trust seal -->
+        <div class="trust-seal">
+          <img src="logo.png" alt="AXIS" class="trust-mark">
+          <div class="trust-text">NACVA Certified · SSVS-1 Standards · USPAP Consistent</div>
+        </div>
+
         <!-- What to include -->
         <div class="what-to-include">
           <h3>Helpful to Include in Your Email</h3>
@@ -552,6 +579,7 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
+    <div class="footer-logo"><img src="logo.png" alt="AXIS" class="footer-mark"></div>
     <div class="footer-inner">
       <div class="footer-left">© 2026 AXIS Independent Advisory. All rights reserved.</div>
       <div class="footer-links">

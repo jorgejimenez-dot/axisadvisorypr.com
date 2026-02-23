@@ -385,6 +385,11 @@
       transition: background 0.2s;
     }
 
+    .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .cta-btn-primary { display: inline-block; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; padding: 0.7rem 2rem; border-radius: 4px; background: var(--ivory); color: var(--slate); transition: background 0.2s; }
+    .cta-btn-primary:hover { background: var(--white); }
+    .cta-btn-secondary { display: inline-block; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; padding: 0.7rem 2rem; border-radius: 4px; background: transparent; color: var(--ivory); border: 1px solid rgba(250,248,242,0.3); transition: border-color 0.2s, background 0.2s; }
+    .cta-btn-secondary:hover { border-color: var(--ivory); background: rgba(250,248,242,0.05); }
     .cta-strip a.cta-btn:hover { background: var(--white); }
 
     /* ── FOOTER ────────────────────────────────── */
@@ -401,6 +406,8 @@
       align-items: center;
       justify-content: space-between;
     }
+
+    .footer-logo { text-align: center; margin-bottom: 1.25rem; max-width: 1120px; margin-left: auto; margin-right: auto; } .footer-mark { height: 32px; width: auto; opacity: 0.4; }
 
     .footer-left {
       font-size: 0.75rem;
@@ -558,7 +565,7 @@
     <div class="service-inner">
       <div class="service-badge">Full Valuation</div>
       <h2>When the situation demands a fully developed opinion of value.</h2>
-      <p class="service-desc">A comprehensive valuation engagement that considers all three approaches to value — income, market, and asset-based — and produces a formal conclusion of value. Designed for situations where the analysis will face external scrutiny.</p>
+      <p class="service-desc">A valuation engagement that considers all three approaches to value — income, market, and asset-based — and produces a formal conclusion of value. Designed for situations where the analysis will face external scrutiny.</p>
       <p class="service-owner-note">If your valuation will be reviewed by a court, a lender, or a regulatory body — or if the transaction stakes are high enough that you need the most thorough analysis available — this is the right scope.</p>
 
       <div class="use-cases">
@@ -613,7 +620,7 @@
     <div class="service-inner">
       <div class="service-badge">For CPA Firms</div>
       <h2>Your embedded valuation department.</h2>
-      <p class="service-desc">We partner with CPA firms and professional advisors across Puerto Rico to provide valuation services as a seamless extension of your practice. Your clients stay yours. We operate behind the scenes to deliver:</p>
+      <p class="service-desc">We partner with CPA firms and professional advisors across Puerto Rico to provide valuation services as an extension of your practice. Your clients stay yours. We operate behind the scenes to deliver:</p>
 
       <div class="cpa-features">
         <div class="cpa-feature">
@@ -647,11 +654,15 @@
   <section class="cta-strip">
     <p>Not sure which service fits your situation?</p>
     <p class="cta-sub">We'll help you determine the right level of analysis — no commitment required.</p>
-    <a href="mailto:info@axisadvisorypr.com" class="cta-btn">info@axisadvisorypr.com →</a>
+    <div class="cta-buttons">
+      <a href="mailto:info@axisadvisorypr.com" class="cta-btn-primary">Start a Conversation →</a>
+      <a href="mailto:info@axisadvisorypr.com?subject=Call%20Request%20-%20AXIS%20Advisory" class="cta-btn-secondary">Request a Call</a>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
+    <div class="footer-logo"><img src="logo.png" alt="AXIS" class="footer-mark"></div>
     <div class="footer-inner">
       <div class="footer-left">© 2026 AXIS Independent Advisory. All rights reserved.</div>
       <div class="footer-links">
