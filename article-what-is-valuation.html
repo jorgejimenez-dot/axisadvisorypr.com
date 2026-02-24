@@ -10,73 +10,10 @@
   <meta property="og:image" content="https://axisadvisorypr.com/logo.png">
   <meta property="og:url" content="https://axisadvisorypr.com/article-what-is-valuation.html">
   <meta property="og:type" content="website">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --slate: #2B3A52; --muted: #5A6E82; --ivory: #FAF8F2; --white: #FFFFFF; --accent: #8FA3B8; --light-rule: #D6DDE4; --font: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font); color: var(--slate); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; }
-    img { max-width: 100%; display: block; } a { color: inherit; text-decoration: none; }
-
-    .site-header { position: sticky; top: 0; z-index: 100; background: var(--slate); border-bottom: 1px solid rgba(250,248,242,0.08); }
-    .header-inner { max-width: 1120px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; }
-    .logo-link { display: flex; align-items: center; gap: 0.75rem; }
-    .logo-mark { height: 64px; width: auto; }
-    .logo-text { font-size: 1.5rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ivory); line-height: 1.15; }
-    .logo-text span { display: block; font-size: 0.55rem; font-weight: 400; letter-spacing: 0.18em; color: rgba(250,248,242,0.65); margin-top: 1px; }
-    nav { display: flex; align-items: center; gap: 2rem; }
-    nav a { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; color: rgba(250,248,242,0.7); transition: color 0.2s; position: relative; }
-    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--ivory); transition: width 0.25s ease; }
-    nav a:hover { color: var(--ivory); } nav a:hover::after { width: 100%; }
-    nav a.active { color: var(--ivory); } nav a.active::after { width: 100%; }
-    .nav-cta { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; color: var(--slate) !important; background: var(--ivory); padding: 0.5rem 1.25rem; border-radius: 4px; transition: background 0.2s; }
-    .nav-cta::after { display: none !important; } .nav-cta:hover { background: var(--white) !important; color: var(--slate) !important; }
-    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger svg { width: 24px; height: 24px; stroke: var(--ivory); }
-
-    .article-hero { background: var(--slate); padding: 4rem 2rem 3.5rem; text-align: center; }
-    .article-hero .breadcrumb { font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem; }
-    .article-hero .breadcrumb a { color: var(--accent); border-bottom: 1px solid rgba(143,163,184,0.3); transition: border-color 0.2s; }
-    .article-hero .breadcrumb a:hover { border-color: var(--accent); }
-    .article-hero .audience-tag { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: rgba(255,255,255,0.12); padding: 0.25rem 0.7rem; border-radius: 3px; margin-bottom: 1rem; }
-    .article-byline { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1.25rem; } .article-byline img { height: 24px; width: auto; opacity: 0.5; } .article-byline span { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(250,248,242,0.5); text-transform: uppercase; }
-    .article-hero h1 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 600; color: var(--ivory); max-width: 640px; margin: 0 auto; line-height: 1.3; }
-
-    .article-body { padding: 3rem 2rem 3.5rem; }
-    .article-inner { max-width: 680px; margin: 0 auto; }
-    .article-inner h2 { font-size: 1.2rem; font-weight: 600; color: var(--slate); margin: 2.5rem 0 0.75rem; line-height: 1.35; }
-    .article-inner h2:first-child { margin-top: 0; }
-    .article-inner p { font-size: 1.0rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
-    .article-inner p:last-child { margin-bottom: 0; }
-    .article-inner strong { color: var(--slate); }
-    .article-inner ul { list-style: none; margin: 0.5rem 0 1.25rem; padding: 0; }
-    .article-inner ul li { font-size: 0.92rem; color: var(--muted); line-height: 1.7; padding: 0.3rem 0 0.3rem 1.5rem; position: relative; }
-    .article-inner ul li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--light-rule); }
-    .article-inner .callout { background: var(--ivory); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 6px 6px 0; margin: 1.5rem 0; }
-    .article-inner .callout p { font-size: 0.9rem; margin-bottom: 0; font-style: italic; }
-    .article-inner a.inline-link { color: var(--slate); font-weight: 600; border-bottom: 1px solid var(--light-rule); transition: border-color 0.2s; }
-    .article-inner a.inline-link:hover { border-color: var(--slate); }
-
-    .article-cta { background: var(--ivory); border: 1px solid var(--light-rule); border-radius: 8px; padding: 2rem; text-align: center; margin-top: 3rem; }
-    .article-cta p { font-size: 1rem; font-weight: 500; color: var(--slate); margin-bottom: 1rem; }
-    .article-cta a { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--white); background: var(--slate); padding: 0.6rem 1.75rem; border-radius: 4px; transition: background 0.2s; }
-    .article-cta a:hover { background: var(--muted); }
-
-    .site-footer { background: var(--slate); border-top: 1px solid rgba(250,248,242,0.08); padding: 2.5rem 2rem; }
-    .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .footer-logo { text-align: center; margin-bottom: 1.25rem; max-width: 1120px; margin-left: auto; margin-right: auto; } .footer-mark { height: 32px; width: auto; opacity: 0.4; } .footer-left { font-size: 0.75rem; color: rgba(250,248,242,0.5); }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 0.75rem; color: rgba(250,248,242,0.5); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--ivory); }
-
-    @media (max-width: 768px) {
-      .hamburger { display: block; }
-      nav { display: none; position: absolute; top: 80px; left: 0; right: 0; background: var(--slate); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid rgba(250,248,242,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-      nav.open { display: flex; } nav a::after { display: none; }
-      .article-body { padding: 2rem 1.5rem 3rem; } .article-hero { padding: 3rem 1.5rem 2.5rem; }
-      .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
-    }
-    @media (max-width: 480px) { .logo-text { font-size: 1.25rem; } .logo-text span { font-size: 0.55rem; } .logo-mark { height: 52px; } }
-  </style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◆</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Analytics: Uncomment after signing up at plausible.io (free tier available) -->
+  <!-- <script defer data-domain="axisadvisorypr.com" src="https://plausible.io/js/script.js"></script> -->
 </head>
 <body>
   <header class="site-header"><div class="header-inner">
