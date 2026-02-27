@@ -638,6 +638,52 @@
 
     .footer-links a:hover { color: var(--ivory); }
 
+    .footer-contact {
+      text-align: center;
+      margin-bottom: 1.25rem;
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.8rem;
+      color: rgba(250,248,242,0.65);
+      letter-spacing: 0.02em;
+    }
+    .footer-contact a {
+      color: rgba(250,248,242,0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: var(--ivory); }
+    .footer-contact .whatsapp-link { color: rgba(250,248,242,0.8); }
+    .footer-contact .whatsapp-link:hover { color: #25D366; }
+
+    .contact-channels {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .contact-channel a {
+      color: var(--slate);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .contact-channel a:hover { color: var(--gold); }
+    .contact-channel svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--muted);
+      fill: none;
+    }
+
     /* ── ANIMATIONS ────────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
