@@ -2132,7 +2132,15 @@
       margin-bottom: 0.15rem;
     }
 
-    /* ── RESPONSIVE ────────────────────────────── */
+    /* ── RESPONSIVE: TABLET ─────────────────────── */
+    @media (max-width: 960px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .pillar-grid { grid-template-columns: 1fr 1fr; }
+      .cpa-features { grid-template-columns: 1fr; }
+    }
+
+    /* ── RESPONSIVE: MOBILE ──────────────────────── */
     @media (max-width: 768px) {
       .hamburger { display: block; }
 
