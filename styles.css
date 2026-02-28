@@ -355,6 +355,18 @@
       background: var(--accent);
     }
 
+    /* CPA-specific visual coding */
+    .audience-col-cpa {
+      background: var(--ivory);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--accent-warm);
+    }
+
+    .audience-col-cpa h3 {
+      border-bottom-color: var(--accent-warm);
+    }
+
     /* ── URGENCY TRIGGERS ──────────────────────── */
     .trigger-grid {
       display: grid;
@@ -794,6 +806,10 @@
       padding: 0.3rem 0.85rem;
       border-radius: 3px;
       margin-bottom: 1.25rem;
+    }
+
+    .service-badge-cpa {
+      background: var(--accent-warm);
     }
 
     .service-section h2 {
