@@ -887,6 +887,91 @@
       transition: stroke 0.2s;
     }
 
+    /* ── PRICING HIGHLIGHT ─────────────────────── */
+    .pricing-highlight {
+      background: var(--slate);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .pricing-highlight-main {
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-highlight-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ivory);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .pricing-highlight-label {
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .pricing-highlight-details {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(250,248,242,0.12);
+    }
+
+    .pricing-highlight-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pricing-highlight-detail svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--accent);
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    .pricing-highlight-detail span {
+      font-size: 0.85rem;
+      color: rgba(250,248,242,0.75);
+    }
+
+    .pricing-highlight-secondary {
+      background: var(--white);
+      border: 2px solid var(--slate);
+    }
+
+    .pricing-highlight-secondary .pricing-highlight-price {
+      color: var(--slate);
+      font-size: 1.65rem;
+    }
+
+    .pricing-highlight-secondary .pricing-highlight-label {
+      color: var(--muted);
+    }
+
+    .pricing-highlight-secondary .pricing-highlight-details {
+      border-top-color: var(--light-rule);
+    }
+
+    .pricing-highlight-secondary .pricing-highlight-detail svg {
+      stroke: var(--muted);
+    }
+
+    .pricing-highlight-secondary .pricing-highlight-detail span {
+      color: var(--muted);
+    }
+
+    .service-section:nth-child(even) .pricing-highlight-secondary {
+      background: var(--ivory);
+    }
+
     /* ── CPA FEATURES ──────────────────────────── */
     .cpa-features {
       display: grid;
@@ -1989,6 +2074,9 @@
       .service-note { margin-bottom: 1.25rem; }
       .service-owner-note { margin-bottom: 1.25rem; }
       .service-details { gap: 1.5rem; }
+      .pricing-highlight { padding: 1.5rem 1.25rem; }
+      .pricing-highlight-price { font-size: 1.65rem; }
+      .pricing-highlight-details { flex-direction: column; gap: 0.75rem; align-items: center; }
       .cpa-features { grid-template-columns: 1fr; }
       .compare-table { font-size: 0.8rem; }
       .timeline-bar { gap: 0.25rem; padding: 1rem 0.75rem; display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; }
