@@ -179,7 +179,28 @@
       max-width: 640px;
       margin: 1rem auto 0;
       line-height: 1.6;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-accent {
+      color: var(--accent-warm);
+    }
+
+    .hero-line {
+      width: 48px;
+      height: 2px;
+      background: var(--accent-warm);
+      margin: 1.25rem auto 0;
+      opacity: 0.6;
       animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero-micro {
+      font-size: 0.8rem;
+      color: rgba(250,248,242,0.4);
+      margin-top: 1.5rem;
+      letter-spacing: 0.02em;
+      animation: fadeUp 0.8s 0.2s ease both;
     }
 
     .hero-sub {
@@ -187,7 +208,7 @@
       display: flex;
       justify-content: center;
       gap: 1.5rem;
-      animation: fadeUp 0.8s 0.15s ease both;
+      animation: fadeUp 0.8s 0.2s ease both;
     }
 
     .hero-btn {
@@ -220,7 +241,7 @@
       margin-top: 1.25rem;
       font-size: 0.85rem;
       color: rgba(250,248,242,0.5);
-      animation: fadeUp 0.8s 0.25s ease both;
+      animation: fadeUp 0.8s 0.3s ease both;
     }
 
     .hero-education a {
