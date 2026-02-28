@@ -91,7 +91,9 @@
           <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
             <input type="hidden" name="form-name" value="contact">
             <p class="hidden-field" style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
-            <div class="form-row">
+
+            <!-- Primary fields -->
+            <div class="form-row form-row-primary">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required placeholder="Your name">
@@ -101,39 +103,45 @@
                 <input type="email" id="email" name="email" required placeholder="you@example.com">
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="phone">Phone <span class="optional">(optional)</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="(787) 000-0000">
+
+            <!-- Secondary fields -->
+            <div class="form-optional">
+              <div class="form-optional-label">Help us prepare <span class="optional">(optional but helpful)</span></div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Phone <span class="optional">(optional)</span></label>
+                  <input type="tel" id="phone" name="phone" placeholder="(787) 000-0000">
+                </div>
+                <div class="form-group">
+                  <label for="purpose">Purpose</label>
+                  <select id="purpose" name="purpose" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option value="calcreport">Calculation of Value</option>
+                    <option value="annual-update">Annual update</option>
+                    <option value="scoping">General scoping inquiry</option>
+                    <option value="cpa-partnership">CPA firm partnership</option>
+                    <option value="general">General inquiry</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="purpose">Purpose</label>
-                <select id="purpose" name="purpose" required>
-                  <option value="" disabled selected>Select one</option>
-                  <option value="calcreport">Calculation Report</option>
-                  <option value="annual-update">Annual update</option>
-                  <option value="scoping">General scoping inquiry</option>
-                  <option value="cpa-partnership">CPA firm partnership</option>
-                  <option value="general">General inquiry</option>
-                </select>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="referral">How did you hear about us? <span class="optional">(optional)</span></label>
+                  <select id="referral" name="referral">
+                    <option value="" disabled selected>Select one</option>
+                    <option value="cpa-referral">CPA referral</option>
+                    <option value="web-search">Web search</option>
+                    <option value="word-of-mouth">Word of mouth</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group full-width">
+                <label for="message">Tell us more <span class="optional">(optional)</span></label>
+                <textarea id="message" name="message" rows="3" placeholder="What's the situation? Any timeline or details that would help us understand your needs."></textarea>
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="referral">How did you hear about us? <span class="optional">(optional)</span></label>
-                <select id="referral" name="referral">
-                  <option value="" disabled selected>Select one</option>
-                  <option value="cpa-referral">CPA referral</option>
-                  <option value="web-search">Web search</option>
-                  <option value="word-of-mouth">Word of mouth</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group full-width">
-              <label for="message">Tell us more <span class="optional">(optional)</span></label>
-              <textarea id="message" name="message" rows="4" placeholder="What's the situation? Any timeline or details that would help us understand your needs."></textarea>
-            </div>
+
             <button type="submit" class="form-submit">Send Message →</button>
           </form>
 
