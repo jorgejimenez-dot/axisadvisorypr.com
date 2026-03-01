@@ -1244,6 +1244,12 @@
       margin-top: 0.25rem;
     }
 
+    .number-seal {
+      height: 52px;
+      width: auto;
+      opacity: 0.85;
+    }
+
     /* ── CREDENTIALS ──────────────────────────── */
     .credentials {
       padding: 3.5rem 2rem;
