@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Screening Tool — AXIS Independent Advisory</title>
+  <meta name="description" content="Quickly screen whether a client engagement is a fit for a Calculation of Value. AXIS Independent Advisory — CVA Certified, Puerto Rico.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◆</text></svg>">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    body { margin: 0; padding: 0; background: #fff; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const ANALYTICS_ENDPOINT = "https://formspree.io/f/mjgavlez";
+
+    function logEvent(event, payload = {}) {
+      if (!ANALYTICS_ENDPOINT) return;
+      try {
+        navigator.sendBeacon(
+          ANALYTICS_ENDPOINT,
+          new Blob(
+            [JSON.stringify({ _subject: `AXIS Screener: ${event}`, event, ...payload, ts: new Date().toISOString() })],
+            { type: "application/json" }
+          )
+        );
+      } catch (_) {}
+    }
+
+    const parseN     = v => parseInt((v || "").replace(/,/g, ""), 10) || 0;
+    const fmtDisplay = raw => {
+      const s = raw.replace(/[^0-9]/g, "");
+      if (!s) return "";
+      return parseInt(s, 10).toLocaleString("en-US");
+    };
+
+    const DESKTOP = !/android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
+
+    const todayStr = (lang) =>
+      new Date().toLocaleDateString(lang === "es" ? "es-PR" : "en-US", {
+        year: "numeric", month: "long", day: "numeric",
+      });
+
+    const COPY = {
+      en: {
+        langToggle: "Español",
+        headerSub: "CVA · NACVA Certified",
+        toolTag: "Referral Screening Tool",
+        eyebrow: "For CPA & Attorney Referral Partners",
+        title: "Does your client need",
+        titleEm: "a business valuation?",
+        intro: "Five quick inputs. We'll tell you whether a Calculation of Value makes sense and what to expect on fees.",
+        trustLine: "Your client stays yours. AXIS operates as your back-office valuation department.",
+        referredByLabel: "Referred by",
+        yourNamePh: "e.g. María Rivera, CPA",
+        secBusiness: "About the Business",
+        secEngagement: "About the Engagement",
+        revLabel: "Annual Revenue",
+        compLabel: "Owner's Total Compensation & Draws",
+        compHint: "Salary + distributions + personal expenses through the business. Leave blank if unknown.",
+        compEstNote: "* Estimated from industry revenue averages. Enter comp above for a more precise screen.",
+        industryLabel: "Industry",
+        purposeLabel: "Purpose",
+        yearsLabel: "Years in Business",
+        submitBtn: "Screen This Client",
+        submitting: "Screening…",
+        resetBtn: "← Screen another client",
+        resultId: "Screened by AXIS Independent Advisory · CVA Certified",
+        scopeLabel: "What This Covers",
+        notesLabel: "Scope Notes",
+        responseNote: "We typically respond within one business day to discuss scope and confirm fit.",
+        ctaWhatsAppMobile: "Send to AXIS via WhatsApp →",
+        ctaWhatsAppDesktop: "Open WhatsApp →",
+        ctaWhatsAppFallback: "WhatsApp opened in a new tab. If it didn't open, use email below.",
+        ctaWhatsAppSent: "Opening WhatsApp…",
+        ctaEmail: "Send via Email",
+        ctaEmailSent: "Opening Email…",
+        ctaCopy: "Copy as text",
+        copiedBtn: "Copied ✓",
+        printBtn: "Save / Print as PDF",
+        earningsLabel: "Est. Owner Earnings",
+        earningsEst: " *",
+        disclaimerShort: "Fee ranges are estimates only. Not a valuation opinion or engagement commitment.",
+        contact: "info@axisadvisorypr.com · 787-830-6462 · axisadvisorypr.com",
+        notViableContact: "Questions? Reach us at",
+      },
+      es: {
+        langToggle: "English",
+        headerSub: "CVA · Certificado NACVA",
+        toolTag: "Herramienta de Referido",
+        eyebrow: "Para CPA y Abogados Referidores",
+        title: "¿Su cliente necesita",
+        titleEm: "una valoración de negocio?",
+        intro: "Cinco datos rápidos. Le diremos si un Cálculo de Valor aplica y qué honorarios esperar.",
+        trustLine: "Su cliente sigue siendo suyo. AXIS funciona como su departamento de valoración.",
+        referredByLabel: "Referido por",
+        yourNamePh: "Ej. Juan Torres, CPA",
+        secBusiness: "Sobre el Negocio",
+        secEngagement: "Sobre el Encargo",
+        revLabel: "Ingresos Anuales",
+        compLabel: "Compensación Total y Distribuciones del Dueño",
+        compHint: "Salario + distribuciones + gastos personales del negocio. Deje en blanco si no lo sabe.",
+        compEstNote: "* Estimado desde promedios de la industria. Ingrese la compensación para mayor precisión.",
+        industryLabel: "Industria",
+        purposeLabel: "Propósito",
+        yearsLabel: "Años en Operación",
+        submitBtn: "Evaluar Este Cliente",
+        submitting: "Evaluando…",
+        resetBtn: "← Evaluar otro cliente",
+        resultId: "Evaluado por AXIS Independent Advisory · CVA Certificado",
+        scopeLabel: "Qué Incluye Este Encargo",
+        notesLabel: "Notas de Alcance",
+        responseNote: "Típicamente respondemos en un día laborable para discutir el alcance y confirmar el encargo.",
+        ctaWhatsAppMobile: "Enviar a AXIS por WhatsApp →",
+        ctaWhatsAppDesktop: "Abrir WhatsApp →",
+        ctaWhatsAppFallback: "WhatsApp se abrió en una nueva pestaña. Si no se abrió, use el email abajo.",
+        ctaWhatsAppSent: "Abriendo WhatsApp…",
+        ctaEmail: "Enviar por Email",
+        ctaEmailSent: "Abriendo Email…",
+        ctaCopy: "Copiar como texto",
+        copiedBtn: "Copiado ✓",
+        printBtn: "Guardar / Imprimir como PDF",
+        earningsLabel: "Ganancias Est. del Dueño",
+        earningsEst: " *",
+        disclaimerShort: "Los honorarios son estimados. No constituyen opinión de valor ni compromiso de encargo.",
+        contact: "info@axisadvisorypr.com · 787-830-6462 · axisadvisorypr.com",
+        notViableContact: "¿Preguntas? Escríbanos a",
+      },
+    };
+
+    const INDUSTRIES = {
+      en: ["Community Pharmacy","Medical / Dental Practice","Professional Services","Construction & Trades","Retail","Restaurant / Food & Beverage","Transportation & Logistics"],
+      es: ["Farmacia Comunitaria","Práctica Médica / Dental","Servicios Profesionales","Construcción y Oficios","Comercio al Detal","Restaurante / Alimentos y Bebidas","Transportación y Logística"],
+    };
+    const IND_KEYS  = ["pharmacy","medical","professional","construction","retail","restaurant","transport"];
+    const IND_PROXY = { pharmacy:.22, medical:.32, professional:.38, construction:.26, retail:.22, restaurant:.20, transport:.24 };
+
+    const PURPOSES = {
+      en: [
+        { v:"buy_sell",   l:"Buy / Sell Transaction" },
+        { v:"succession", l:"Succession / Generational Transfer" },
+        { v:"partner",    l:"Partner Buyout" },
+        { v:"estate",     l:"Estate & Gift Planning" },
+      ],
+      es: [
+        { v:"buy_sell",   l:"Compra / Venta" },
+        { v:"succession", l:"Sucesión / Traspaso Generacional" },
+        { v:"partner",    l:"Compra de Participación" },
+        { v:"estate",     l:"Planificación de Herencia / Donación" },
+      ],
+    };
+    const YEARS_OPTS = {
+      en: [{v:"1",l:"Under 2 yrs"},{v:"3",l:"2–5 yrs"},{v:"8",l:"6–15 yrs"},{v:"20",l:"15+ yrs"}],
+      es: [{v:"1",l:"Menos de 2 años"},{v:"3",l:"2–5 años"},{v:"8",l:"6–15 años"},{v:"20",l:"15+ años"}],
+    };
+
+    function screen({ rev, comp, compBlank, indKey, indIdx, purpose, years, lang, yourName }) {
+      const indLabel     = INDUSTRIES[lang][indIdx];
+      const earnings     = compBlank || comp === 0
+        ? Math.round(rev * (IND_PROXY[indKey] || .25))
+        : comp + Math.round(rev * 0.06);
+      const yrs          = parseInt(years) || 0;
+      const isEN         = lang === "en";
+      const purposeLabel = PURPOSES[lang].find(p => p.v === purpose)?.l || "";
+      const sender       = yourName?.trim() || (isEN ? "Your Referral Partner" : "Su Socio Referidor");
+      const inputSummary = `${indLabel} · ${purposeLabel} · $${rev.toLocaleString()}`;
+      const date         = todayStr(lang);
+
+      const waText = isEN
+        ? `Hi — referral for AXIS.\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (est.)":""}\n\nFrom: ${sender}`
+        : `Hola — referido para AXIS.\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (est.)":""}\n\nDe: ${sender}`;
+
+      const emailSubject = encodeURIComponent(isEN?`AXIS Referral — ${indLabel}`:`Referido AXIS — ${indLabel}`);
+      const emailBodyRaw = isEN
+        ? `Hi,\n\nI have a referral to discuss.\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\n\nFrom: ${sender}\n\nPlease confirm fit and next steps.`
+        : `Hola,\n\nTengo un referido para discutir.\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\n\nDe: ${sender}\n\nFavor confirmar el alcance y próximos pasos.`;
+      const emailBody = encodeURIComponent(emailBodyRaw);
+
+      const copyText = isEN
+        ? `AXIS Referral — ${date}\n${"─".repeat(32)}\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\nReferred by: ${sender}\n\ninfo@axisadvisorypr.com · 787-830-6462`
+        : `Referido AXIS — ${date}\n${"─".repeat(32)}\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\nDe parte de: ${sender}\n\ninfo@axisadvisorypr.com · 787-830-6462`;
+
+      const base = { earnings, inputSummary, waText, emailSubject, emailBody, copyText, compBlank, date };
+
+      if (earnings < 50000) return { ...base, tier:"NOT_VIABLE", cta:false,
+        label: isEN?"May Not Be the Right Fit":"Puede No Ser el Encargo Indicado",
+        headline: isEN?"Estimated owner earnings may not support a valuation fee at this stage.":"Las ganancias estimadas pueden no justificar los honorarios en este momento.",
+        color:"#8a3a3a", bg:"#fff8f8", border:"#f0c8c8", dot:"#c0392b",
+        points: isEN
+          ?["Est. owner earnings fall below the threshold where a Calculation of Value fee makes sense","Happy to speak with your client informally — no charge","Revisit if revenue grows or the purpose changes"]
+          :["Las ganancias est. están por debajo del umbral donde los honorarios se justifican","Podemos hablar informalmente, sin costo","Reconsidere si los ingresos crecen o cambia el propósito"],
+        flags:[] };
+
+      if (rev < 500000 && earnings < 150000) {
+        const flags = [];
+        if (yrs < 3) flags.push(isEN?"Short operating history — will be documented in the report":"Historial corto — se documentará en el informe");
+        return { ...base, tier:"ENTRY", cta:true, flags,
+          label: isEN?"Calculation of Value":"Cálculo de Valor",
+          sublabel: isEN?"Entry Engagement":"Encargo Inicial",
+          headline: isEN?"Straightforward engagement — this is exactly what we're built for.":"Encargo directo — para esto estamos diseñados.",
+          color:"#1a5c3a", bg:"#f4faf7", border:"#b8dfc9", dot:"#27ae60",
+          fee:"$750 – $1,750",
+          feeNote: isEN?"Fixed fee · No hourly billing · No scope creep":"Honorario fijo · Sin cobro por hora · Sin cambios de alcance",
+          points: isEN
+            ?["Market approach using owner earnings multiples from comparable transactions","2–4 normalizations including owner comp and discretionary items","Written Calculation Report — English or Spanish","Typical delivery: 2 weeks from complete data receipt"]
+            :["Enfoque de mercado con múltiplos de ganancias del dueño de transacciones comparables","2–4 normalizaciones incluyendo compensación y gastos discrecionales","Informe de Cálculo de Valor — inglés o español","Entrega típica: 2 semanas tras recibir datos completos"],
+          waText: waText+"\n\nResult: Entry Engagement · $750–$1,750",
+          copyText: copyText+"\n\nResult: Entry · $750–$1,750 · ~2 weeks" };
+      }
+
+      const flags = [];
+      if (yrs < 3) flags.push(isEN?"Short operating history — normalization requires extra documentation":"Historial corto — la normalización requerirá documentación adicional");
+      if (purpose==="partner"&&rev>1500000) flags.push(isEN?"Large buyout — recommend a scope call before quoting":"Compra de gran escala — se recomienda una llamada antes de cotizar");
+      return { ...base, tier:"STANDARD", cta:true, flags,
+        label: isEN?"Calculation of Value":"Cálculo de Valor",
+        sublabel: isEN?"Standard Engagement":"Encargo Estándar",
+        headline: isEN?"Well-suited for a Calculation of Value.":"Caso apropiado para un Cálculo de Valor.",
+        color:"#2B3A52", bg:"#f5f8fb", border:"#b8c8d8", dot:"#2B3A52",
+        fee:"$2,000 – $3,500",
+        feeNote: isEN?"Fixed fee based on scope · No hourly billing":"Honorario fijo según alcance · Sin cobro por hora",
+        points: isEN
+          ?["Market approach using owner earnings multiples from comparable transactions; income approach where applicable","Full normalization schedule with documented adjustments","Written Calculation Report — English or Spanish","Typical delivery: 2–3 weeks from complete data receipt"]
+          :["Enfoque de mercado con múltiplos de ganancias del dueño; enfoque de ingresos donde aplique","Programa completo de normalizaciones documentadas","Informe de Cálculo de Valor — inglés o español","Entrega típica: 2–3 semanas tras recibir datos completos"],
+        waText: waText+"\n\nResult: Standard Engagement · $2,000–$3,500",
+        copyText: copyText+"\n\nResult: Standard · $2,000–$3,500 · ~2–3 weeks" };
+    }
+
+    const REQUIRED_STEPS = 4;
+
+    function App() {
+      const [lang,      setLang]    = useState("en");
+      const [yourName,  setName]    = useState("");
+      const [revenue,   setRevRaw]  = useState("");
+      const [ownerComp, setCompRaw] = useState("");
+      const [indIdx,    setIndIdx]  = useState(null);
+      const [purpose,   setPurpose] = useState("");
+      const [years,     setYears]   = useState("");
+      const [screenedInputs, setScreenedInputs] = useState(null);
+      const [result,    setResult]  = useState(null);
+      const [show,      setShow]    = useState(false);
+      const [loading,   setLoading] = useState(false);
+      const [copied,    setCopied]  = useState(false);
+      const [waSent,    setWaSent]    = useState(false);
+      const [emailSent, setEmailSent] = useState(false);
+      const [waFallback,  setWaFallback]  = useState(false);
+      const waFallbackRef = useRef(null);
+
+      const c         = COPY[lang];
+      const rev       = parseN(revenue);
+      const comp      = parseN(ownerComp);
+      const compBlank = ownerComp.trim() === "";
+      const canSubmit = revenue && indIdx !== null && purpose && years;
+      const progressPct = Math.round(
+        [!!revenue, indIdx!==null, !!purpose, !!years].filter(Boolean).length / REQUIRED_STEPS * 100
+      );
+
+      useEffect(() => { try { const v = sessionStorage.getItem("axis_n"); if (v) setName(v); } catch {} }, []);
+      useEffect(() => { try { if (yourName) sessionStorage.setItem("axis_n", yourName); } catch {} }, [yourName]);
+      useEffect(() => { try { const v = sessionStorage.getItem("axis_i"); if (v!==null&&v!=="null") setIndIdx(Number(v)); } catch {} }, []);
+      useEffect(() => { try { if (indIdx!==null) sessionStorage.setItem("axis_i", String(indIdx)); } catch {} }, [indIdx]);
+      useEffect(() => { try { const v = sessionStorage.getItem("axis_y"); if (v) setYears(v); } catch {} }, []);
+      useEffect(() => { try { if (years) sessionStorage.setItem("axis_y", years); } catch {} }, [years]);
+
+      useEffect(() => {
+        if (!screenedInputs) return;
+        setResult(screen({ ...screenedInputs, lang }));
+      }, [lang]);
+
+      function handleSubmit() {
+        if (!canSubmit || loading) return;
+        setLoading(true);
+        const inputs = { rev, comp, compBlank, indKey:IND_KEYS[indIdx], indIdx, purpose, years, yourName };
+        logEvent("screen_submitted", { industry:IND_KEYS[indIdx], purpose, years, rev_band:rev<250000?"<250k":rev<1000000?"250k-1m":">1m", lang });
+        setTimeout(() => {
+          const r = screen({ ...inputs, lang });
+          setScreenedInputs(inputs); setResult(r); setShow(true); setLoading(false);
+          logEvent("screen_result", { tier:r.tier, lang });
+        }, 380);
+      }
+
+      function reset() {
+        setResult(null); setShow(false); setCopied(false);
+        setWaSent(false); setEmailSent(false); setWaFallback(false);
+        if (waFallbackRef.current) { clearTimeout(waFallbackRef.current); waFallbackRef.current=null; }
+        setScreenedInputs(null); setRevRaw(""); setCompRaw(""); setPurpose("");
+      }
+
+      function switchLang() { setLang(l => l==="en"?"es":"en"); }
+
+      function handleWhatsApp() {
+        if (!result||waSent) return;
+        window.open(`https://wa.me/17878306462?text=${encodeURIComponent(result.waText)}`,"_blank");
+        setWaSent(true); setTimeout(()=>setWaSent(false),2000);
+        if (DESKTOP) {
+          setWaFallback(true);
+          if (waFallbackRef.current) clearTimeout(waFallbackRef.current);
+          waFallbackRef.current = setTimeout(()=>setWaFallback(false),5000);
+        }
+        logEvent("cta_whatsapp",{tier:result.tier,lang,desktop:DESKTOP});
+      }
+
+      function handleEmail() {
+        if (!result||emailSent) return;
+        window.open(`mailto:info@axisadvisorypr.com?subject=${result.emailSubject}&body=${result.emailBody}`,"_blank");
+        setEmailSent(true); setTimeout(()=>setEmailSent(false),2000);
+        logEvent("cta_email",{tier:result.tier,lang});
+      }
+
+      function handleCopy() {
+        if (!result) return;
+        navigator.clipboard.writeText(result.copyText).then(()=>{
+          setCopied(true); setTimeout(()=>setCopied(false),2400);
+        });
+        logEvent("cta_copy",{tier:result.tier,lang});
+      }
+
+      function handlePrint() { window.print(); logEvent("cta_print",{tier:result?.tier,lang}); }
+
+      const handleRevBlur  = () => { if (revenue)   setRevRaw(fmtDisplay(revenue)); };
+      const handleCompBlur = () => { if (ownerComp) setCompRaw(fmtDisplay(ownerComp)); };
+
+      const waLabel = waSent ? c.ctaWhatsAppSent : (DESKTOP?c.ctaWhatsAppDesktop:c.ctaWhatsAppMobile);
+
+      return (
+        <div style={{minHeight:"100vh",background:"#fff",fontFamily:"'Inter',-apple-system,sans-serif",color:"#2B3A52"}}>
+          <style>{`
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+            *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+            @media print{.no-print{display:none!important}.hdr{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card{opacity:1!important;transform:none!important;break-inside:avoid}.card-id{-webkit-print-color-adjust:exact;print-color-adjust:exact}.wrap{padding:1.5rem;max-width:100%}}
+            .hdr{background:#2B3A52;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(250,248,242,.08)}
+            .hdr-l{display:flex;flex-direction:column}
+            .hdr-firm{font-size:.95rem;font-weight:700;letter-spacing:.1em;color:#FAF8F2;line-height:1.2}
+            .hdr-sub{font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,242,.4);margin-top:2px}
+            .hdr-r{display:flex;align-items:center;gap:1rem}
+            .hdr-tag{font-size:.68rem;color:rgba(250,248,242,.28);text-align:right;line-height:1.65;letter-spacing:.04em}
+            .lang-btn{font-size:.68rem;font-weight:600;letter-spacing:.1em;color:rgba(250,248,242,.55);background:rgba(250,248,242,.08);border:1px solid rgba(250,248,242,.14);border-radius:3px;padding:.28rem .7rem;cursor:pointer;transition:all .18s;white-space:nowrap}
+            .lang-btn:hover{background:rgba(250,248,242,.15);color:#FAF8F2}
+            .prog-wrap{height:3px;background:#D6DDE4}
+            .prog-fill{height:100%;background:#C4915C;transition:width .3s ease}
+            .wrap{max-width:580px;margin:0 auto;padding:3.25rem 1.5rem 5rem}
+            .eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#5A6E82;margin-bottom:.6rem}
+            .title{font-size:clamp(1.65rem,4vw,2.1rem);font-weight:700;color:#2B3A52;line-height:1.18;letter-spacing:-.02em;margin-bottom:.65rem}
+            .title em{font-style:italic;font-weight:400;color:#C4915C}
+            .intro{font-size:.9rem;color:#5A6E82;line-height:1.7;margin-bottom:1rem;max-width:500px}
+            .trust-bar{display:flex;align-items:flex-start;gap:.5rem;background:#FAF8F2;border:1px solid #D6DDE4;border-left:3px solid #C4915C;border-radius:0 4px 4px 0;padding:.65rem .9rem;margin-bottom:2rem}
+            .trust-bar span{font-size:.82rem;color:#2B3A52;line-height:1.5;font-style:italic}
+            .rule{height:1px;background:#D6DDE4;margin-bottom:1.75rem}
+            .ref-row{display:flex;align-items:center;gap:.75rem;margin-bottom:1.75rem}
+            .ref-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5A6E82;white-space:nowrap}
+            .ref-row .txt{flex:1}
+            .sec-group{margin-bottom:1.75rem}
+            .sec-group-label{font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8FA3B8;margin-bottom:1.1rem;padding-bottom:.5rem;border-bottom:1px solid #D6DDE4}
+            .field{margin-bottom:1.5rem}
+            .lbl{display:block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5A6E82;margin-bottom:.45rem}
+            .hint{font-size:.75rem;color:#8FA3B8;margin-top:.3rem;line-height:1.5}
+            .inp-wrap{position:relative}
+            .inp-pre{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:.9rem;color:#5A6E82;pointer-events:none;font-weight:500}
+            .txt{width:100%;font-family:inherit;font-size:.93rem;color:#2B3A52;background:#fff;border:1.5px solid #D6DDE4;border-radius:4px;padding:.62rem .85rem;outline:none;transition:border-color .18s,box-shadow .18s}
+            .txt.pre{padding-left:1.45rem}
+            .txt:focus{border-color:#C4915C;box-shadow:0 0 0 3px rgba(196,145,92,.1)}
+            .txt::placeholder{color:#8FA3B8}
+            .pills{display:flex;flex-wrap:wrap;gap:.4rem}
+            .pill{font-family:inherit;font-size:.8rem;font-weight:500;color:#5A6E82;background:#FAF8F2;border:1.5px solid #D6DDE4;border-radius:4px;padding:.42rem .8rem;cursor:pointer;transition:all .13s;white-space:nowrap;line-height:1.3}
+            .pill:hover{border-color:#8FA3B8;color:#2B3A52;background:#fff}
+            .pill.on-slate{background:#2B3A52;border-color:#2B3A52;color:#FAF8F2;font-weight:600}
+            .pill.on-warm{background:#C4915C;border-color:#C4915C;color:#fff;font-weight:600}
+            .two{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+            .submit{width:100%;font-family:inherit;font-size:.9rem;font-weight:700;letter-spacing:.02em;padding:.9rem;border-radius:4px;background:#C4915C;color:#fff;border:none;cursor:pointer;transition:background .18s;margin-top:.25rem;display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px}
+            .submit:hover:not(:disabled){background:#B8833F}
+            .submit:disabled{background:#D6DDE4;color:#8FA3B8;cursor:not-allowed}
+            .spinner{width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0}
+            @keyframes spin{to{transform:rotate(360deg)}}
+            .card{margin-top:2rem;border-radius:8px;border:1.5px solid;overflow:hidden;opacity:0;transform:translateY(10px);transition:opacity .3s ease,transform .3s ease}
+            .card.in{opacity:1;transform:translateY(0)}
+            .card-id{display:flex;align-items:center;gap:.5rem;padding:.5rem 1.75rem;background:#2B3A52}
+            .card-id span{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.5)}
+            .card-top{padding:1.6rem 1.75rem 1.35rem;border-left:4px solid}
+            .card-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.45rem;opacity:.65}
+            .card-label{font-size:1.35rem;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+            .card-sublabel{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#5A6E82;margin-top:.2rem}
+            .card-headline{font-size:.9rem;color:#5A6E82;line-height:1.6;margin-top:.6rem;font-style:italic}
+            .card-fee{font-size:1.65rem;font-weight:700;letter-spacing:-.02em;margin-top:1rem}
+            .card-feenote{font-size:.7rem;color:#5A6E82;margin-top:.15rem}
+            .inp-strip{display:flex;align-items:center;justify-content:space-between;padding:.55rem 1.75rem;background:rgba(0,0,0,.025);border-bottom:1px solid;font-size:.78rem;color:#2B3A52;font-weight:500;gap:.5rem;flex-wrap:wrap}
+            .earn-chip{font-size:.68rem;font-weight:700;letter-spacing:.06em;padding:.2rem .55rem;border-radius:3px;white-space:nowrap}
+            .earn-note{font-size:.7rem;color:#8FA3B8;margin-top:.3rem;padding:0 1.75rem;line-height:1.5}
+            .card-body{padding:1.35rem 1.75rem}
+            .sec-lbl{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8FA3B8;margin-bottom:.6rem}
+            .pt{display:flex;align-items:flex-start;gap:.55rem;margin-bottom:.5rem;font-size:.86rem;color:#2B3A52;line-height:1.55}
+            .dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:.42rem}
+            .flag-wrap{margin-top:.9rem}
+            .flag{display:flex;align-items:flex-start;gap:.55rem;margin-bottom:.4rem;font-size:.78rem;color:#7a5510;line-height:1.5;background:#fffbf2;border:1px solid #e8d5a3;border-radius:3px;padding:.38rem .6rem}
+            .flag-dot{width:5px;height:5px;border-radius:50%;background:#C4915C;flex-shrink:0;margin-top:.38rem}
+            .resp-row{display:flex;align-items:flex-start;gap:.5rem;padding:.65rem 1.75rem;background:#f5f8fb;border-top:1px solid #D6DDE4}
+            .resp-row span{font-size:.78rem;color:#2B3A52;line-height:1.5}
+            .card-foot{padding:.75rem 1.75rem;border-top:1px solid #D6DDE4;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.25rem}
+            .card-foot-contact{font-size:.68rem;color:#8FA3B8;line-height:1.8}
+            .card-foot-date{font-size:.65rem;color:#8FA3B8;white-space:nowrap}
+            .disclaimer{font-size:.72rem;color:#8FA3B8;margin-top:.55rem;padding:.45rem .75rem;background:#FAF8F2;border:1px solid #D6DDE4;border-radius:3px;line-height:1.5}
+            .cta-block{margin-top:.9rem;display:flex;flex-direction:column;gap:.45rem}
+            .btn-wa{width:100%;font-family:inherit;font-size:.92rem;font-weight:700;padding:.92rem;border-radius:4px;background:#C4915C;color:#fff;border:none;cursor:pointer;transition:background .18s,opacity .18s;display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:50px}
+            .btn-wa:hover:not(:disabled){background:#B8833F}
+            .btn-wa:disabled{opacity:.65;cursor:default}
+            .wa-fallback{font-size:.75rem;color:#7a5510;background:#fffbf2;border:1px solid #e8d5a3;border-radius:3px;padding:.4rem .7rem;line-height:1.5;animation:fadein .2s ease}
+            @keyframes fadein{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+            .btn-em{width:100%;font-family:inherit;font-size:.86rem;font-weight:600;padding:.78rem;border-radius:4px;background:#fff;color:#2B3A52;border:1.5px solid #2B3A52;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px}
+            .btn-em:hover:not(:disabled){background:#FAF8F2}
+            .btn-em:disabled{opacity:.65;cursor:default}
+            .tertiary-row{display:flex;gap:1.25rem;justify-content:center;margin-top:.1rem}
+            .btn-text{font-family:inherit;font-size:.75rem;font-weight:500;color:#8FA3B8;background:none;border:none;cursor:pointer;padding:.25rem 0;transition:color .18s;text-decoration:underline;text-underline-offset:2px}
+            .btn-text:hover{color:#5A6E82}
+            .btn-text.done{color:#1a7a3a;text-decoration:none}
+            .nv-contact{margin-top:.75rem;font-size:.82rem;color:#5A6E82}
+            .nv-contact a{color:#2B3A52;font-weight:600;border-bottom:1px solid #D6DDE4;text-decoration:none}
+            .nv-contact a:hover{border-color:#2B3A52}
+            .reset-btn{font-family:inherit;font-size:.78rem;color:#8FA3B8;background:none;border:1px solid #D6DDE4;border-radius:4px;padding:.45rem .9rem;cursor:pointer;margin-top:.75rem;transition:all .18s;display:block}
+            .reset-btn:hover{color:#5A6E82;border-color:#8FA3B8}
+            .page-foot{margin-top:3.5rem;padding-top:1.25rem;border-top:1px solid #D6DDE4;font-size:.7rem;color:#8FA3B8;line-height:1.9}
+            @media(max-width:500px){
+              .hdr{padding:0 1rem;height:58px}
+              .hdr-firm{font-size:.82rem}
+              .hdr-tag{display:none}
+              .wrap{padding:2.5rem 1.1rem 4rem}
+              .ref-row{flex-direction:column;align-items:flex-start;gap:.4rem}
+              .two{grid-template-columns:1fr;gap:0}
+              .two .field{margin-bottom:1.5rem}
+              .card-id{padding:.45rem 1.25rem}
+              .card-top{padding:1.35rem 1.25rem 1.1rem}
+              .inp-strip{padding:.5rem 1.25rem}
+              .earn-note{padding:0 1.25rem}
+              .card-body{padding:1.1rem 1.25rem}
+              .resp-row{padding:.6rem 1.25rem}
+              .card-foot{padding:.65rem 1.25rem}
+            }
+          `}</style>
+
+          <header className="hdr no-print">
+            <div className="hdr-l">
+              <span className="hdr-firm">AXIS INDEPENDENT ADVISORY</span>
+              <span className="hdr-sub">{c.headerSub}</span>
+            </div>
+            <div className="hdr-r">
+              <span className="hdr-tag">{c.toolTag}<br/>axisadvisorypr.com</span>
+              <button className="lang-btn" onClick={switchLang}>{c.langToggle}</button>
+            </div>
+          </header>
+
+          {!result && (
+            <div className="prog-wrap no-print">
+              <div className="prog-fill" style={{width:`${progressPct}%`}}/>
+            </div>
+          )}
+
+          <div className="wrap">
+            {!result ? (
+              <>
+                <div className="eyebrow">{c.eyebrow}</div>
+                <h1 className="title">{c.title}<br/><em>{c.titleEm}</em></h1>
+                <p className="intro">{c.intro}</p>
+                <div className="trust-bar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C4915C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginTop:1}}>
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                  <span>{c.trustLine}</span>
+                </div>
+                <div className="rule"/>
+
+                <div className="ref-row">
+                  <span className="ref-label">{c.referredByLabel}</span>
+                  <input type="text" className="txt" placeholder={c.yourNamePh} value={yourName} onChange={e=>setName(e.target.value)}/>
+                </div>
+
+                <div className="sec-group">
+                  <div className="sec-group-label">{c.secBusiness}</div>
+                  <div className="field">
+                    <label className="lbl">{c.revLabel} *</label>
+                    <div className="inp-wrap">
+                      <span className="inp-pre">$</span>
+                      <input type="text" className="txt pre" placeholder="0" inputMode="numeric"
+                        value={revenue} onChange={e=>setRevRaw(e.target.value.replace(/[^0-9,]/g,""))} onBlur={handleRevBlur}/>
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label className="lbl">{c.compLabel}</label>
+                    <div className="inp-wrap">
+                      <span className="inp-pre">$</span>
+                      <input type="text" className="txt pre"
+                        placeholder={lang==="en"?"Leave blank if unknown":"Deje en blanco si no lo sabe"}
+                        inputMode="numeric"
+                        value={ownerComp} onChange={e=>setCompRaw(e.target.value.replace(/[^0-9,]/g,""))} onBlur={handleCompBlur}/>
+                    </div>
+                    <div className="hint">{c.compHint}</div>
+                  </div>
+                  <div className="field">
+                    <label className="lbl">{c.industryLabel} *</label>
+                    <div className="pills">
+                      {INDUSTRIES[lang].map((ind,i)=>(
+                        <button key={i} className={`pill${indIdx===i?" on-slate":""}`} onClick={()=>setIndIdx(i)}>{ind}</button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="sec-group">
+                  <div className="sec-group-label">{c.secEngagement}</div>
+                  <div className="two">
+                    <div className="field">
+                      <label className="lbl">{c.purposeLabel} *</label>
+                      <div className="pills" style={{flexDirection:"column",gap:".32rem"}}>
+                        {PURPOSES[lang].map(p=>(
+                          <button key={p.v} className={`pill${purpose===p.v?" on-warm":""}`} style={{textAlign:"left"}} onClick={()=>setPurpose(p.v)}>{p.l}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="field">
+                      <label className="lbl">{c.yearsLabel} *</label>
+                      <div className="pills" style={{flexDirection:"column",gap:".32rem"}}>
+                        {YEARS_OPTS[lang].map(y=>(
+                          <button key={y.v} className={`pill${years===y.v?" on-slate":""}`} style={{textAlign:"left"}} onClick={()=>setYears(y.v)}>{y.l}</button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="submit" disabled={!canSubmit||loading} onClick={handleSubmit}>
+                  {loading?<><div className="spinner"/>{c.submitting}</>:c.submitBtn}
+                </button>
+              </>
+            ) : (
+              <>
+                <div className={`card${show?" in":""}`} style={{borderColor:result.border,background:result.bg}}>
+                  <div className="card-id">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(250,248,242,.45)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span>{c.resultId}</span>
+                  </div>
+                  <div className="card-top" style={{borderLeftColor:result.color,background:result.bg}}>
+                    <div className="card-eyebrow" style={{color:result.color}}>AXIS Assessment · axisadvisorypr.com</div>
+                    <div className="card-label" style={{color:result.color}}>{result.label}</div>
+                    {result.sublabel&&<div className="card-sublabel">{result.sublabel}</div>}
+                    <div className="card-headline">{result.headline}</div>
+                    {result.fee&&<>
+                      <div className="card-fee" style={{color:result.color}}>{result.fee}</div>
+                      <div className="card-feenote">{result.feeNote}</div>
+                    </>}
+                  </div>
+                  <div className="inp-strip" style={{borderBottomColor:result.border}}>
+                    <span>{result.inputSummary}</span>
+                    <span className="earn-chip" style={{background:result.color+"18",color:result.color}}>
+                      {c.earningsLabel}: ${result.earnings.toLocaleString()}{result.compBlank?c.earningsEst:""}
+                    </span>
+                  </div>
+                  {result.compBlank&&<div className="earn-note">{c.compEstNote}</div>}
+                  <div className="card-body">
+                    {result.points?.length>0&&<>
+                      <div className="sec-lbl">{c.scopeLabel}</div>
+                      {result.points.map((pt,i)=>(
+                        <div className="pt" key={i}><div className="dot" style={{background:result.dot}}/><span>{pt}</span></div>
+                      ))}
+                    </>}
+                    {result.flags?.length>0&&(
+                      <div className="flag-wrap">
+                        <div className="sec-lbl">{c.notesLabel}</div>
+                        {result.flags.map((f,i)=>(
+                          <div className="flag" key={i}><div className="flag-dot"/><span>{f}</span></div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  {result.cta&&(
+                    <div className="resp-row">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C4915C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginTop:1}}>
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                      <span>{c.responseNote}</span>
+                    </div>
+                  )}
+                  <div className="card-foot">
+                    <span className="card-foot-contact">{c.contact}</span>
+                    <span className="card-foot-date">{result.date}</span>
+                  </div>
+                </div>
+
+                <div className="disclaimer no-print">⚠ {c.disclaimerShort}</div>
+
+                {result.cta?(
+                  <div className="cta-block no-print">
+                    <button className="btn-wa" disabled={waSent} onClick={handleWhatsApp}>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                      </svg>
+                      {waLabel}
+                    </button>
+                    {waFallback&&<div className="wa-fallback">{c.ctaWhatsAppFallback}</div>}
+                    <button className="btn-em" disabled={emailSent} onClick={handleEmail}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                      </svg>
+                      {emailSent?c.ctaEmailSent:c.ctaEmail}
+                    </button>
+                    <div className="tertiary-row">
+                      <button className={`btn-text${copied?" done":""}`} onClick={handleCopy}>{copied?c.copiedBtn:c.ctaCopy}</button>
+                      <button className="btn-text" onClick={handlePrint}>{c.printBtn}</button>
+                    </div>
+                  </div>
+                ):(
+                  <div className="nv-contact no-print">
+                    {c.notViableContact}{" "}
+                    <a href="mailto:info@axisadvisorypr.com">info@axisadvisorypr.com</a>
+                  </div>
+                )}
+
+                <button className="reset-btn no-print" onClick={reset}>{c.resetBtn}</button>
+              </>
+            )}
+
+            <div className="page-foot no-print">
+              AXIS Independent Advisory · CVA · NACVA Certified · Isabela, Puerto Rico<br/>
+              {c.contact}<br/>
+              {c.disclaimerShort}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App/>);
+  </script>
+</body>
+</html>
