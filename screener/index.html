@@ -25,13 +25,17 @@
     function logEvent(event, payload = {}) {
       if (!ANALYTICS_ENDPOINT) return;
       try {
-        navigator.sendBeacon(
-          ANALYTICS_ENDPOINT,
-          new Blob(
-            [JSON.stringify({ _subject: `AXIS Screener: ${event}`, event, ...payload, ts: new Date().toISOString() })],
-            { type: "application/json" }
-          )
-        );
+        const data = new URLSearchParams({
+          _subject: "AXIS Screener: " + event,
+          event: event,
+          ts: new Date().toISOString(),
+          ...Object.fromEntries(Object.entries(payload).map(([k,v]) => [k, String(v)]))
+        });
+        fetch(ANALYTICS_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: data.toString()
+        }).catch(function(){});
       } catch (_) {}
     }
 
