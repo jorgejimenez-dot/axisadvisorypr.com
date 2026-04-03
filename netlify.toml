@@ -40,3 +40,13 @@
   from = "/article-valuation-puerto-rico"
   to = "/article-valuation-puerto-rico.html"
   status = 200
+
+[[redirects]]
+  from = "/sample-report"
+  to = "/sample-report.html"
+  status = 200
+
+[[redirects]]
+  from = "/sample"
+  to = "/sample-report.html"
+  status = 200

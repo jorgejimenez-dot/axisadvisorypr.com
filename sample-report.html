@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample CalcReport — AXIS Independent Advisory</title>
+  <meta name="description" content="See what a professional CalcReport looks like. Sample business valuation report for a Puerto Rico medical practice.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◆</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .sample-banner {
+      background: #C4915C;
+      color: #fff;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .report-preview {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .report-page {
+      background: #fff;
+      border: 1px solid #D6DDE4;
+      border-radius: 4px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 12px rgba(43,58,82,0.08);
+      position: relative;
+    }
+    .report-page::before {
+      content: "SAMPLE";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba(43,58,82,0.04);
+      letter-spacing: 0.3em;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .cover-rule { border-bottom: 2px solid #2B3A52; margin: 1rem 0; }
+    .cover-rule-thin { border-bottom: 1px solid #2B3A52; margin: 0.5rem 0; }
+    .cover-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #2B3A52;
+      text-align: center;
+      margin: 1.5rem 0 0.25rem;
+      letter-spacing: 0.02em;
+    }
+    .cover-subtitle {
+      font-size: 1.1rem;
+      color: #2B3A52;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .cover-company {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #2B3A52;
+      text-align: center;
+      margin: 2rem 0 0.5rem;
+    }
+    .cover-date {
+      font-size: 0.95rem;
+      color: #333;
+      text-align: center;
+      margin: 0.3rem 0;
+    }
+    .cover-prepared {
+      font-size: 0.8rem;
+      color: #5A6E82;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .cover-analyst {
+      font-size: 0.95rem;
+      text-align: center;
+      margin: 0.25rem 0;
+    }
+    .cover-firm {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2B3A52;
+      text-align: center;
+    }
+    .cover-credential {
+      font-size: 0.85rem;
+      text-align: center;
+      color: #333;
+    }
+    .cover-conf {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #2B3A52;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2B3A52;
+      margin: 1.5rem 0 0.75rem;
+      border-bottom: 1px solid #D6DDE4;
+      padding-bottom: 0.4rem;
+    }
+    .section-title:first-child { margin-top: 0; }
+    .subsection {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2B3A52;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .report-text {
+      font-size: 0.88rem;
+      color: #333;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 1rem 0;
+    }
+    .report-table th {
+      background: #2B3A52;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.5rem 0.75rem;
+      text-align: right;
+    }
+    .report-table th:first-child { text-align: left; }
+    .report-table td {
+      padding: 0.4rem 0.75rem;
+      border-bottom: 1px solid #eee;
+      text-align: right;
+    }
+    .report-table td:first-child { text-align: left; font-weight: 500; }
+    .report-table tr:nth-child(even) { background: #FAF8F2; }
+    .report-table .total-row { font-weight: 700; border-top: 2px solid #2B3A52; }
+    .value-box {
+      background: #FAF8F2;
+      border: 2px solid #2B3A52;
+      border-radius: 4px;
+      padding: 1.25rem;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .value-label {
+      font-size: 0.8rem;
+      color: #5A6E82;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+    .value-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2B3A52;
+    }
+    .recon-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: 1rem 0;
+    }
+    .recon-table th {
+      background: #2B3A52;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.5rem 0.75rem;
+      text-align: center;
+    }
+    .recon-table th:first-child { text-align: left; }
+    .recon-table td {
+      padding: 0.45rem 0.75rem;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+    .recon-table td:first-child { text-align: left; }
+    .recon-table .total-row td { font-weight: 700; border-top: 2px solid #2B3A52; }
+    .page-label {
+      font-size: 0.7rem;
+      color: #5A6E82;
+      text-align: right;
+      margin-top: 1.5rem;
+      border-top: 1px solid #eee;
+      padding-top: 0.5rem;
+    }
+    .page-note {
+      font-size: 0.8rem;
+      color: #5A6E82;
+      font-style: italic;
+      margin-top: 1rem;
+    }
+    .back-link {
+      display: inline-block;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: #2B3A52;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .back-link:hover { text-decoration: underline; }
+    .cta-box {
+      background: #2B3A52;
+      color: #fff;
+      border-radius: 6px;
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .cta-box h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+    .cta-box p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 1rem; }
+    .cta-box a {
+      display: inline-block;
+      background: #C4915C;
+      color: #fff;
+      padding: 0.6rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .cta-box a:hover { background: #b07d4a; }
+    @media (max-width: 600px) {
+      .report-page { padding: 1.5rem 1.25rem; }
+      .cover-title, .cover-company { font-size: 1.3rem; }
+      .report-page::before { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sample-banner">
+    Sample Report Preview — Fictional Data for Illustration Only
+  </div>
+
+  <div class="report-preview">
+
+    <a href="services.html" class="back-link">&larr; Back to Services</a>
+
+    <!-- ═══ COVER PAGE ═══ -->
+    <div class="report-page">
+      <div class="cover-rule"></div>
+      <div class="cover-title">CALCULATION REPORT</div>
+      <div class="cover-subtitle">Business Valuation</div>
+      <div class="cover-rule-thin"></div>
+
+      <div class="cover-company">Clinica del Valle Medical Group, PSC</div>
+      <div class="cover-date">As of December 31, 2025</div>
+      <div class="cover-date">Report Date: March 15, 2026</div>
+
+      <div class="cover-prepared">Prepared By:</div>
+      <div class="cover-analyst">Jorge Jimenez, CVA</div>
+      <div class="cover-firm">AXIS Independent Advisory</div>
+      <div class="cover-credential">NACVA Member | CVA</div>
+
+      <div class="cover-rule" style="margin-top:3rem;"></div>
+      <div class="cover-conf">CONFIDENTIAL</div>
+
+      <div class="page-label">Cover Page</div>
+    </div>
+
+    <!-- ═══ EXECUTIVE SUMMARY ═══ -->
+    <div class="report-page">
+      <div class="section-title">Executive Summary</div>
+
+      <p class="report-text"><strong>Clinica del Valle Medical Group, PSC</strong> | Professional Services Corp | Valuation Date: December 31, 2025 | Standard: Fair Market Value</p>
+
+      <p class="report-text">AXIS Independent Advisory was retained to provide a calculation of value of 100% of the ownership interests of Clinica del Valle Medical Group, PSC ("the Company"), a multi-physician general medical practice operating in Ponce, Puerto Rico. This engagement was performed under NACVA Professional Standards and AICPA SSVS No. 1 as a Calculation of Value for internal succession planning purposes.</p>
+
+      <p class="report-text">The Analyst applied a market approach using comparable transaction data from DealStats (BVR). The SDE Multiple Method received 70% weighting based on 6 selected comparable transactions (median 2.15x SDE). The Revenue Multiple Method received 30% weighting as a corroborating indicator. Historical financial data for fiscal years 2021 through 2025 was analyzed, with normalizing adjustments applied to reported earnings to reflect the economic benefit available to a single owner-operator.</p>
+
+      <div class="value-box">
+        <div class="value-label">Calculated Fair Market Value</div>
+        <div class="value-number">$1,150,000</div>
+      </div>
+
+      <p class="page-note">The sections that follow provide the detailed analyses, data, and rationale supporting this conclusion.</p>
+
+      <div class="page-label">Executive Summary — Page 1</div>
+    </div>
+
+    <!-- ═══ FINANCIAL SUMMARY ═══ -->
+    <div class="report-page">
+      <div class="section-title">IV. Financial Summary and Normalizing Adjustments</div>
+
+      <div class="subsection">Historical Financial Performance</div>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Line Item</th>
+            <th>2021</th>
+            <th>2022</th>
+            <th>2023</th>
+            <th>2024</th>
+            <th>2025</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Revenue</td>
+            <td>$1,820,000</td>
+            <td>$1,950,000</td>
+            <td>$2,080,000</td>
+            <td>$2,150,000</td>
+            <td>$2,210,000</td>
+          </tr>
+          <tr>
+            <td>Cost of Services</td>
+            <td>$728,000</td>
+            <td>$780,000</td>
+            <td>$832,000</td>
+            <td>$860,000</td>
+            <td>$884,000</td>
+          </tr>
+          <tr class="total-row">
+            <td>Gross Profit</td>
+            <td>$1,092,000</td>
+            <td>$1,170,000</td>
+            <td>$1,248,000</td>
+            <td>$1,290,000</td>
+            <td>$1,326,000</td>
+          </tr>
+          <tr>
+            <td>Gross Margin</td>
+            <td>60.0%</td>
+            <td>60.0%</td>
+            <td>60.0%</td>
+            <td>60.0%</td>
+            <td>60.0%</td>
+          </tr>
+          <tr>
+            <td>Operating Expenses</td>
+            <td>$765,000</td>
+            <td>$810,000</td>
+            <td>$852,000</td>
+            <td>$885,000</td>
+            <td>$910,000</td>
+          </tr>
+          <tr class="total-row">
+            <td>Net Income</td>
+            <td>$327,000</td>
+            <td>$360,000</td>
+            <td>$396,000</td>
+            <td>$405,000</td>
+            <td>$416,000</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="subsection">Normalizing Adjustments (Most Recent Year)</div>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Adjustment</th>
+            <th>Amount</th>
+            <th>Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Reported Net Income</td>
+            <td>$416,000</td>
+            <td>Per Form 1120-S, FY2025</td>
+          </tr>
+          <tr>
+            <td>+ Owner/Physician Compensation</td>
+            <td>$185,000</td>
+            <td>W-2 salary + K-1 distributions to principal physician</td>
+          </tr>
+          <tr>
+            <td>+ Depreciation &amp; Amortization</td>
+            <td>$32,000</td>
+            <td>Non-cash. Per Form 4562.</td>
+          </tr>
+          <tr>
+            <td>+ Interest Expense</td>
+            <td>$8,000</td>
+            <td>Equipment financing. Buyer decision.</td>
+          </tr>
+          <tr>
+            <td>+ Personal/Discretionary</td>
+            <td>$14,000</td>
+            <td>Personal vehicle, cell phone, travel per GL detail</td>
+          </tr>
+          <tr>
+            <td>+ Non-Recurring Items</td>
+            <td>$22,000</td>
+            <td>FY2025: one-time EHR system migration costs</td>
+          </tr>
+          <tr>
+            <td>+ Rent Adjustment</td>
+            <td>$6,000</td>
+            <td>Related-party lease below market ($3,500/mo vs. $4,000/mo est.)</td>
+          </tr>
+          <tr class="total-row">
+            <td>Normalized SDE</td>
+            <td>$683,000</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="report-text">The normalized SDE of $683,000 for fiscal year 2025 was selected as the representative benefit stream, reflecting the Company's current operating performance and steady revenue growth over the analysis period.</p>
+
+      <div class="page-label">Financial Summary — Page 5</div>
+    </div>
+
+    <!-- ═══ VALUATION CONCLUSION ═══ -->
+    <div class="report-page">
+      <div class="section-title">VI. Valuation Conclusion</div>
+
+      <div class="subsection">Reconciliation</div>
+
+      <table class="recon-table">
+        <thead>
+          <tr>
+            <th>Approach</th>
+            <th>Indicated Value</th>
+            <th>Weight</th>
+            <th>Weighted Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SDE Multiple Method (1.68x)</td>
+            <td>$1,147,440</td>
+            <td>70%</td>
+            <td>$803,208</td>
+          </tr>
+          <tr>
+            <td>Revenue Multiple Method (0.52x)</td>
+            <td>$1,149,200</td>
+            <td>30%</td>
+            <td>$344,760</td>
+          </tr>
+          <tr class="total-row">
+            <td>Weighted Enterprise Value</td>
+            <td></td>
+            <td>100%</td>
+            <td>$1,147,968</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="report-text">The SDE Multiple Method received 70% weight based on a robust comparable set of 6 transactions in NAICS 621111 (Offices of Physicians). The selected multiple of 1.68x falls below the median of 1.85x, reflecting the Company's owner-physician dependency, limited management depth, and Puerto Rico-specific geographic risk factors. The Revenue Multiple of 0.52x provides corroborating support.</p>
+
+      <p class="report-text">No discounts for lack of marketability (DLOM) or lack of control (DLOC) were applied because the subject interest represents 100% ownership and the comparable transactions reflect whole-practice sales.</p>
+
+      <div class="value-box">
+        <div class="value-label">Calculated Fair Market Value of 100% Ownership Interests</div>
+        <div class="value-number">$1,150,000</div>
+      </div>
+
+      <p class="page-note">(Rounded to reflect imprecision inherent in the valuation process.)</p>
+
+      <div class="page-label">Valuation Conclusion — Page 8</div>
+    </div>
+
+    <!-- ═══ WHAT'S INCLUDED ═══ -->
+    <div class="report-page" style="background:#FAF8F2;">
+      <div class="section-title" style="border:none; margin-top:0;">What Every CalcReport Includes</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem 2rem; font-size:0.88rem; color:#333;">
+        <div><strong>Cover Page</strong> — Branded, confidential</div>
+        <div><strong>Table of Contents</strong> — Section-by-section navigation</div>
+        <div><strong>Executive Summary</strong> — Key findings at a glance</div>
+        <div><strong>Introduction &amp; Scope</strong> — Purpose, standard, premise of value</div>
+        <div><strong>Company Overview</strong> — Business description, ownership, operations</div>
+        <div><strong>Economic &amp; Industry Conditions</strong> — National, Puerto Rico, and sector context</div>
+        <div><strong>Financial Summary</strong> — 3-5 year income statement + normalization</div>
+        <div><strong>Valuation Approaches</strong> — Methods applied with documented rationale</div>
+        <div><strong>Glossary of Terms</strong> — 28 terms defined in plain English</div>
+        <div><strong>Assumptions &amp; Conditions</strong> — NACVA-compliant limiting conditions</div>
+        <div><strong>Analyst Certification</strong> — Signed certification with credentials</div>
+        <div><strong>Comparable Transactions</strong> — Full exhibit with screening methodology</div>
+      </div>
+      <p style="font-size:0.82rem; color:#5A6E82; margin-top:1.25rem;">Reports delivered in English or Spanish. Typical turnaround: 2-3 weeks. Includes a 30-minute analyst walkthrough call.</p>
+    </div>
+
+    <!-- ═══ CTA ═══ -->
+    <div class="cta-box">
+      <h3>Want this level of analysis for your client?</h3>
+      <p>Start with a no-obligation conversation about scope, timeline, and fit.</p>
+      <a href="contact.html">Start a Conversation &rarr;</a>
+    </div>
+
+    <a href="services.html" class="back-link">&larr; Back to Services</a>
+
+  </div>
+
+</body>
+</html>
