@@ -61,7 +61,7 @@
         eyebrow: "For CPA & Attorney Referral Partners",
         title: "Does your client need",
         titleEm: "a business valuation?",
-        intro: "Five quick inputs. We'll tell you whether a Calculation of Value makes sense and what to expect on fees.",
+        intro: "Five quick inputs. We'll tell you whether a Calculation of Value makes sense and what to expect.",
         trustLine: "Your client stays yours. AXIS operates as your back-office valuation department.",
         referredByLabel: "Referred by",
         yourNamePh: "e.g. María Rivera, CPA",
@@ -103,7 +103,7 @@
         eyebrow: "Para CPA y Abogados Referidores",
         title: "¿Su cliente necesita",
         titleEm: "una valoración de negocio?",
-        intro: "Cinco datos rápidos. Le diremos si un Cálculo de Valor aplica y qué honorarios esperar.",
+        intro: "Cinco datos rápidos. Le diremos si un Cálculo de Valor aplica y qué esperar.",
         trustLine: "Su cliente sigue siendo suyo. AXIS funciona como su departamento de valoración.",
         referredByLabel: "Referido por",
         yourNamePh: "Ej. Juan Torres, CPA",
@@ -202,23 +202,6 @@
           ?["Est. owner earnings fall below the threshold where a Calculation of Value fee makes sense","Happy to speak with your client informally — no charge","Revisit if revenue grows or the purpose changes"]
           :["Las ganancias est. están por debajo del umbral donde los honorarios se justifican","Podemos hablar informalmente, sin costo","Reconsidere si los ingresos crecen o cambia el propósito"],
         flags:[] };
-
-      if (rev < 500000 && earnings < 150000) {
-        const flags = [];
-        if (yrs < 3) flags.push(isEN?"Short operating history — will be documented in the report":"Historial corto — se documentará en el informe");
-        return { ...base, tier:"ENTRY", cta:true, flags,
-          label: isEN?"Calculation of Value":"Cálculo de Valor",
-          sublabel: isEN?"Entry Engagement":"Encargo Inicial",
-          headline: isEN?"Straightforward engagement — this is exactly what we're built for.":"Encargo directo — para esto estamos diseñados.",
-          color:"#1a5c3a", bg:"#f4faf7", border:"#b8dfc9", dot:"#27ae60",
-          fee:"$750 – $1,750",
-          feeNote: isEN?"Fixed fee · No hourly billing · No scope creep":"Honorario fijo · Sin cobro por hora · Sin cambios de alcance",
-          points: isEN
-            ?["Market approach using owner earnings multiples from comparable transactions","2–4 normalizations including owner comp and discretionary items","Written Calculation Report — English or Spanish","Typical delivery: 2 weeks from complete data receipt"]
-            :["Enfoque de mercado con múltiplos de ganancias del dueño de transacciones comparables","2–4 normalizaciones incluyendo compensación y gastos discrecionales","Informe de Cálculo de Valor — inglés o español","Entrega típica: 2 semanas tras recibir datos completos"],
-          waText: waText+"\n\nResult: Entry Engagement · $750–$1,750",
-          copyText: copyText+"\n\nResult: Entry · $750–$1,750 · ~2 weeks" };
-      }
 
       const flags = [];
       if (yrs < 3) flags.push(isEN?"Short operating history — normalization requires extra documentation":"Historial corto — la normalización requerirá documentación adicional");
