@@ -346,7 +346,7 @@ const { useState, useEffect, useRef } = React;
             .wrap{max-width:580px;margin:0 auto;padding:3.25rem 1.5rem 5rem}
             .eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#5A6E82;margin-bottom:.6rem}
             .title{font-size:clamp(1.65rem,4vw,2.1rem);font-weight:700;color:#2B3A52;line-height:1.18;letter-spacing:-.02em;margin-bottom:.65rem}
-            .title em{font-style:italic;font-weight:400;color:#C4915C}
+            .title em{font-style:italic;font-weight:400;color:#8F6432}
             .intro{font-size:.9rem;color:#5A6E82;line-height:1.7;margin-bottom:1rem;max-width:500px}
             .trust-bar{display:flex;align-items:flex-start;gap:.5rem;background:#FAF8F2;border:1px solid #D6DDE4;border-left:3px solid #C4915C;border-radius:0 4px 4px 0;padding:.65rem .9rem;margin-bottom:2rem}
             .trust-bar span{font-size:.82rem;color:#2B3A52;line-height:1.5;font-style:italic}
@@ -363,16 +363,16 @@ const { useState, useEffect, useRef } = React;
             .inp-pre{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:.9rem;color:#5A6E82;pointer-events:none;font-weight:500}
             .txt{width:100%;font-family:inherit;font-size:.93rem;color:#2B3A52;background:#fff;border:1.5px solid #D6DDE4;border-radius:4px;padding:.62rem .85rem;outline:none;transition:border-color .18s,box-shadow .18s}
             .txt.pre{padding-left:1.45rem}
-            .txt:focus{border-color:#C4915C;box-shadow:0 0 0 3px rgba(196,145,92,.1)}
+            .txt:focus{border-color:#8F6432;box-shadow:0 0 0 3px rgba(196,145,92,.1)}
             .txt::placeholder{color:#8FA3B8}
             .pills{display:flex;flex-wrap:wrap;gap:.4rem}
             .pill{font-family:inherit;font-size:.8rem;font-weight:500;color:#5A6E82;background:#FAF8F2;border:1.5px solid #D6DDE4;border-radius:4px;padding:.42rem .8rem;cursor:pointer;transition:all .13s;white-space:nowrap;line-height:1.3}
             .pill:hover{border-color:#8FA3B8;color:#2B3A52;background:#fff}
             .pill.on-slate{background:#2B3A52;border-color:#2B3A52;color:#FAF8F2;font-weight:600}
-            .pill.on-warm{background:#C4915C;border-color:#C4915C;color:#fff;font-weight:600}
+            .pill.on-warm{background:#8F6432;border-color:#8F6432;color:#fff;font-weight:600}
             .two{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-            .submit{width:100%;font-family:inherit;font-size:.9rem;font-weight:700;letter-spacing:.02em;padding:.9rem;border-radius:4px;background:#C4915C;color:#fff;border:none;cursor:pointer;transition:background .18s;margin-top:.25rem;display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px}
-            .submit:hover:not(:disabled){background:#B8833F}
+            .submit{width:100%;font-family:inherit;font-size:.9rem;font-weight:700;letter-spacing:.02em;padding:.9rem;border-radius:4px;background:#8F6432;color:#fff;border:none;cursor:pointer;transition:background .18s;margin-top:.25rem;display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px}
+            .submit:hover:not(:disabled){background:#7A5426}
             .submit:disabled{background:#D6DDE4;color:#8FA3B8;cursor:not-allowed}
             .spinner{width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0}
             @keyframes spin{to{transform:rotate(360deg)}}
@@ -404,8 +404,8 @@ const { useState, useEffect, useRef } = React;
             .card-foot-date{font-size:.65rem;color:#8FA3B8;white-space:nowrap}
             .disclaimer{font-size:.72rem;color:#8FA3B8;margin-top:.55rem;padding:.45rem .75rem;background:#FAF8F2;border:1px solid #D6DDE4;border-radius:3px;line-height:1.5}
             .cta-block{margin-top:.9rem;display:flex;flex-direction:column;gap:.45rem}
-            .btn-wa{width:100%;font-family:inherit;font-size:.92rem;font-weight:700;padding:.92rem;border-radius:4px;background:#C4915C;color:#fff;border:none;cursor:pointer;transition:background .18s,opacity .18s;display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:50px}
-            .btn-wa:hover:not(:disabled){background:#B8833F}
+            .btn-wa{width:100%;font-family:inherit;font-size:.92rem;font-weight:700;padding:.92rem;border-radius:4px;background:#8F6432;color:#fff;border:none;cursor:pointer;transition:background .18s,opacity .18s;display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:50px}
+            .btn-wa:hover:not(:disabled){background:#7A5426}
             .btn-wa:disabled{opacity:.65;cursor:default}
             .wa-fallback{font-size:.75rem;color:#7a5510;background:#fffbf2;border:1px solid #e8d5a3;border-radius:3px;padding:.4rem .7rem;line-height:1.5;animation:fadein .2s ease}
             @keyframes fadein{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}

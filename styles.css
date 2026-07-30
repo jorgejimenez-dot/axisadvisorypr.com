@@ -17,6 +17,8 @@
       --font: 'Inter', -apple-system, 'Segoe UI', sans-serif;
       --gold: #C4915C;
       --gold-hover: #B8833F;
+      --gold-text: #8F6432;
+      --gold-text-hover: #7A5426;
       --slate-hover: #1E2D42;
     }
 
@@ -121,14 +123,14 @@ html { scroll-behavior: smooth; }
       font-weight: 600;
       letter-spacing: 0.06em;
       color: var(--white) !important;
-      background: var(--gold);
+      background: var(--gold-text);
       padding: 0.5rem 1.25rem;
       border-radius: 4px;
       transition: background 0.2s;
     }
 
     .nav-cta::after { display: none !important; }
-    .nav-cta:hover { background: var(--gold-hover) !important; color: var(--white) !important; }
+    .nav-cta:hover { background: var(--gold-text-hover) !important; color: var(--white) !important; }
 
     /* Mobile hamburger - hidden since nav is now just 2 items */
     .hamburger { display: none !important; }
@@ -229,11 +231,11 @@ html { scroll-behavior: smooth; }
     }
 
     .hero-btn.primary {
-      background: var(--gold);
+      background: var(--gold-text);
       color: var(--white);
     }
 
-    .hero-btn.primary:hover { background: var(--gold-hover); }
+    .hero-btn.primary:hover { background: var(--gold-text-hover); }
 
     .hero-btn.secondary {
       background: transparent;
@@ -499,7 +501,7 @@ html { scroll-behavior: smooth; }
       gap: 0.35rem;
     }
 
-    .card-link:hover { gap: 0.6rem; color: var(--gold); }
+    .card-link:hover { gap: 0.6rem; color: var(--gold-text); }
 
     .card-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
 
@@ -534,7 +536,7 @@ html { scroll-behavior: smooth; }
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--white);
-      background: var(--gold);
+      background: var(--gold-text);
       padding: 0.3rem 0.75rem;
       border-radius: 0 0 4px 4px;
     }
@@ -666,12 +668,12 @@ html { scroll-behavior: smooth; }
       letter-spacing: 0.05em;
       padding: 0.7rem 2rem;
       border-radius: 4px;
-      background: var(--gold);
+      background: var(--gold-text);
       color: var(--white);
       transition: background 0.2s;
     }
 
-    .cta-btn-primary:hover { background: var(--gold-hover); }
+    .cta-btn-primary:hover { background: var(--gold-text-hover); }
 
     .cta-btn-secondary {
       display: inline-block;
@@ -776,7 +778,7 @@ html { scroll-behavior: smooth; }
       font-weight: 500;
       text-decoration: none;
     }
-    .contact-channel a:hover { color: var(--gold); }
+    .contact-channel a:hover { color: var(--gold-text); }
     .contact-channel svg {
       width: 18px;
       height: 18px;
@@ -845,7 +847,7 @@ html { scroll-behavior: smooth; }
     }
 
     .service-badge-cpa {
-      background: var(--gold);
+      background: var(--gold-text);
     }
 
     .service-section h2 {
@@ -1840,7 +1842,7 @@ html { scroll-behavior: smooth; }
       letter-spacing: 0.05em;
       padding: 0.7rem 2rem;
       border-radius: 4px;
-      background: var(--gold);
+      background: var(--gold-text);
       color: var(--white);
       border: none;
       cursor: pointer;
@@ -1848,11 +1850,11 @@ html { scroll-behavior: smooth; }
     }
 
     .form-submit:hover {
-      background: var(--gold-hover);
+      background: var(--gold-text-hover);
     }
 
     .email-link-inline {
-      color: var(--gold);
+      color: var(--gold-text);
       font-weight: 600;
       border-bottom: 1px solid rgba(196, 145, 92, 0.3);
       transition: border-color 0.2s;
@@ -1877,7 +1879,7 @@ html { scroll-behavior: smooth; }
     .article-card:hover { box-shadow: 0 8px 30px rgba(43,58,82,0.08); transform: translateY(-2px); }
     .article-audience { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: var(--slate); padding: 0.2rem 0.6rem; border-radius: 3px; display: inline-block; margin-bottom: 0.75rem; align-self: flex-start; }
     .article-audience.cpa { background: var(--muted); }
-    .article-audience.both { background: var(--gold); color: var(--white); }
+    .article-audience.both { background: var(--gold-text); color: var(--white); }
     .article-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--slate); margin-bottom: 0.5rem; line-height: 1.35; }
     .article-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; flex: 1; }
     .article-link { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.25rem; font-size: 0.82rem; font-weight: 600; color: var(--slate); transition: gap 0.2s; }
@@ -1923,13 +1925,13 @@ html { scroll-behavior: smooth; }
     .article-inner ul li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--light-rule); }
     .article-inner .callout { background: var(--ivory); border-left: 3px solid var(--muted); padding: 1.25rem 1.5rem; border-radius: 0 6px 6px 0; margin: 1.5rem 0; }
     .article-inner .callout p { font-size: 0.9rem; margin-bottom: 0; font-style: italic; }
-    .article-inner a.inline-link { color: var(--gold); font-weight: 600; border-bottom: 1px solid var(--light-rule); transition: border-color 0.2s; }
+    .article-inner a.inline-link { color: var(--gold-text); font-weight: 600; border-bottom: 1px solid var(--light-rule); transition: border-color 0.2s; }
     .article-inner a.inline-link:hover { border-color: var(--slate); }
 
     .article-cta { background: var(--ivory); border: 1px solid var(--light-rule); border-radius: 8px; padding: 2rem; text-align: center; margin-top: 3rem; }
     .article-cta p { font-size: 1rem; font-weight: 500; color: var(--slate); margin-bottom: 1rem; }
-    .article-cta a { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--white); background: var(--gold); padding: 0.6rem 1.75rem; border-radius: 4px; transition: background 0.2s; }
-    .article-cta a:hover { background: var(--gold-hover); }
+    .article-cta a { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--white); background: var(--gold-text); padding: 0.6rem 1.75rem; border-radius: 4px; transition: background 0.2s; }
+    .article-cta a:hover { background: var(--gold-text-hover); }
 
 
     /* ══════════════════════════════════════════════
@@ -1949,7 +1951,7 @@ html { scroll-behavior: smooth; }
       letter-spacing: 0.05em;
       padding: 0.7rem 2rem;
       border-radius: 4px;
-      background: var(--gold);
+      background: var(--gold-text);
       color: var(--white);
       transition: background 0.2s;
     }
