@@ -10,7 +10,11 @@
   <meta property="og:image" content="https://axisadvisorypr.com/logo.png">
   <meta property="og:url" content="https://axisadvisorypr.com/services.html">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◆</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg aria-hidden="true" focusable="false" xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◆</text></svg>">
+  <link rel="canonical" href="https://axisadvisorypr.com/services.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   
   <!-- Privacy-friendly analytics by Plausible -->
@@ -48,19 +52,20 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo-link">
-        <img src="logo.png" alt="AXIS" class="logo-mark">
+        <img src="logo.png" alt="AXIS" class="logo-mark" width="400" height="485">
         <div class="logo-text">
           AXIS
           <span>Independent Advisory</span>
         </div>
       </a>
-      <button class="hamburger" aria-label="Toggle navigation" onclick="document.querySelector('nav').classList.toggle('open')">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" onclick="var n=document.querySelector('nav');n.classList.toggle('open');this.setAttribute('aria-expanded', n.classList.contains('open'))">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <nav>
         <a href="index.html">Home</a>
@@ -73,7 +78,7 @@
   </header>
 
   <!-- PAGE HERO -->
-  <section class="page-hero">
+  <section id="main" class="page-hero">
     <h1>Two services. One standard of quality.</h1>
     <p>Every engagement is governed by NACVA professional standards.</p>
   </section>
@@ -118,11 +123,11 @@
         </div>
         <div class="pricing-highlight-details">
           <div class="pricing-highlight-detail">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <span>2–3 weeks typical</span>
           </div>
           <div class="pricing-highlight-detail">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             <span>Spanish available on request</span>
           </div>
         </div>
@@ -130,7 +135,7 @@
 
       <a href="contact.html" class="service-cta">
         Start with a conversation
-        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
   </section>
@@ -171,11 +176,11 @@
         </div>
         <div class="pricing-highlight-details">
           <div class="pricing-highlight-detail">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <span>1–2 weeks typical</span>
           </div>
           <div class="pricing-highlight-detail">
-            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             <span>Spanish available on request</span>
           </div>
         </div>
@@ -187,7 +192,7 @@
 
       <a href="contact.html" class="service-cta">
         Schedule an update
-        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
   </section>
@@ -202,19 +207,19 @@
 
       <div class="cpa-features">
         <div class="cpa-feature">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
           <span>Deliverables that reflect your standard of quality</span>
         </div>
         <div class="cpa-feature">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
           <span>Direct communication with your team — no client confusion</span>
         </div>
         <div class="cpa-feature">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
           <span>Consistent turnaround aligned with your engagement timelines</span>
         </div>
         <div class="cpa-feature">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
           <span>Standards-compliant work you can confidently present to your clients</span>
         </div>
       </div>
@@ -262,22 +267,22 @@
       <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
         <a href="AXIS_CPA_OnePager_EN.pdf" download class="service-cta secondary" style="background:var(--ivory); color:var(--slate); border:1px solid var(--muted);">
           Download Partnership Overview (EN)
-          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </a>
         <a href="AXIS_CPA_OnePager_ES.pdf" download class="service-cta secondary" style="background:var(--ivory); color:var(--slate); border:1px solid var(--muted);">
           Descargar Resumen (ES)
-          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </a>
       </div>
 
       <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
         <a href="sample-report.html" class="service-cta" style="background:var(--ivory); color:var(--slate); border:1px solid var(--light-rule);">
           See a sample report
-          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <a href="contact.html" class="service-cta">
           Let's talk
-          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
     </div>
@@ -348,7 +353,7 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="footer-logo"><img src="logo.png" alt="AXIS" class="footer-mark"></div>
+    <div class="footer-logo"><img src="logo.png" alt="AXIS" class="footer-mark" width="400" height="485" loading="lazy"></div>
     <div class="footer-contact"><a href="tel:+17878306462">(787) 830-6462</a> · <a href="https://wa.me/17878306462" class="whatsapp-link">WhatsApp</a> · <a href="mailto:info@axisadvisorypr.com">info@axisadvisorypr.com</a></div>
     <div class="footer-inner">
       <div class="footer-left">© 2026 AXIS Independent Advisory. All rights reserved.</div>

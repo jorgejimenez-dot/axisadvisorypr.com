@@ -3,7 +3,7 @@
    Generated: 2026-02-23
    ════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 
 /* ── RESET & BASE ─────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,7 +20,15 @@
       --slate-hover: #1E2D42;
     }
 
-    html { scroll-behavior: smooth; }
+    
+    .skip-link {
+      position: absolute; left: -9999px; top: 0; z-index: 999;
+      background: var(--slate); color: #fff; padding: 0.6rem 1.2rem;
+      border-radius: 0 0 6px 0; font-weight: 600; text-decoration: none;
+    }
+    .skip-link:focus { left: 0; }
+
+html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font);
