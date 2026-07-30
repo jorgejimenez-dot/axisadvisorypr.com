@@ -62,7 +62,7 @@
         title: "Does your client need",
         titleEm: "a business valuation?",
         intro: "Five quick inputs. We'll tell you whether a Calculation of Value makes sense and what to expect.",
-        trustLine: "Your client stays yours. AXIS operates as your back-office valuation department.",
+        trustLine: "Your client stays yours. AXIS operates as your embedded valuation department.",
         referredByLabel: "Referred by",
         yourNamePh: "e.g. María Rivera, CPA",
         secBusiness: "About the Business",
@@ -93,7 +93,7 @@
         earningsLabel: "Est. Owner Earnings",
         earningsEst: " *",
         disclaimerShort: "Screening results are illustrative only. Not a valuation opinion or engagement commitment.",
-        contact: "info@axisadvisorypr.com · 787-830-6462 · axisadvisorypr.com",
+        contact: "info@axisadvisorypr.com · (787) 830-6462 · axisadvisorypr.com",
         notViableContact: "Questions? Reach us at",
       },
       es: {
@@ -135,7 +135,7 @@
         earningsLabel: "Ganancias Est. del Dueño",
         earningsEst: " *",
         disclaimerShort: "Los resultados son ilustrativos. No constituyen opinión de valor ni compromiso de encargo.",
-        contact: "info@axisadvisorypr.com · 787-830-6462 · axisadvisorypr.com",
+        contact: "info@axisadvisorypr.com · (787) 830-6462 · axisadvisorypr.com",
         notViableContact: "¿Preguntas? Escríbanos a",
       },
     };
@@ -146,6 +146,37 @@
     };
     const IND_KEYS  = ["pharmacy","medical","professional","construction","retail","restaurant","transport"];
     const IND_PROXY = { pharmacy:.22, medical:.32, professional:.38, construction:.26, retail:.22, restaurant:.20, transport:.24 };
+
+    const IS_CPA = new URLSearchParams(window.location.search).get("ref") === "cpa";
+
+    const OWNER_COPY = {
+      en: {
+        eyebrow: "For Business Owners",
+        title: "Does your business need",
+        titleEm: "a valuation?",
+        trustLine: "Independent and credentialed. No brokerage commissions \u2014 our only product is a defensible number.",
+        referredByLabel: "Referred by (optional)",
+        yourNamePh: "e.g. your CPA or attorney",
+        submitBtn: "Check My Fit",
+        submitting: "Checking\u2026",
+        resetBtn: "\u2190 Start over",
+      },
+      es: {
+        eyebrow: "Para Due\u00f1os de Negocio",
+        title: "\u00bfSu negocio necesita",
+        titleEm: "una valoraci\u00f3n?",
+        trustLine: "Independientes y acreditados. Sin comisiones de corretaje \u2014 nuestro \u00fanico producto es un n\u00famero defendible.",
+        referredByLabel: "Referido por (opcional)",
+        yourNamePh: "Ej. su CPA o abogado",
+        submitBtn: "Evaluar Mi Negocio",
+        submitting: "Evaluando\u2026",
+        resetBtn: "\u2190 Comenzar de nuevo",
+      },
+    };
+    if (!IS_CPA) {
+      Object.assign(COPY.en, OWNER_COPY.en);
+      Object.assign(COPY.es, OWNER_COPY.es);
+    }
 
     const PURPOSES = {
       en: [
@@ -174,23 +205,23 @@
       const yrs          = parseInt(years) || 0;
       const isEN         = lang === "en";
       const purposeLabel = PURPOSES[lang].find(p => p.v === purpose)?.l || "";
-      const sender       = yourName?.trim() || (isEN ? "Your Referral Partner" : "Su Socio Referidor");
+      const sender       = yourName?.trim() || (IS_CPA ? (isEN ? "Your Referral Partner" : "Su Socio Referidor") : (isEN ? "Business Owner" : "Due\u00f1o de Negocio"));
       const inputSummary = `${indLabel} · ${purposeLabel} · $${rev.toLocaleString()}`;
       const date         = todayStr(lang);
 
       const waText = isEN
-        ? `Hi — referral for AXIS.\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (est.)":""}\n\nFrom: ${sender}`
-        : `Hola — referido para AXIS.\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (est.)":""}\n\nDe: ${sender}`;
+        ? (IS_CPA ? "Hi — referral for AXIS." : "Hi — I would like to discuss a valuation for my business.") + `\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (est.)":""}\n\nFrom: ${sender}`
+        : (IS_CPA ? "Hola — referido para AXIS." : "Hola — quisiera discutir una valoración para mi negocio.") + `\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (est.)":""}\n\nDe: ${sender}`;
 
-      const emailSubject = encodeURIComponent(isEN?`AXIS Referral — ${indLabel}`:`Referido AXIS — ${indLabel}`);
+      const emailSubject = encodeURIComponent(isEN?(IS_CPA?`AXIS Referral — ${indLabel}`:`Valuation Inquiry — ${indLabel}`):(IS_CPA?`Referido AXIS — ${indLabel}`:`Consulta de Valoración — ${indLabel}`));
       const emailBodyRaw = isEN
-        ? `Hi,\n\nI have a referral to discuss.\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\n\nFrom: ${sender}\n\nPlease confirm fit and next steps.`
-        : `Hola,\n\nTengo un referido para discutir.\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\n\nDe: ${sender}\n\nFavor confirmar el alcance y próximos pasos.`;
+        ? (IS_CPA ? "Hi,\\n\\nI have a referral to discuss." : "Hi,\\n\\nI would like to discuss a valuation for my business.") + `\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\n\nFrom: ${sender}\n\nPlease confirm fit and next steps.`
+        : (IS_CPA ? "Hola,\\n\\nTengo un referido para discutir." : "Hola,\\n\\nQuisiera discutir una valoraci\u00f3n para mi negocio.") + `\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\n\nDe: ${sender}\n\nFavor confirmar el alcance y próximos pasos.`;
       const emailBody = encodeURIComponent(emailBodyRaw);
 
       const copyText = isEN
-        ? `AXIS Referral — ${date}\n${"─".repeat(32)}\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\nReferred by: ${sender}\n\ninfo@axisadvisorypr.com · 787-830-6462`
-        : `Referido AXIS — ${date}\n${"─".repeat(32)}\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\nDe parte de: ${sender}\n\ninfo@axisadvisorypr.com · 787-830-6462`;
+        ? `${IS_CPA?"AXIS Referral":"AXIS Valuation Inquiry"} — ${date}\n${"─".repeat(32)}\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\n${IS_CPA?"Referred by":"From"}: ${sender}\n\ninfo@axisadvisorypr.com · (787) 830-6462`
+        : `${IS_CPA?"Referido AXIS":"Consulta de Valoración AXIS"} — ${date}\n${"─".repeat(32)}\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\n${IS_CPA?"De parte de":"De"}: ${sender}\n\ninfo@axisadvisorypr.com · (787) 830-6462`;
 
       const base = { earnings, inputSummary, waText, emailSubject, emailBody, copyText, compBlank, date };
 
@@ -199,7 +230,7 @@
         headline: isEN?"Estimated owner earnings may not support a valuation fee at this stage.":"Las ganancias estimadas pueden no justificar los honorarios en este momento.",
         color:"#8a3a3a", bg:"#fff8f8", border:"#f0c8c8", dot:"#c0392b",
         points: isEN
-          ?["Est. owner earnings fall below the threshold where a Calculation of Value fee makes sense","Happy to speak with your client informally — no charge","Revisit if revenue grows or the purpose changes"]
+          ?["Est. owner earnings fall below the threshold where a Calculation of Value fee makes sense",IS_CPA ? "Happy to speak with your client informally — no charge" : "Happy to speak with you informally — no charge","Revisit if revenue grows or the purpose changes"]
           :["Las ganancias est. están por debajo del umbral donde los honorarios se justifican","Podemos hablar informalmente, sin costo","Reconsidere si los ingresos crecen o cambia el propósito"],
         flags:[] };
 
@@ -214,8 +245,8 @@
         fee: isEN?"Fixed-Fee":"Honorario Fijo",
         feeNote: isEN?"Quoted upfront based on scope · No hourly billing":"Cotizado por adelantado según alcance · Sin cobro por hora",
         points: isEN
-          ?["Market approach using owner earnings multiples from comparable transactions; income approach where applicable","Full normalization schedule with documented adjustments","Written Calculation Report — English or Spanish","Typical delivery: 2–3 weeks from complete data receipt"]
-          :["Enfoque de mercado con múltiplos de ganancias del dueño; enfoque de ingresos donde aplique","Programa completo de normalizaciones documentadas","Informe de Cálculo de Valor — inglés o español","Entrega típica: 2–3 semanas tras recibir datos completos"],
+          ?["Market approach using owner earnings multiples from comparable transactions; income approach where applicable","Full normalization schedule with documented adjustments","Written Calculation Report delivered in English — bilingual service throughout","Typical delivery: 2–3 weeks from complete data receipt"]
+          :["Enfoque de mercado con múltiplos de ganancias del dueño; enfoque de ingresos donde aplique","Programa completo de normalizaciones documentadas","Informe escrito de Cálculo de Valor entregado en inglés — servicio bilingüe durante todo el encargo","Entrega típica: 2–3 semanas tras recibir datos completos"],
         waText: waText+"\n\nResult: Standard Engagement · Fixed-fee",
         copyText: copyText+"\n\nResult: Standard · Fixed-fee · ~2–3 weeks" };
     }
