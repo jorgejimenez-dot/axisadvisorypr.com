@@ -64,6 +64,9 @@
       </button>
             <nav>
         <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="resources.html">Resources</a>
         <a href="contact.html" class="nav-cta active">Let's Talk</a>
       </nav>
     </div>
@@ -89,7 +92,7 @@
           <h2>Tell us about your situation</h2>
           <p>We'll respond with an honest assessment of whether we can help — and if so, what the engagement would look like.</p>
 
-          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+          <form name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
             <input type="hidden" name="form-name" value="contact">
             <p class="hidden-field" style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
 
@@ -103,27 +106,28 @@
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required placeholder="you@example.com">
               </div>
+              <div class="form-group">
+                <label for="purpose">Purpose</label>
+                <select id="purpose" name="purpose" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="calcreport">Calculation of Value</option>
+                  <option value="annual-update">Annual update</option>
+                  <option value="scoping">General scoping inquiry</option>
+                  <option value="cpa-partnership">CPA firm partnership</option>
+                  <option value="general">General inquiry</option>
+                </select>
+              </div>
             </div>
 
             <!-- Secondary fields -->
             <div class="form-optional">
-              <div class="form-optional-label">Help us prepare <span class="optional">(optional but helpful)</span></div>
+              <div class="form-optional-label">Help us prepare <span class="optional">(everything below is optional)</span></div>
               <div class="form-row">
                 <div class="form-group">
                   <label for="phone">Phone <span class="optional">(optional)</span></label>
                   <input type="tel" id="phone" name="phone" placeholder="(787) 000-0000">
                 </div>
-                <div class="form-group">
-                  <label for="purpose">Purpose</label>
-                  <select id="purpose" name="purpose" required>
-                    <option value="" disabled selected>Select one</option>
-                    <option value="calcreport">Calculation of Value</option>
-                    <option value="annual-update">Annual update</option>
-                    <option value="scoping">General scoping inquiry</option>
-                    <option value="cpa-partnership">CPA firm partnership</option>
-                    <option value="general">General inquiry</option>
-                  </select>
-                </div>
+
               </div>
               <div class="form-row">
                 <div class="form-group">
