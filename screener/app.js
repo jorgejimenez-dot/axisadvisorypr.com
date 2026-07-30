@@ -68,8 +68,14 @@ const COPY = {
     ctaWhatsAppDesktop: "Open WhatsApp →",
     ctaWhatsAppFallback: "WhatsApp opened in a new tab. If it didn't open, use email below.",
     ctaWhatsAppSent: "Opening WhatsApp…",
-    ctaEmail: "Send via Email",
-    ctaEmailSent: "Opening Email…",
+    ctaEmail: "Send to AXIS",
+    ctaEmailSent: "Sent \u2713",
+    ctaEmailSending: "Sending\u2026",
+    emailPh: "your@email.com",
+    emailHint: "We'll send a copy and confirm receipt.",
+    emailInvalid: "Enter a valid email address.",
+    emailError: "Couldn't send. Try WhatsApp, or email info@axisadvisorypr.com directly.",
+    emailOk: "Sent. A confirmation is on its way to your inbox \u2014 we respond within 24\u201348 hours.",
     ctaCopy: "Copy as text",
     copiedBtn: "Copied ✓",
     printBtn: "Save / Print as PDF",
@@ -110,8 +116,14 @@ const COPY = {
     ctaWhatsAppDesktop: "Abrir WhatsApp →",
     ctaWhatsAppFallback: "WhatsApp se abrió en una nueva pestaña. Si no se abrió, use el email abajo.",
     ctaWhatsAppSent: "Abriendo WhatsApp…",
-    ctaEmail: "Enviar por Email",
-    ctaEmailSent: "Abriendo Email…",
+    ctaEmail: "Enviar a AXIS",
+    ctaEmailSent: "Enviado \u2713",
+    ctaEmailSending: "Enviando\u2026",
+    emailPh: "su@email.com",
+    emailHint: "Le enviaremos una copia y confirmaci\u00f3n de recibo.",
+    emailInvalid: "Ingrese un correo electr\u00f3nico v\u00e1lido.",
+    emailError: "No se pudo enviar. Use WhatsApp o escriba a info@axisadvisorypr.com directamente.",
+    emailOk: "Enviado. Va en camino una confirmaci\u00f3n a su bandeja \u2014 respondemos en 24\u201348 horas.",
     ctaCopy: "Copiar como texto",
     copiedBtn: "Copiado ✓",
     printBtn: "Guardar / Imprimir como PDF",
@@ -242,15 +254,18 @@ function screen({
   const date = todayStr(lang);
   const waText = isEN ? (IS_CPA ? "Hi — referral for AXIS." : "Hi — I would like to discuss a valuation for my business.") + `\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank ? " (est.)" : ""}\n\nFrom: ${sender}` : (IS_CPA ? "Hola — referido para AXIS." : "Hola — quisiera discutir una valoración para mi negocio.") + `\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank ? " (est.)" : ""}\n\nDe: ${sender}`;
   const emailSubject = encodeURIComponent(isEN ? IS_CPA ? `AXIS Referral — ${indLabel}` : `Valuation Inquiry — ${indLabel}` : IS_CPA ? `Referido AXIS — ${indLabel}` : `Consulta de Valoración — ${indLabel}`);
-  const emailBodyRaw = isEN ? (IS_CPA ? "Hi,\\n\\nI have a referral to discuss." : "Hi,\\n\\nI would like to discuss a valuation for my business.") + `\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank ? " (estimated)" : ""}\n\nFrom: ${sender}\n\nPlease confirm fit and next steps.` : (IS_CPA ? "Hola,\\n\\nTengo un referido para discutir." : "Hola,\\n\\nQuisiera discutir una valoraci\u00f3n para mi negocio.") + `\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank ? " (estimado)" : ""}\n\nDe: ${sender}\n\nFavor confirmar el alcance y próximos pasos.`;
+  const emailBodyRaw = isEN ? (IS_CPA ? "Hi,\n\nI have a referral to discuss." : "Hi,\n\nI would like to discuss a valuation for my business.") + `\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank ? " (estimated)" : ""}\n\nFrom: ${sender}\n\nPlease confirm fit and next steps.` : (IS_CPA ? "Hola,\n\nTengo un referido para discutir." : "Hola,\n\nQuisiera discutir una valoraci\u00f3n para mi negocio.") + `\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank ? " (estimado)" : ""}\n\nDe: ${sender}\n\nFavor confirmar el alcance y próximos pasos.`;
   const emailBody = encodeURIComponent(emailBodyRaw);
+  const emailSubjectRaw = decodeURIComponent(emailSubject);
   const copyText = isEN ? `${IS_CPA ? "AXIS Referral" : "AXIS Valuation Inquiry"} — ${date}\n${"─".repeat(32)}\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank ? " (estimated)" : ""}\n${IS_CPA ? "Referred by" : "From"}: ${sender}\n\ninfo@axisadvisorypr.com · (787) 830-6462` : `${IS_CPA ? "Referido AXIS" : "Consulta de Valoración AXIS"} — ${date}\n${"─".repeat(32)}\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank ? " (estimado)" : ""}\n${IS_CPA ? "De parte de" : "De"}: ${sender}\n\ninfo@axisadvisorypr.com · (787) 830-6462`;
   const base = {
     earnings,
     inputSummary,
     waText,
     emailSubject,
+    emailSubjectRaw,
     emailBody,
+    emailBodyRaw,
     copyText,
     compBlank,
     date
@@ -306,6 +321,8 @@ function App() {
   const [copied, setCopied] = useState(false);
   const [waSent, setWaSent] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [senderEmail, setSenderEmail] = useState("");
+  const [sendState, setSendState] = useState("idle"); // idle | sending | sent | error
   const [waFallback, setWaFallback] = useState(false);
   const waFallbackRef = useRef(null);
   const c = COPY[lang];
@@ -425,14 +442,38 @@ function App() {
     });
   }
   function handleEmail() {
-    if (!result || emailSent) return;
-    window.open(`mailto:info@axisadvisorypr.com?subject=${result.emailSubject}&body=${result.emailBody}`, "_blank");
-    setEmailSent(true);
-    setTimeout(() => setEmailSent(false), 2000);
-    logEvent("cta_email", {
-      tier: result.tier,
-      lang
-    });
+    if (!result || sendState === "sending" || sendState === "sent") return;
+    const addr = senderEmail.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) {
+      setSendState("invalid");
+      return;
+    }
+    setSendState("sending");
+    const payload = {
+      "form-name": "screener-referral",
+      "email": addr,
+      "name": (yourName || "").trim(),
+      "lang": lang,
+      "audience": IS_CPA ? "cpa" : "owner",
+      "subject": result.emailSubjectRaw,
+      "summary": result.inputSummary,
+      "message": result.emailBodyRaw
+    };
+    fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: new URLSearchParams(payload).toString()
+    }).then(r => {
+      if (!r.ok) throw new Error("submit failed");
+      setSendState("sent");
+      setEmailSent(true);
+      logEvent("cta_email", {
+        tier: result.tier,
+        lang
+      });
+    }).catch(() => setSendState("error"));
   }
   function handleCopy() {
     if (!result) return;
@@ -852,9 +893,23 @@ function App() {
     d: "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
   })), waLabel), waFallback && /*#__PURE__*/React.createElement("div", {
     className: "wa-fallback"
-  }, c.ctaWhatsAppFallback), /*#__PURE__*/React.createElement("button", {
+  }, c.ctaWhatsAppFallback), sendState !== "sent" && /*#__PURE__*/React.createElement("div", {
+    className: "em-capture"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "email",
+    className: "txt em-input",
+    placeholder: c.emailPh,
+    value: senderEmail,
+    "aria-label": c.emailPh,
+    onChange: e => {
+      setSenderEmail(e.target.value);
+      if (sendState === "invalid" || sendState === "error") setSendState("idle");
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "em-hint"
+  }, c.emailHint)), /*#__PURE__*/React.createElement("button", {
     className: "btn-em",
-    disabled: emailSent,
+    disabled: sendState === "sending" || sendState === "sent",
     onClick: handleEmail
   }, /*#__PURE__*/React.createElement("svg", {
     width: "14",
@@ -869,7 +924,13 @@ function App() {
     d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
   }), /*#__PURE__*/React.createElement("polyline", {
     points: "22,6 12,13 2,6"
-  })), emailSent ? c.ctaEmailSent : c.ctaEmail), /*#__PURE__*/React.createElement("div", {
+  })), sendState === "sending" ? c.ctaEmailSending : sendState === "sent" ? c.ctaEmailSent : c.ctaEmail), sendState === "invalid" && /*#__PURE__*/React.createElement("div", {
+    className: "em-msg err"
+  }, c.emailInvalid), sendState === "error" && /*#__PURE__*/React.createElement("div", {
+    className: "em-msg err"
+  }, c.emailError), sendState === "sent" && /*#__PURE__*/React.createElement("div", {
+    className: "em-msg ok"
+  }, c.emailOk), /*#__PURE__*/React.createElement("div", {
     className: "tertiary-row"
   }, /*#__PURE__*/React.createElement("button", {
     className: `btn-text${copied ? " done" : ""}`,

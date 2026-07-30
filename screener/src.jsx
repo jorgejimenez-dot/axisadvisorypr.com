@@ -65,8 +65,14 @@ const { useState, useEffect, useRef } = React;
         ctaWhatsAppDesktop: "Open WhatsApp →",
         ctaWhatsAppFallback: "WhatsApp opened in a new tab. If it didn't open, use email below.",
         ctaWhatsAppSent: "Opening WhatsApp…",
-        ctaEmail: "Send via Email",
-        ctaEmailSent: "Opening Email…",
+        ctaEmail: "Send to AXIS",
+        ctaEmailSent: "Sent \u2713",
+        ctaEmailSending: "Sending\u2026",
+        emailPh: "your@email.com",
+        emailHint: "We'll send a copy and confirm receipt.",
+        emailInvalid: "Enter a valid email address.",
+        emailError: "Couldn't send. Try WhatsApp, or email info@axisadvisorypr.com directly.",
+        emailOk: "Sent. A confirmation is on its way to your inbox \u2014 we respond within 24\u201348 hours.",
         ctaCopy: "Copy as text",
         copiedBtn: "Copied ✓",
         printBtn: "Save / Print as PDF",
@@ -107,8 +113,14 @@ const { useState, useEffect, useRef } = React;
         ctaWhatsAppDesktop: "Abrir WhatsApp →",
         ctaWhatsAppFallback: "WhatsApp se abrió en una nueva pestaña. Si no se abrió, use el email abajo.",
         ctaWhatsAppSent: "Abriendo WhatsApp…",
-        ctaEmail: "Enviar por Email",
-        ctaEmailSent: "Abriendo Email…",
+        ctaEmail: "Enviar a AXIS",
+        ctaEmailSent: "Enviado \u2713",
+        ctaEmailSending: "Enviando\u2026",
+        emailPh: "su@email.com",
+        emailHint: "Le enviaremos una copia y confirmaci\u00f3n de recibo.",
+        emailInvalid: "Ingrese un correo electr\u00f3nico v\u00e1lido.",
+        emailError: "No se pudo enviar. Use WhatsApp o escriba a info@axisadvisorypr.com directamente.",
+        emailOk: "Enviado. Va en camino una confirmaci\u00f3n a su bandeja \u2014 respondemos en 24\u201348 horas.",
         ctaCopy: "Copiar como texto",
         copiedBtn: "Copiado ✓",
         printBtn: "Guardar / Imprimir como PDF",
@@ -195,15 +207,16 @@ const { useState, useEffect, useRef } = React;
 
       const emailSubject = encodeURIComponent(isEN?(IS_CPA?`AXIS Referral — ${indLabel}`:`Valuation Inquiry — ${indLabel}`):(IS_CPA?`Referido AXIS — ${indLabel}`:`Consulta de Valoración — ${indLabel}`));
       const emailBodyRaw = isEN
-        ? (IS_CPA ? "Hi,\\n\\nI have a referral to discuss." : "Hi,\\n\\nI would like to discuss a valuation for my business.") + `\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\n\nFrom: ${sender}\n\nPlease confirm fit and next steps.`
-        : (IS_CPA ? "Hola,\\n\\nTengo un referido para discutir." : "Hola,\\n\\nQuisiera discutir una valoraci\u00f3n para mi negocio.") + `\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\n\nDe: ${sender}\n\nFavor confirmar el alcance y próximos pasos.`;
+        ? (IS_CPA ? "Hi,\n\nI have a referral to discuss." : "Hi,\n\nI would like to discuss a valuation for my business.") + `\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\n\nFrom: ${sender}\n\nPlease confirm fit and next steps.`
+        : (IS_CPA ? "Hola,\n\nTengo un referido para discutir." : "Hola,\n\nQuisiera discutir una valoraci\u00f3n para mi negocio.") + `\n\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\n\nDe: ${sender}\n\nFavor confirmar el alcance y próximos pasos.`;
       const emailBody = encodeURIComponent(emailBodyRaw);
+      const emailSubjectRaw = decodeURIComponent(emailSubject);
 
       const copyText = isEN
         ? `${IS_CPA?"AXIS Referral":"AXIS Valuation Inquiry"} — ${date}\n${"─".repeat(32)}\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nRevenue: $${rev.toLocaleString()}\nEst. Owner Earnings: $${earnings.toLocaleString()}${compBlank?" (estimated)":""}\n${IS_CPA?"Referred by":"From"}: ${sender}\n\ninfo@axisadvisorypr.com · (787) 830-6462`
         : `${IS_CPA?"Referido AXIS":"Consulta de Valoración AXIS"} — ${date}\n${"─".repeat(32)}\nIndustria: ${indLabel}\nPropósito: ${purposeLabel}\nIngresos: $${rev.toLocaleString()}\nGanancias est.: $${earnings.toLocaleString()}${compBlank?" (estimado)":""}\n${IS_CPA?"De parte de":"De"}: ${sender}\n\ninfo@axisadvisorypr.com · (787) 830-6462`;
 
-      const base = { earnings, inputSummary, waText, emailSubject, emailBody, copyText, compBlank, date };
+      const base = { earnings, inputSummary, waText, emailSubject, emailSubjectRaw, emailBody, emailBodyRaw, copyText, compBlank, date };
 
       if (earnings < 50000) return { ...base, tier:"NOT_VIABLE", cta:false,
         label: isEN?"May Not Be the Right Fit":"Puede No Ser el Encargo Indicado",
@@ -248,6 +261,8 @@ const { useState, useEffect, useRef } = React;
       const [copied,    setCopied]  = useState(false);
       const [waSent,    setWaSent]    = useState(false);
       const [emailSent, setEmailSent] = useState(false);
+      const [senderEmail, setSenderEmail] = useState("");
+      const [sendState, setSendState] = useState("idle"); // idle | sending | sent | error
       const [waFallback,  setWaFallback]  = useState(false);
       const waFallbackRef = useRef(null);
 
@@ -306,10 +321,31 @@ const { useState, useEffect, useRef } = React;
       }
 
       function handleEmail() {
-        if (!result||emailSent) return;
-        window.open(`mailto:info@axisadvisorypr.com?subject=${result.emailSubject}&body=${result.emailBody}`,"_blank");
-        setEmailSent(true); setTimeout(()=>setEmailSent(false),2000);
-        logEvent("cta_email",{tier:result.tier,lang});
+        if (!result || sendState === "sending" || sendState === "sent") return;
+        const addr = senderEmail.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) { setSendState("invalid"); return; }
+        setSendState("sending");
+        const payload = {
+          "form-name": "screener-referral",
+          "email": addr,
+          "name": (yourName || "").trim(),
+          "lang": lang,
+          "audience": IS_CPA ? "cpa" : "owner",
+          "subject": result.emailSubjectRaw,
+          "summary": result.inputSummary,
+          "message": result.emailBodyRaw
+        };
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(payload).toString()
+        })
+          .then(r => {
+            if (!r.ok) throw new Error("submit failed");
+            setSendState("sent"); setEmailSent(true);
+            logEvent("cta_email",{tier:result.tier,lang});
+          })
+          .catch(() => setSendState("error"));
       }
 
       function handleCopy() {
@@ -600,12 +636,23 @@ const { useState, useEffect, useRef } = React;
                       {waLabel}
                     </button>
                     {waFallback&&<div className="wa-fallback">{c.ctaWhatsAppFallback}</div>}
-                    <button className="btn-em" disabled={emailSent} onClick={handleEmail}>
+                    {sendState!=="sent" && (
+                      <div className="em-capture">
+                        <input type="email" className="txt em-input" placeholder={c.emailPh}
+                          value={senderEmail} aria-label={c.emailPh}
+                          onChange={e=>{setSenderEmail(e.target.value); if(sendState==="invalid"||sendState==="error") setSendState("idle");}}/>
+                        <div className="em-hint">{c.emailHint}</div>
+                      </div>
+                    )}
+                    <button className="btn-em" disabled={sendState==="sending"||sendState==="sent"} onClick={handleEmail}>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
                       </svg>
-                      {emailSent?c.ctaEmailSent:c.ctaEmail}
+                      {sendState==="sending"?c.ctaEmailSending:sendState==="sent"?c.ctaEmailSent:c.ctaEmail}
                     </button>
+                    {sendState==="invalid" && <div className="em-msg err">{c.emailInvalid}</div>}
+                    {sendState==="error"   && <div className="em-msg err">{c.emailError}</div>}
+                    {sendState==="sent"    && <div className="em-msg ok">{c.emailOk}</div>}
                     <div className="tertiary-row">
                       <button className={`btn-text${copied?" done":""}`} onClick={handleCopy}>{copied?c.copiedBtn:c.ctaCopy}</button>
                       <button className="btn-text" onClick={handlePrint}>{c.printBtn}</button>

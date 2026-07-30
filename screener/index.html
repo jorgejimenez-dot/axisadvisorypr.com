@@ -17,9 +17,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <style>
     body { margin: 0; padding: 0; background: #fff; }
+  
+    .em-capture{margin-top:.6rem}
+    .em-input{width:100%;box-sizing:border-box}
+    .em-hint{font-size:.72rem;color:#6B7A8D;margin-top:.3rem;line-height:1.4}
+    .em-msg{font-size:.78rem;margin-top:.5rem;line-height:1.45;padding:.5rem .65rem;border-radius:4px}
+    .em-msg.err{color:#8A2B2B;background:#FBEDED;border:1px solid #E9C9C9}
+    .em-msg.ok{color:#1F5136;background:#EDF6F0;border:1px solid #C4E2D1}
   </style>
 </head>
 <body>
+  <!-- Static form for Netlify build-time detection. Submitted via fetch() from the React app; never displayed. -->
+  <form name="screener-referral" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="screener-referral">
+    <input name="bot-field">
+    <input type="email" name="email">
+    <input type="text" name="name">
+    <input type="text" name="lang">
+    <input type="text" name="audience">
+    <input type="text" name="subject">
+    <input type="text" name="summary">
+    <textarea name="message"></textarea>
+  </form>
+
   <div id="root"></div>
 
   <script src="app.js"></script>
