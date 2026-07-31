@@ -111,3 +111,19 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Content Security Policy — REPORT-ONLY (adopted 2026-07-31, decision D9).
+    #
+    # Deliberately does NOT include 'unsafe-inline'. This policy is not enforced,
+    # so it cannot break the site; its purpose is to make every inline <script>
+    # and inline style= attribute report a violation in the browser console, so
+    # the refactor needed for an enforced policy can be scoped from real data
+    # rather than guessed at across 19 pages.
+    #
+    # Expected known violations at adoption:
+    #   - inline <script> blocks (Plausible init) on every page
+    #   - inline style= attributes throughout
+    # Anything else in the console is an unknown origin worth investigating.
+    #
+    # Do NOT promote this to an enforced Content-Security-Policy header until
+    # the violation list has been collected and the inline surface refactored.
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' https://plausible.io https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://plausible.io https://formspree.io; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"

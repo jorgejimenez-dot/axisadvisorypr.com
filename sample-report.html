@@ -260,10 +260,97 @@
       font-size: 0.9rem;
     }
     .cta-box a:hover { background: #b07d4a; }
+/* Restores the 2-col deliverable list that was an un-overridable inline style */
+    .incl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 2rem;
+      font-size: 0.88rem;
+      color: #333;
+    }
+
+    /* Horizontal containment: one overflowing table previously dragged the whole
+       page sideways, shifting header, body and footer with it. */
+    .report-wrap, .report-page { max-width: 100%; }
+    .table-scroll { max-width: 100%; }
+
     @media (max-width: 600px) {
       .report-page { padding: 1.5rem 1.25rem; }
       .cover-title, .cover-company { font-size: 1.3rem; }
       .report-page::before { font-size: 3rem; }
+
+      .incl-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+
+      /* ── M1: 6-column financial trend table ──
+         Kept as a grid because side-by-side year comparison IS the exhibit.
+         Contained scroll + sticky row label so the line item stays visible. */
+      .table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -0.35rem;
+        padding-bottom: 0.35rem;
+      }
+      .table-scroll:focus-visible { outline: 2px solid #C4915C; outline-offset: 2px; }
+      .t-fin { min-width: 34rem; }
+      .t-fin th:first-child,
+      .t-fin td:first-child {
+        position: sticky;
+        left: 0;
+        background: #fff;
+        z-index: 2;
+        box-shadow: 1px 0 0 #E4E9EE;
+      }
+      .t-fin th:first-child { background: #2B3A52; }
+      .t-fin tr:nth-child(even) td:first-child { background: #FAF8F2; }
+      .scroll-hint {
+        font-size: 0.7rem;
+        color: #8FA3B8;
+        letter-spacing: 0.04em;
+        margin-top: 0.35rem;
+        text-align: right;
+      }
+
+      /* ── M2/M3/M5: each row becomes a labelled card ──
+         These tables carry prose and per-row detail, which reads far better
+         stacked than in 90px columns. */
+      .t-cards thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      .t-cards, .t-cards tbody, .t-cards tr, .t-cards td { display: block; width: 100%; }
+      .t-cards tr {
+        border: 1px solid #E4E9EE;
+        border-radius: 4px;
+        padding: 0.6rem 0.75rem;
+        margin-bottom: 0.6rem;
+        background: #fff;
+      }
+      .t-cards tr:nth-child(even) { background: #FAF8F2; }
+      .t-cards td {
+        padding: 0.3rem 0 !important;
+        border: none !important;
+        text-align: left !important;
+        line-height: 1.55;
+      }
+      .t-cards td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: #8FA3B8;
+        margin-bottom: 0.1rem;
+      }
+      .t-cards td:empty { display: none; }
+      .t-cards .total-row {
+        border: 1px solid #2B3A52;
+        background: #FAF8F2;
+      }
+      .t-cards .total-row td { font-weight: 700; }
+    }
+
+    /* Very narrow devices (iPhone SE 1st gen) */
+    @media (max-width: 380px) {
+      .report-page { padding: 1.25rem 1rem; }
+      .value-number { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -365,7 +452,8 @@
 
       <div class="subsection">Historical Financial Performance</div>
 
-      <table class="report-table">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Historical financial performance, scrollable">
+<table class="report-table t-fin">
         <thead>
           <tr>
             <th>Line Item</th>
@@ -427,10 +515,12 @@
           </tr>
         </tbody>
       </table>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">Swipe to see all years &rarr;</div>
 
       <div class="subsection">Normalizing Adjustments (Most Recent Year)</div>
 
-      <table class="report-table">
+      <table class="report-table t-cards">
         <thead>
           <tr>
             <th>Adjustment</th>
@@ -440,44 +530,44 @@
         </thead>
         <tbody>
           <tr>
-            <td>Reported Net Income</td>
-            <td>$416,000</td>
-            <td>Per Form 1120-S, FY2025</td>
+            <td data-label="Adjustment">Reported Net Income</td>
+            <td data-label="Amount">$416,000</td>
+            <td data-label="Rationale">Per Form 1120-S, FY2025</td>
           </tr>
           <tr>
-            <td>+ Owner/Physician Compensation</td>
-            <td>$185,000</td>
-            <td>W-2 salary + K-1 distributions to principal physician</td>
+            <td data-label="Adjustment">+ Owner/Physician Compensation</td>
+            <td data-label="Amount">$185,000</td>
+            <td data-label="Rationale">W-2 salary + K-1 distributions to principal physician</td>
           </tr>
           <tr>
-            <td>+ Depreciation &amp; Amortization</td>
-            <td>$32,000</td>
-            <td>Non-cash. Per Form 4562.</td>
+            <td data-label="Adjustment">+ Depreciation &amp; Amortization</td>
+            <td data-label="Amount">$32,000</td>
+            <td data-label="Rationale">Non-cash. Per Form 4562.</td>
           </tr>
           <tr>
-            <td>+ Interest Expense</td>
-            <td>$8,000</td>
-            <td>Equipment financing. Buyer decision.</td>
+            <td data-label="Adjustment">+ Interest Expense</td>
+            <td data-label="Amount">$8,000</td>
+            <td data-label="Rationale">Equipment financing. Buyer decision.</td>
           </tr>
           <tr>
-            <td>+ Personal/Discretionary</td>
-            <td>$14,000</td>
-            <td>Personal vehicle, cell phone, travel per GL detail</td>
+            <td data-label="Adjustment">+ Personal/Discretionary</td>
+            <td data-label="Amount">$14,000</td>
+            <td data-label="Rationale">Personal vehicle, cell phone, travel per GL detail</td>
           </tr>
           <tr>
-            <td>+ Non-Recurring Items</td>
-            <td>$22,000</td>
-            <td>FY2025: one-time EHR system migration costs</td>
+            <td data-label="Adjustment">+ Non-Recurring Items</td>
+            <td data-label="Amount">$22,000</td>
+            <td data-label="Rationale">FY2025: one-time EHR system migration costs</td>
           </tr>
           <tr>
-            <td>+ Rent Adjustment</td>
-            <td>$6,000</td>
-            <td>Related-party lease below market ($3,500/mo vs. $4,000/mo est.)</td>
+            <td data-label="Adjustment">+ Rent Adjustment</td>
+            <td data-label="Amount">$6,000</td>
+            <td data-label="Rationale">Related-party lease below market ($3,500/mo vs. $4,000/mo est.)</td>
           </tr>
           <tr class="total-row">
-            <td>Normalized SDE</td>
-            <td>$683,000</td>
-            <td></td>
+            <td data-label="Adjustment">Normalized SDE</td>
+            <td data-label="Amount">$683,000</td>
+            <td data-label="Rationale"></td>
           </tr>
         </tbody>
       </table>
@@ -495,7 +585,7 @@
 
       <p class="report-text">Consistent with NACVA Professional Standards, all three generally accepted approaches to value were considered. The approaches applied, and the basis for excluding those not applied, are set out below.</p>
 
-      <table class="recon-table">
+      <table class="recon-table t-cards">
         <thead>
           <tr>
             <th>Approach</th>
@@ -505,26 +595,26 @@
         </thead>
         <tbody>
           <tr>
-            <td>Market Approach</td>
-            <td>Yes — primary</td>
-            <td>Adequate transaction data available for comparable owner-operated practices; directly observable pricing evidence.</td>
+            <td data-label="Approach">Market Approach</td>
+            <td data-label="Applied">Yes — primary</td>
+            <td data-label="Basis">Adequate transaction data available for comparable owner-operated practices; directly observable pricing evidence.</td>
           </tr>
           <tr>
-            <td>Income Approach</td>
-            <td>No</td>
-            <td>Management did not prepare forecasts, and historical earnings do not support a reliable projection independent of the current owner-physician. A capitalized-earnings indication would restate the same benefit stream already captured in the SDE multiple.</td>
+            <td data-label="Approach">Income Approach</td>
+            <td data-label="Applied">No</td>
+            <td data-label="Basis">Management did not prepare forecasts, and historical earnings do not support a reliable projection independent of the current owner-physician. A capitalized-earnings indication would restate the same benefit stream already captured in the SDE multiple.</td>
           </tr>
           <tr>
-            <td>Asset-Based Approach</td>
-            <td>Considered — not weighted</td>
-            <td>Applied as a reasonableness check only. Adjusted net asset value is materially below the earnings-based indications, consistent with a going-concern practice whose value derives from earnings rather than tangible assets. Not appropriate as a primary indication under a going-concern premise.</td>
+            <td data-label="Approach">Asset-Based Approach</td>
+            <td data-label="Applied">Considered — not weighted</td>
+            <td data-label="Basis">Applied as a reasonableness check only. Adjusted net asset value is materially below the earnings-based indications, consistent with a going-concern practice whose value derives from earnings rather than tangible assets. Not appropriate as a primary indication under a going-concern premise.</td>
           </tr>
         </tbody>
       </table>
 
       <div class="subsection">Market Approach — Method Weighting</div>
 
-      <table class="recon-table">
+      <table class="recon-table t-cards">
         <thead>
           <tr>
             <th>Method</th>
@@ -535,22 +625,22 @@
         </thead>
         <tbody>
           <tr>
-            <td>SDE Multiple Method (1.68x)</td>
-            <td>$1,147,440</td>
-            <td>70%</td>
-            <td>$803,208</td>
+            <td data-label="Method">SDE Multiple Method (1.68x)</td>
+            <td data-label="Indicated Value">$1,147,440</td>
+            <td data-label="Weight">70%</td>
+            <td data-label="Weighted Value">$803,208</td>
           </tr>
           <tr>
-            <td>Revenue Multiple Method (0.52x)</td>
-            <td>$1,149,200</td>
-            <td>30%</td>
-            <td>$344,760</td>
+            <td data-label="Method">Revenue Multiple Method (0.52x)</td>
+            <td data-label="Indicated Value">$1,149,200</td>
+            <td data-label="Weight">30%</td>
+            <td data-label="Weighted Value">$344,760</td>
           </tr>
           <tr class="total-row">
-            <td>Weighted Indication of Value</td>
-            <td></td>
-            <td>100%</td>
-            <td>$1,147,968</td>
+            <td data-label="Method">Weighted Indication of Value</td>
+            <td data-label="Indicated Value"></td>
+            <td data-label="Weight">100%</td>
+            <td data-label="Weighted Value">$1,147,968</td>
           </tr>
         </tbody>
       </table>
@@ -573,7 +663,7 @@
     <!-- ═══ WHAT'S INCLUDED ═══ -->
     <div class="report-page" style="background:#FAF8F2;">
       <div class="section-title" style="border:none; margin-top:0;">What Every Calculation of Value Includes</div>
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem 2rem; font-size:0.88rem; color:#333;">
+      <div class="incl-grid">
         <div><strong>Cover Page</strong> — Branded, confidential</div>
         <div><strong>Table of Contents</strong> — Section-by-section navigation</div>
         <div><strong>Executive Summary</strong> — Key findings at a glance</div>
