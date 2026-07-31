@@ -13,7 +13,7 @@ const COPY = {
     greet: (n) => (n ? `${n},` : "Hello,"),
     body: [
       "Thank you for reaching out. This note confirms your message reached us.",
-      "We review every inquiry personally and will respond within <strong>24&ndash;48 hours</strong> with an honest assessment of whether we can help &mdash; and if so, what the engagement would look like.",
+      "We review every inquiry personally and will respond within <strong>one business day</strong> with an honest assessment of whether we can help &mdash; and if so, what the engagement would look like.",
       "If your matter is time-sensitive, you can reach us directly by WhatsApp at (787) 830-6462."
     ],
     summaryLabel: "What you sent",
@@ -26,7 +26,7 @@ const COPY = {
     greet: (n) => (n ? `${n},` : "Hola,"),
     body: [
       "Gracias por comunicarse con nosotros. Esta nota confirma que su mensaje nos llegó.",
-      "Revisamos cada consulta personalmente y le responderemos dentro de <strong>24&ndash;48 horas</strong> con una evaluación honesta de si podemos ayudarle &mdash; y de ser así, cómo sería el encargo.",
+      "Revisamos cada consulta personalmente y le responderemos dentro de <strong>un día laborable</strong> con una evaluación honesta de si podemos ayudarle &mdash; y de ser así, cómo sería el encargo.",
       "Si su asunto es urgente, puede comunicarse directamente por WhatsApp al (787) 830-6462."
     ],
     summaryLabel: "Lo que nos envió",

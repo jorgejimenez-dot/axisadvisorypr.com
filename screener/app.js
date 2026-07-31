@@ -75,7 +75,7 @@ const COPY = {
     emailHint: "We'll send a copy and confirm receipt.",
     emailInvalid: "Enter a valid email address.",
     emailError: "Couldn't send. Try WhatsApp, or email info@axisadvisorypr.com directly.",
-    emailOk: "Sent. A confirmation is on its way to your inbox \u2014 we respond within 24\u201348 hours.",
+    emailOk: "Sent. A confirmation is on its way to your inbox \u2014 we respond within one business day.",
     ctaCopy: "Copy as text",
     copiedBtn: "Copied ✓",
     printBtn: "Save / Print as PDF",
@@ -123,7 +123,7 @@ const COPY = {
     emailHint: "Le enviaremos una copia y confirmaci\u00f3n de recibo.",
     emailInvalid: "Ingrese un correo electr\u00f3nico v\u00e1lido.",
     emailError: "No se pudo enviar. Use WhatsApp o escriba a info@axisadvisorypr.com directamente.",
-    emailOk: "Enviado. Va en camino una confirmaci\u00f3n a su bandeja \u2014 respondemos en 24\u201348 horas.",
+    emailOk: "Enviado. Va en camino una confirmaci\u00f3n a su bandeja \u2014 respondemos dentro de un d\u00eda laborable.",
     ctaCopy: "Copiar como texto",
     copiedBtn: "Copiado ✓",
     printBtn: "Guardar / Imprimir como PDF",
@@ -799,7 +799,7 @@ function App() {
     style: {
       color: result.color
     }
-  }, "AXIS Assessment · axisadvisorypr.com"), /*#__PURE__*/React.createElement("div", {
+  }, "AXIS Assessment \xB7 axisadvisorypr.com"), /*#__PURE__*/React.createElement("div", {
     className: "card-label",
     style: {
       color: result.color
@@ -878,7 +878,7 @@ function App() {
     className: "card-foot-date"
   }, result.date))), /*#__PURE__*/React.createElement("div", {
     className: "disclaimer no-print"
-  }, "⚠ ", c.disclaimerShort), result.cta ? /*#__PURE__*/React.createElement("div", {
+  }, "\u26A0 ", c.disclaimerShort), result.cta ? /*#__PURE__*/React.createElement("div", {
     className: "cta-block no-print"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn-wa",
@@ -947,7 +947,7 @@ function App() {
     onClick: reset
   }, c.resetBtn)), /*#__PURE__*/React.createElement("div", {
     className: "page-foot no-print"
-  }, "AXIS Independent Advisory · CVA · NACVA Certified · Puerto Rico", /*#__PURE__*/React.createElement("br", null), c.contact, /*#__PURE__*/React.createElement("br", null), c.disclaimerShort)));
+  }, "AXIS Independent Advisory \xB7 CVA \xB7 NACVA Certified \xB7 Puerto Rico", /*#__PURE__*/React.createElement("br", null), c.contact, /*#__PURE__*/React.createElement("br", null), c.disclaimerShort)));
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(/*#__PURE__*/React.createElement(App, null));
