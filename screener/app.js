@@ -48,6 +48,10 @@ const COPY = {
     trustLine: "Your client stays yours. AXIS operates as your embedded valuation department.",
     referredByLabel: "Referred by",
     yourNamePh: "e.g. María Rivera, CPA",
+    footServices: "Services",
+    footSample: "Sample Report",
+    footContact: "Contact",
+    footHome: "Home",
     secScreening: "Engagement Screening",
     disputeLabel: "Is there a pending or contemplated dispute?",
     disputeHint: "Includes marital dissolution, shareholder or partner dispute, or any other adversarial or contested proceeding \u2014 whether already filed or only contemplated.",
@@ -101,6 +105,10 @@ const COPY = {
     trustLine: "Su cliente sigue siendo suyo. AXIS funciona como su departamento de valoración.",
     referredByLabel: "Referido por",
     yourNamePh: "Ej. Juan Torres, CPA",
+    footServices: "Servicios",
+    footSample: "Informe de Muestra",
+    footContact: "Contacto",
+    footHome: "Inicio",
     secScreening: "Evaluaci\u00f3n del Encargo",
     disputeLabel: "\u00bfExiste una disputa pendiente o contemplada?",
     disputeHint: "Incluye disoluci\u00f3n matrimonial, disputa entre socios o accionistas, o cualquier otro procedimiento adversarial o litigioso \u2014 ya presentado o solamente contemplado.",
@@ -343,7 +351,17 @@ function screen({
 }
 const REQUIRED_STEPS = 5;
 function App() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState(() => {
+    // Inherit the site-wide language choice so the Spanish path stays Spanish
+    // end to end. ?lang= wins over the stored preference.
+    try {
+      const q = new URLSearchParams(window.location.search).get("lang");
+      if (q === "es" || q === "en") return q;
+      const stored = localStorage.getItem("axis_lang");
+      if (stored === "es" || stored === "en") return stored;
+    } catch {}
+    return "en";
+  });
   const [yourName, setName] = useState("");
   const [revenue, setRevRaw] = useState("");
   const [ownerComp, setCompRaw] = useState("");
@@ -362,6 +380,11 @@ function App() {
   const [sendState, setSendState] = useState("idle"); // idle | sending | sent | error
   const [waFallback, setWaFallback] = useState(false);
   const waFallbackRef = useRef(null);
+  useEffect(() => {
+    try {
+      document.documentElement.lang = lang;
+    } catch {}
+  }, []);
   const c = COPY[lang];
   const rev = parseN(revenue);
   const comp = parseN(ownerComp);
@@ -478,6 +501,9 @@ function App() {
       try {
         document.documentElement.lang = next;
       } catch {}
+      try {
+        localStorage.setItem("axis_lang", next);
+      } catch {}
       return next;
     });
   }
@@ -578,6 +604,11 @@ function App() {
             .hdr-sub{font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,242,.4);margin-top:2px}
             .hdr-r{display:flex;align-items:center;gap:1rem}
             .hdr-tag{font-size:.68rem;color:rgba(250,248,242,.28);text-align:right;line-height:1.65;letter-spacing:.04em}
+            .hdr-home{color:inherit;text-decoration:none;border-bottom:1px solid rgba(250,248,242,.2)}
+            .hdr-home:hover{color:rgba(250,248,242,.7)}
+            .scr-foot{margin-top:1.4rem;padding-top:1rem;border-top:1px solid #E4E9EE;display:flex;flex-wrap:wrap;gap:.35rem 1rem;justify-content:center;font-size:.75rem}
+            .scr-foot a{color:#5A6E82;text-decoration:none;border-bottom:1px solid #D6DDE4}
+            .scr-foot a:hover{color:#2B3A52}
             .lang-btn{font-size:.68rem;font-weight:600;letter-spacing:.1em;color:rgba(250,248,242,.55);background:rgba(250,248,242,.08);border:1px solid rgba(250,248,242,.14);border-radius:3px;padding:.28rem .7rem;cursor:pointer;transition:all .18s;white-space:nowrap}
             .lang-btn:hover{background:rgba(250,248,242,.15);color:#FAF8F2}
             .prog-wrap{height:3px;background:#D6DDE4}
@@ -689,7 +720,10 @@ function App() {
     className: "hdr-r"
   }, /*#__PURE__*/React.createElement("span", {
     className: "hdr-tag"
-  }, c.toolTag, /*#__PURE__*/React.createElement("br", null), "axisadvisorypr.com"), /*#__PURE__*/React.createElement("button", {
+  }, c.toolTag, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("a", {
+    href: "../",
+    className: "hdr-home"
+  }, "axisadvisorypr.com")), /*#__PURE__*/React.createElement("button", {
     className: "lang-btn",
     onClick: switchLang
   }, c.langToggle))), !result && /*#__PURE__*/React.createElement("div", {
@@ -1059,6 +1093,16 @@ function App() {
     className: "reset-btn no-print",
     onClick: reset
   }, c.resetBtn)), /*#__PURE__*/React.createElement("div", {
+    className: "scr-foot no-print"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: lang === "es" ? "../index-es.html" : "../index.html"
+  }, c.footHome), /*#__PURE__*/React.createElement("a", {
+    href: lang === "es" ? "../services-es.html" : "../services.html"
+  }, c.footServices), /*#__PURE__*/React.createElement("a", {
+    href: "../sample-report.html"
+  }, c.footSample), /*#__PURE__*/React.createElement("a", {
+    href: lang === "es" ? "../contact-es.html" : "../contact.html"
+  }, c.footContact)), /*#__PURE__*/React.createElement("div", {
     className: "page-foot no-print"
   }, "AXIS Independent Advisory \xB7 CVA \xB7 NACVA Certified \xB7 Puerto Rico", /*#__PURE__*/React.createElement("br", null), c.contact, /*#__PURE__*/React.createElement("br", null), c.disclaimerShort)));
 }

@@ -2348,3 +2348,44 @@ html { scroll-behavior: smooth; }
     @media (max-width: 380px) {
       .lang-switch .flag { display: none; }
     }
+
+    /* ── LANGUAGE PREFERENCE BANNER (opt-in, never automatic) ── */
+    .lang-banner {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      padding: 0.65rem 1rem;
+      background: var(--gold, #C4915C);
+      color: #2B3A52;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .lang-banner.show { display: flex; }
+
+    .lang-banner a {
+      color: #2B3A52;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      white-space: nowrap;
+    }
+
+    .lang-banner button {
+      background: none;
+      border: none;
+      padding: 0.2rem 0.45rem;
+      font-family: inherit;
+      font-size: 1.1rem;
+      line-height: 1;
+      color: #2B3A52;
+      opacity: 0.6;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .lang-banner button:hover { opacity: 1; background: rgba(43, 58, 82, 0.1); }
+    .lang-banner button:focus-visible { outline: 2px solid #2B3A52; outline-offset: 1px; }
