@@ -2288,3 +2288,63 @@ html { scroll-behavior: smooth; }
       .cred-row { flex-direction: column; align-items: center; gap: 1.25rem; }
       .numbers-inner { grid-template-columns: 1fr; }
     }
+
+    /* ── LANGUAGE SELECTOR ────────────────────────
+       Both languages always visible. Text labels are the accessible name;
+       flags are decorative only (a flag is a country, not a language). */
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: auto;
+      margin-right: 1.25rem;
+      padding: 2px;
+      background: rgba(250, 248, 242, 0.07);
+      border: 1px solid rgba(250, 248, 242, 0.12);
+      border-radius: 5px;
+      flex-shrink: 0;
+    }
+
+    .lang-switch a {
+      display: flex;
+      align-items: center;
+      gap: 0.28rem;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgba(250, 248, 242, 0.6);
+      text-decoration: none;
+      border-radius: 3px;
+      line-height: 1;
+      transition: color 0.16s, background 0.16s;
+    }
+
+    .lang-switch a::after { display: none; }
+    .lang-switch a:hover { color: var(--ivory); background: rgba(250, 248, 242, 0.08); }
+
+    .lang-switch a[aria-current="true"] {
+      color: var(--slate);
+      background: var(--ivory);
+    }
+
+    .lang-switch .flag {
+      font-size: 0.85rem;
+      line-height: 1;
+    }
+
+    .lang-switch a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .lang-switch { margin-right: 0.6rem; }
+      .lang-switch a { padding: 0.34rem 0.42rem; font-size: 0.68rem; }
+      /* Inside the mobile nav panel the switch is not needed — it stays in the bar */
+      nav .lang-switch { display: none; }
+    }
+
+    @media (max-width: 380px) {
+      .lang-switch .flag { display: none; }
+    }

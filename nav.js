@@ -43,3 +43,18 @@
     }, 120);
   });
 })();
+
+/* Language preference — records the visitor's explicit choice.
+   Deliberately does NOT auto-redirect: silent redirects break the back button,
+   surprise visitors who deliberately chose a language, and confuse crawlers.
+   The stored value is available for analytics and future use. */
+(function () {
+  var sw = document.querySelector('.lang-switch');
+  if (!sw) return;
+  sw.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-lang]');
+    if (!a) return;
+    try { localStorage.setItem('axis_lang', a.getAttribute('data-lang')); } catch (err) {}
+    if (window.plausible) window.plausible('lang_switch', { props: { to: a.getAttribute('data-lang') } });
+  });
+})();

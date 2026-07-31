@@ -72,6 +72,27 @@
   to = "/screener/index.html"
   status = 200
 
+# ── Spanish pages (Option B: primary conversion path) ──
+[[redirects]]
+  from = "/es"
+  to = "/index-es.html"
+  status = 200
+
+[[redirects]]
+  from = "/servicios"
+  to = "/services-es.html"
+  status = 200
+
+[[redirects]]
+  from = "/contacto"
+  to = "/contact-es.html"
+  status = 200
+
+[[redirects]]
+  from = "/gracias"
+  to = "/thanks-es.html"
+  status = 200
+
 [[redirects]]
   from = "/fit-check"
   to = "/screener/index.html"
