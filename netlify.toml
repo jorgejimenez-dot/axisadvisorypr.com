@@ -57,6 +57,26 @@
   to = "/thanks.html"
   status = 200
 
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/disclaimer"
+  to = "/disclaimer.html"
+  status = 200
+
+[[redirects]]
+  from = "/screener"
+  to = "/screener/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/fit-check"
+  to = "/screener/index.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

@@ -132,8 +132,39 @@ html { scroll-behavior: smooth; }
     .nav-cta::after { display: none !important; }
     .nav-cta:hover { background: var(--gold-text-hover) !important; color: var(--white) !important; }
 
-    /* Mobile hamburger - hidden since nav is now just 2 items */
-    .hamburger { display: none !important; }
+    /* ── MOBILE NAV TOGGLE ───────────────────────
+       Hidden at desktop widths; becomes the nav control at <=768px. */
+    .hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      background: none;
+      border: none;
+      border-radius: 4px;
+      color: var(--ivory);
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    .hamburger svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+    }
+
+    .hamburger:hover { background: rgba(250, 248, 242, 0.1); }
+
+    /* Visible keyboard focus on the dark header */
+    .hamburger:focus-visible,
+    nav a:focus-visible,
+    .logo-link:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
 
     /* ── HERO ──────────────────────────────────── */
     .hero {
@@ -2132,12 +2163,55 @@ html { scroll-behavior: smooth; }
 
     /* ── RESPONSIVE: MOBILE ──────────────────────── */
     @media (max-width: 768px) {
+      /* Reclaim horizontal space: 2rem padding on a 375px viewport wasted 64px */
+      .header-inner {
+        padding: 0 1rem;
+        height: 64px;
+      }
+
+      .logo-mark { height: 48px; }
+      .logo-text { font-size: 1.15rem; }
+      .logo-text span { font-size: 0.52rem; letter-spacing: 0.14em; }
+
+      .hamburger { display: flex; }
+
+      /* Nav becomes a dropdown panel anchored under the sticky header */
       nav {
-        display: flex;
-        gap: 1rem;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.25rem 1rem 1rem;
+        background: var(--slate);
+        border-top: 1px solid rgba(250, 248, 242, 0.08);
+        border-bottom: 1px solid rgba(250, 248, 242, 0.08);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+      }
+
+      nav.open { display: flex; }
+
+      nav a {
+        padding: 0.9rem 0.25rem;
+        font-size: 0.95rem;
+        color: rgba(250, 248, 242, 0.88);
+        border-bottom: 1px solid rgba(250, 248, 242, 0.07);
       }
 
       nav a::after { display: none; }
+
+      nav a.active { color: var(--ivory); font-weight: 600; }
+
+      .nav-cta {
+        margin-top: 0.85rem;
+        padding: 0.85rem 1.25rem;
+        text-align: center;
+        font-size: 0.9rem;
+        border-bottom: none !important;
+      }
 
       /* Homepage */
       .hero { padding: 3rem 1.5rem 2.5rem; }

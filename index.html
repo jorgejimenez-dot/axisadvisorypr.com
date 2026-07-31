@@ -65,11 +65,11 @@
         </div>
       </a>
 
-      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" onclick="var n=document.querySelector('nav');n.classList.toggle('open');this.setAttribute('aria-expanded', n.classList.contains('open'))">
+      <button class="hamburger" type="button" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
 
-      <nav>
+      <nav id="site-nav">
         <a href="index.html" class="active">Home</a>
         <a href="services.html">Services</a>
         <a href="about.html">About</a>
@@ -329,5 +329,6 @@
     </div>
   </footer>
 
+  <script src="nav.js" defer></script>
 </body>
 </html>
