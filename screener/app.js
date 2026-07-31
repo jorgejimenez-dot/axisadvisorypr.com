@@ -48,6 +48,11 @@ const COPY = {
     trustLine: "Your client stays yours. AXIS operates as your embedded valuation department.",
     referredByLabel: "Referred by",
     yourNamePh: "e.g. María Rivera, CPA",
+    secScreening: "Engagement Screening",
+    disputeLabel: "Is there a pending or contemplated dispute?",
+    disputeHint: "Includes marital dissolution, shareholder or partner dispute, or any other adversarial or contested proceeding \u2014 whether already filed or only contemplated.",
+    disputeNo: "No",
+    disputeYes: "Yes / Possibly",
     secBusiness: "About the Business",
     secEngagement: "About the Engagement",
     revLabel: "Annual Revenue",
@@ -96,6 +101,11 @@ const COPY = {
     trustLine: "Su cliente sigue siendo suyo. AXIS funciona como su departamento de valoración.",
     referredByLabel: "Referido por",
     yourNamePh: "Ej. Juan Torres, CPA",
+    secScreening: "Evaluaci\u00f3n del Encargo",
+    disputeLabel: "\u00bfExiste una disputa pendiente o contemplada?",
+    disputeHint: "Incluye disoluci\u00f3n matrimonial, disputa entre socios o accionistas, o cualquier otro procedimiento adversarial o litigioso \u2014 ya presentado o solamente contemplado.",
+    disputeNo: "No",
+    disputeYes: "S\u00ed / Posiblemente",
     secBusiness: "Sobre el Negocio",
     secEngagement: "Sobre el Encargo",
     revLabel: "Ingresos Anuales",
@@ -242,7 +252,8 @@ function screen({
   purpose,
   years,
   lang,
-  yourName
+  yourName,
+  dispute
 }) {
   const indLabel = INDUSTRIES[lang][indIdx];
   const earnings = compBlank || comp === 0 ? Math.round(rev * (IND_PROXY[indKey] || .25)) : comp + Math.round(rev * 0.06);
@@ -270,6 +281,31 @@ function screen({
     compBlank,
     date
   };
+
+  // ── Dispute gate. Runs before any scoring: an adversarial proceeding is an
+  //    auto-decline under cov_decision_gate_policy.md (Auto-Decline Trigger 7),
+  //    regardless of size, industry, or earnings.
+  if (dispute === "yes") {
+    const refWa = isEN ? `Hi \u2014 the Fit Check flagged this as an adversarial matter.\n\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\n\nFrom: ${sender}\n\nCould you point me to an analyst who handles conclusion-level work?` : `Hola \u2014 el Fit Check identific\u00f3 este asunto como litigioso.\n\nIndustria: ${indLabel}\nProp\u00f3sito: ${purposeLabel}\n\nDe: ${sender}\n\n\u00bfPodr\u00eda referirme a un analista que maneje trabajo a nivel de conclusi\u00f3n?`;
+    const refCopy = isEN ? `AXIS Fit Check \u2014 Referral Recommended \u2014 ${date}\n${"\u2500".repeat(32)}\nIndustry: ${indLabel}\nPurpose: ${purposeLabel}\nAdversarial proceeding indicated \u2014 Conclusion of Value required.\nAXIS refers these engagements out.\n\ninfo@axisadvisorypr.com \u00b7 (787) 830-6462` : `AXIS Fit Check \u2014 Referido Recomendado \u2014 ${date}\n${"\u2500".repeat(32)}\nIndustria: ${indLabel}\nProp\u00f3sito: ${purposeLabel}\nProcedimiento adversarial indicado \u2014 se requiere Conclusi\u00f3n de Valor.\nAXIS refiere estos encargos.\n\ninfo@axisadvisorypr.com \u00b7 (787) 830-6462`;
+    return {
+      ...base,
+      tier: "REFERRAL",
+      cta: true,
+      isReferral: true,
+      flags: [],
+      label: isEN ? "Referral Recommended" : "Referido Recomendado",
+      sublabel: isEN ? "Outside AXIS Scope" : "Fuera del Alcance de AXIS",
+      headline: isEN ? "This matter calls for a Conclusion of Value, which AXIS does not provide." : "Este asunto requiere una Conclusi\u00f3n de Valor, que AXIS no ofrece.",
+      color: "#8A6A2A",
+      bg: "#FDFAF3",
+      border: "#E8D9B8",
+      dot: "#C4915C",
+      points: isEN ? ["Adversarial and contested matters require a Conclusion of Value \u2014 a higher level of analysis and support than a Calculation of Value provides", "AXIS declines these engagements by policy, before scope or fee is discussed", IS_CPA ? "We can refer you to an analyst who performs conclusion-level and litigation valuation work" : "We can refer you to an analyst who performs conclusion-level and litigation valuation work", "If the matter resolves and the need becomes planning-only, we are glad to revisit it"] : ["Los asuntos adversariales y litigiosos requieren una Conclusi\u00f3n de Valor \u2014 un nivel de an\u00e1lisis y respaldo mayor que el de un C\u00e1lculo de Valor", "AXIS declina estos encargos por pol\u00edtica, antes de discutir alcance u honorarios", "Podemos referirle a un analista que realiza trabajo a nivel de conclusi\u00f3n y litigio", "Si el asunto se resuelve y la necesidad pasa a ser solo de planificaci\u00f3n, con gusto lo reconsideramos"],
+      waText: refWa,
+      copyText: refCopy
+    };
+  }
   if (earnings < 50000) return {
     ...base,
     tier: "NOT_VIABLE",
@@ -305,7 +341,7 @@ function screen({
     copyText: copyText + "\n\nResult: Standard · Fixed-fee · ~2–3 weeks"
   };
 }
-const REQUIRED_STEPS = 4;
+const REQUIRED_STEPS = 5;
 function App() {
   const [lang, setLang] = useState("en");
   const [yourName, setName] = useState("");
@@ -314,6 +350,7 @@ function App() {
   const [indIdx, setIndIdx] = useState(null);
   const [purpose, setPurpose] = useState("");
   const [years, setYears] = useState("");
+  const [dispute, setDispute] = useState("");
   const [screenedInputs, setScreenedInputs] = useState(null);
   const [result, setResult] = useState(null);
   const [show, setShow] = useState(false);
@@ -329,8 +366,8 @@ function App() {
   const rev = parseN(revenue);
   const comp = parseN(ownerComp);
   const compBlank = ownerComp.trim() === "";
-  const canSubmit = revenue && indIdx !== null && purpose && years;
-  const progressPct = Math.round([!!revenue, indIdx !== null, !!purpose, !!years].filter(Boolean).length / REQUIRED_STEPS * 100);
+  const canSubmit = revenue && indIdx !== null && purpose && years && dispute;
+  const progressPct = Math.round([!!dispute, !!revenue, indIdx !== null, !!purpose, !!years].filter(Boolean).length / REQUIRED_STEPS * 100);
   useEffect(() => {
     try {
       const v = sessionStorage.getItem("axis_n");
@@ -382,12 +419,14 @@ function App() {
       indIdx,
       purpose,
       years,
-      yourName
+      yourName,
+      dispute
     };
     logEvent("screen_submitted", {
       industry: IND_KEYS[indIdx],
       purpose,
       years,
+      dispute,
       rev_band: rev < 250000 ? "<250k" : rev < 1000000 ? "250k-1m" : ">1m",
       lang
     });
@@ -421,9 +460,26 @@ function App() {
     setRevRaw("");
     setCompRaw("");
     setPurpose("");
+    // These three persisted across "screen another client", silently carrying
+    // the previous client's answers into the next screen.
+    setIndIdx(null);
+    setYears("");
+    setDispute("");
+    setSendState("idle");
+    setSenderEmail("");
+    try {
+      sessionStorage.removeItem("axis_i");
+      sessionStorage.removeItem("axis_y");
+    } catch {}
   }
   function switchLang() {
-    setLang(l => l === "en" ? "es" : "en");
+    setLang(l => {
+      const next = l === "en" ? "es" : "en";
+      try {
+        document.documentElement.lang = next;
+      } catch {}
+      return next;
+    });
   }
   function handleWhatsApp() {
     if (!result || waSent) return;
@@ -477,9 +533,14 @@ function App() {
   }
   function handleCopy() {
     if (!result) return;
-    navigator.clipboard.writeText(result.copyText).then(() => {
+    Promise.resolve(navigator.clipboard?.writeText(result.copyText)).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2400);
+    }).catch(() => {
+      // Insecure context, or the user denied clipboard permission.
+      try {
+        window.prompt(lang === "en" ? "Copy the summary below:" : "Copie el resumen a continuaci\u00f3n:", result.copyText);
+      } catch {}
     });
     logEvent("cta_copy", {
       tier: result.tier,
@@ -679,15 +740,47 @@ function App() {
     className: "sec-group"
   }, /*#__PURE__*/React.createElement("div", {
     className: "sec-group-label"
+  }, c.secScreening), /*#__PURE__*/React.createElement("div", {
+    className: "field"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "lbl",
+    id: "lbl-dispute"
+  }, c.disputeLabel, " *"), /*#__PURE__*/React.createElement("div", {
+    className: "pills",
+    role: "radiogroup",
+    "aria-labelledby": "lbl-dispute"
+  }, [{
+    v: "no",
+    l: c.disputeNo,
+    on: "on-slate"
+  }, {
+    v: "yes",
+    l: c.disputeYes,
+    on: "on-warm"
+  }].map(o => /*#__PURE__*/React.createElement("button", {
+    key: o.v,
+    type: "button",
+    role: "radio",
+    "aria-checked": dispute === o.v,
+    className: `pill${dispute === o.v ? " " + o.on : ""}`,
+    onClick: () => setDispute(o.v)
+  }, o.l))), /*#__PURE__*/React.createElement("div", {
+    className: "hint"
+  }, c.disputeHint))), /*#__PURE__*/React.createElement("div", {
+    className: "sec-group"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-group-label"
   }, c.secBusiness), /*#__PURE__*/React.createElement("div", {
     className: "field"
   }, /*#__PURE__*/React.createElement("label", {
-    className: "lbl"
+    className: "lbl",
+    htmlFor: "f-rev"
   }, c.revLabel, " *"), /*#__PURE__*/React.createElement("div", {
     className: "inp-wrap"
   }, /*#__PURE__*/React.createElement("span", {
     className: "inp-pre"
   }, "$"), /*#__PURE__*/React.createElement("input", {
+    id: "f-rev",
     type: "text",
     className: "txt pre",
     placeholder: "0",
@@ -698,12 +791,14 @@ function App() {
   }))), /*#__PURE__*/React.createElement("div", {
     className: "field"
   }, /*#__PURE__*/React.createElement("label", {
-    className: "lbl"
+    className: "lbl",
+    htmlFor: "f-comp"
   }, c.compLabel), /*#__PURE__*/React.createElement("div", {
     className: "inp-wrap"
   }, /*#__PURE__*/React.createElement("span", {
     className: "inp-pre"
   }, "$"), /*#__PURE__*/React.createElement("input", {
+    id: "f-comp",
     type: "text",
     className: "txt pre",
     placeholder: lang === "en" ? "Leave blank if unknown" : "Deje en blanco si no lo sabe",
@@ -716,11 +811,17 @@ function App() {
   }, c.compHint)), /*#__PURE__*/React.createElement("div", {
     className: "field"
   }, /*#__PURE__*/React.createElement("label", {
-    className: "lbl"
+    className: "lbl",
+    id: "lbl-industry"
   }, c.industryLabel, " *"), /*#__PURE__*/React.createElement("div", {
-    className: "pills"
+    className: "pills",
+    role: "radiogroup",
+    "aria-labelledby": "lbl-industry"
   }, INDUSTRIES[lang].map((ind, i) => /*#__PURE__*/React.createElement("button", {
     key: i,
+    type: "button",
+    role: "radio",
+    "aria-checked": indIdx === i,
     className: `pill${indIdx === i ? " on-slate" : ""}`,
     onClick: () => setIndIdx(i)
   }, ind))))), /*#__PURE__*/React.createElement("div", {
@@ -732,15 +833,21 @@ function App() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "field"
   }, /*#__PURE__*/React.createElement("label", {
-    className: "lbl"
+    className: "lbl",
+    id: "lbl-purpose"
   }, c.purposeLabel, " *"), /*#__PURE__*/React.createElement("div", {
     className: "pills",
+    role: "radiogroup",
+    "aria-labelledby": "lbl-purpose",
     style: {
       flexDirection: "column",
       gap: ".32rem"
     }
   }, PURPOSES[lang].map(p => /*#__PURE__*/React.createElement("button", {
     key: p.v,
+    type: "button",
+    role: "radio",
+    "aria-checked": purpose === p.v,
     className: `pill${purpose === p.v ? " on-warm" : ""}`,
     style: {
       textAlign: "left"
@@ -749,15 +856,21 @@ function App() {
   }, p.l)))), /*#__PURE__*/React.createElement("div", {
     className: "field"
   }, /*#__PURE__*/React.createElement("label", {
-    className: "lbl"
+    className: "lbl",
+    id: "lbl-years"
   }, c.yearsLabel, " *"), /*#__PURE__*/React.createElement("div", {
     className: "pills",
+    role: "radiogroup",
+    "aria-labelledby": "lbl-years",
     style: {
       flexDirection: "column",
       gap: ".32rem"
     }
   }, YEARS_OPTS[lang].map(y => /*#__PURE__*/React.createElement("button", {
     key: y.v,
+    type: "button",
+    role: "radio",
+    "aria-checked": years === y.v,
     className: `pill${years === y.v ? " on-slate" : ""}`,
     style: {
       textAlign: "left"

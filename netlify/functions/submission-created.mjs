@@ -68,14 +68,31 @@ function html(c, name, summary) {
 }
 
 export default async (req) => {
+  // Every path returns 200 on purpose: a confirmation-email failure must never
+  // block or retry the visitor's form submission. That makes the logs the only
+  // signal, so each outcome is tagged distinctly and greppable in the Netlify
+  // function log. Search "[axis-confirm]" to see the full picture.
+  const TAG = "[axis-confirm]";
+  let formName = "unknown";
   try {
     const key = process.env.RESEND_API_KEY;
-    if (!key) { console.error("RESEND_API_KEY not set — confirmation skipped"); return new Response("no key", { status: 200 }); }
+    if (!key) {
+      console.error(`${TAG} FAIL env — RESEND_API_KEY not set; confirmation skipped`);
+      return new Response("no key", { status: 200 });
+    }
 
     const payload = await req.json();
     const d = payload?.payload?.data || {};
+    formName = payload?.payload?.form_name || d.form_name || "unknown";
     const to = (d.email || "").trim();
-    if (!to || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) return new Response("no recipient", { status: 200 });
+    if (!to) {
+      console.warn(`${TAG} SKIP no-email — form="${formName}"; submission stored, no confirmation possible`);
+      return new Response("no recipient", { status: 200 });
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) {
+      console.warn(`${TAG} SKIP bad-email — form="${formName}"; address failed validation`);
+      return new Response("no recipient", { status: 200 });
+    }
 
     const lang = (d.lang || "").toLowerCase() === "es" ? "es" : "en";
     const c = COPY[lang];
@@ -89,10 +106,17 @@ export default async (req) => {
         subject: c.subject, html: html(c, (d.name || "").trim(), summary)
       })
     });
-    if (!res.ok) console.error("Resend error", res.status, await res.text());
+
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "<unreadable>");
+      console.error(`${TAG} FAIL resend — form="${formName}" lang=${lang} status=${res.status} detail=${detail}`);
+      return new Response("resend error logged", { status: 200 });
+    }
+
+    console.log(`${TAG} OK — form="${formName}" lang=${lang} confirmation sent`);
     return new Response("ok", { status: 200 });
   } catch (e) {
-    console.error("confirmation failed", e);       // never block the submission itself
+    console.error(`${TAG} FAIL exception — form="${formName}"`, e);
     return new Response("error logged", { status: 200 });
   }
 };
