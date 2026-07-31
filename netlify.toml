@@ -94,6 +94,11 @@
   status = 200
 
 [[redirects]]
+  from = "/informe-de-muestra"
+  to = "/sample-report-es.html"
+  status = 200
+
+[[redirects]]
   from = "/fit-check"
   to = "/screener/index.html"
   status = 200

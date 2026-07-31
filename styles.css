@@ -2389,3 +2389,42 @@ html { scroll-behavior: smooth; }
 
     .lang-banner button:hover { opacity: 1; background: rgba(43, 58, 82, 0.1); }
     .lang-banner button:focus-visible { outline: 2px solid #2B3A52; outline-offset: 1px; }
+
+    /* ── FOCUS VISIBILITY ─────────────────────────
+       Prior to this the site had two focus rules total (skip-link and form
+       fields). Keyboard users relied on the browser default outline, which is
+       low-contrast against the slate header and the gold CTAs. */
+    a:focus-visible,
+    button:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--gold-text);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+
+    /* On dark backgrounds the gold ring lacks contrast — use ivory instead */
+    .site-header a:focus-visible,
+    .site-header button:focus-visible,
+    .site-footer a:focus-visible,
+    .hero a:focus-visible,
+    .cta-band a:focus-visible {
+      outline-color: var(--ivory);
+    }
+
+    /* Inputs already carry a gold ring via box-shadow; avoid doubling it */
+    .form-group input:focus-visible,
+    .form-group select:focus-visible,
+    .form-group textarea:focus-visible {
+      outline: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
