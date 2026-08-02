@@ -426,6 +426,136 @@ html { scroll-behavior: smooth; }
       border-bottom-color: var(--gold);
     }
 
+    /* Owner column — same card treatment as CPA, slate accent, so the two
+       read as equal choices rather than one primary and one secondary. */
+    .audience-col-owner {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid var(--slate);
+      border-top: 1px solid var(--light-rule);
+      border-right: 1px solid var(--light-rule);
+      border-bottom: 1px solid var(--light-rule);
+    }
+
+    .audience-tagline {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--slate);
+      line-height: 1.4;
+      margin: -0.35rem 0 0.9rem;
+    }
+
+    .audience-actions {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--light-rule);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .audience-cta {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gold-text);
+      text-decoration: none;
+    }
+
+    .audience-cta:hover { color: var(--gold-text-hover); text-decoration: underline; }
+
+    .audience-link {
+      font-size: 0.88rem;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .audience-link:hover { color: var(--slate); }
+
+    .audience-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .section-sub {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0.5rem auto 0;
+      line-height: 1.6;
+    }
+
+    /* Service card specification list — the four facts a visitor scans for. */
+    .card-spec {
+      margin: 1rem 0 0;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--light-rule);
+    }
+
+    .card-spec > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.3rem 0;
+    }
+
+    .card-spec dt {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .card-spec dd {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--slate);
+      text-align: right;
+      line-height: 1.4;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Scope boundary — a stated policy, not a trailing aside. */
+    .refer-callout {
+      max-width: 720px;
+      margin: 2rem auto 0;
+      padding: 1.1rem 1.4rem;
+      background: var(--ivory);
+      border: 1px solid var(--light-rule);
+      border-left: 3px solid var(--gold);
+      border-radius: 6px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .refer-callout strong { color: var(--slate); font-weight: 600; }
+
+    .tl-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .tl-detail h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 0.35rem;
+    }
+
+    .tl-detail p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
     /* ── URGENCY TRIGGERS ──────────────────────── */
     .trigger-grid {
       display: grid;
@@ -2227,6 +2357,9 @@ html { scroll-behavior: smooth; }
       .trigger-grid { grid-template-columns: 1fr; }
       .cards-grid, .cards-grid-two, .cards-grid-equal { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
       .audience-grid { grid-template-columns: 1fr; }
+      .tl-detail-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .card-spec > div { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
+      .card-spec dd { text-align: left; }
       .steps-grid { flex-direction: column; align-items: center; gap: 0.5rem; }
       .step-connector { transform: rotate(90deg); width: 32px; }
       .step { padding: 0; max-width: 360px; }
