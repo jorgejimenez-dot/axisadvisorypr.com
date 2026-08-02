@@ -875,7 +875,7 @@ html { scroll-behavior: smooth; }
 
     .feature-icon svg { width: 22px; height: 22px; stroke: var(--slate); fill: none; }
 
-    .feature h4 {
+    .feature h3 {
       font-size: 1rem;
       font-weight: 600;
       color: var(--slate);

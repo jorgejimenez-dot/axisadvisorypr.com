@@ -126,4 +126,4 @@
     #
     # Do NOT promote this to an enforced Content-Security-Policy header until
     # the violation list has been collected and the inline surface refactored.
-    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' https://plausible.io https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://plausible.io https://formspree.io; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' https://plausible.io https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://plausible.io; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
