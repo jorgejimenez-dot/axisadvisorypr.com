@@ -204,6 +204,93 @@ html { scroll-behavior: smooth; }
       position: relative;
     }
 
+    /* Hero with deliverable render — evidence beside the claim. */
+    .hero-inner-split {
+      max-width: 1080px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+      text-align: left;
+    }
+
+    .hero-inner-split .hero-line { margin-left: 0; }
+    .hero-inner-split .hero-sub { justify-content: flex-start; }
+
+    .hero-report { position: relative; }
+
+    .hero-report svg {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      margin: 0 auto;
+      filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.34));
+    }
+
+    .hero-report-caption {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(250, 248, 242, 0.55);
+    }
+
+    .hero-report-caption a {
+      color: rgba(250, 248, 242, 0.8);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .hero-report-caption a:hover { color: var(--ivory); }
+
+    /* Report render type — mirrors the .scope-diagram SVG text pattern. */
+    .hero-report .rp-kicker {
+      font-family: var(--font);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      fill: var(--gold-text);
+    }
+
+    .hero-report .rp-title {
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      fill: var(--slate);
+    }
+
+    .hero-report .rp-sub {
+      font-family: var(--font);
+      font-size: 9.5px;
+      font-weight: 400;
+      fill: var(--muted);
+    }
+
+    .hero-report .rp-subject {
+      font-family: var(--font);
+      font-size: 10.5px;
+      font-weight: 600;
+      fill: var(--slate);
+    }
+
+    .hero-report .rp-meta {
+      font-family: var(--font);
+      font-size: 8px;
+      font-weight: 400;
+      fill: var(--muted);
+    }
+
+    .hero-report .rp-conf {
+      font-family: var(--font);
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      fill: var(--gold-text);
+    }
+
     .hero h1 {
       font-size: clamp(2.25rem, 5vw, 3.25rem);
       font-weight: 700;
@@ -2353,6 +2440,11 @@ html { scroll-behavior: smooth; }
 
       /* Homepage */
       .hero { padding: 3rem 1.5rem 2.5rem; }
+      .hero-inner-split { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+      .hero-inner-split .hero-line { margin-left: auto; }
+      .hero-inner-split .hero-sub { justify-content: center; }
+      .hero-report { order: 2; }
+      .hero-report svg { max-width: 250px; }
       .hero-sub { flex-direction: column; align-items: center; gap: 0.75rem; }
       .trigger-grid { grid-template-columns: 1fr; }
       .cards-grid, .cards-grid-two, .cards-grid-equal { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
