@@ -2428,3 +2428,68 @@ html { scroll-behavior: smooth; }
         scroll-behavior: auto !important;
       }
     }
+
+    /* ── SCOPE BOUNDARY DIAGRAM ───────────────────
+       Renders the Calculation-of-Value / Conclusion-of-Value boundary and the
+       refer-out. Inline SVG: real selectable text, translatable, styleable with
+       brand tokens, ~4KB, crisp at any zoom. */
+    .scope-diagram {
+      max-width: 720px;
+      margin: 2.5rem auto 0;
+    }
+
+    .scope-diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .scope-diagram .sd-track-label {
+      font-family: var(--font);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .scope-diagram .sd-heading {
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      fill: var(--slate);
+    }
+
+    .scope-diagram .sd-item {
+      font-family: var(--font);
+      font-size: 12.5px;
+      font-weight: 400;
+      fill: var(--muted);
+    }
+
+    .scope-diagram .sd-note {
+      font-family: var(--font);
+      font-size: 11.5px;
+      font-weight: 500;
+      fill: var(--gold-text);
+    }
+
+    .scope-diagram .sd-caption {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.55;
+      margin-top: 0.9rem;
+    }
+
+    /* Mobile: the two tracks stack. A second SVG with a tall viewBox is toggled
+       in, because one <svg> cannot carry two viewBoxes. display:none removes the
+       hidden variant from the accessibility tree, so assistive tech reads the
+       diagram once, never twice. */
+    .scope-diagram .sd-stacked { display: none; }
+
+    @media (max-width: 680px) {
+      .scope-diagram { margin-top: 2rem; }
+      .scope-diagram .sd-wide { display: none; }
+      .scope-diagram .sd-stacked { display: block; }
+    }
