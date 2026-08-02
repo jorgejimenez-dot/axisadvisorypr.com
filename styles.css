@@ -1429,6 +1429,7 @@ html { scroll-behavior: smooth; }
     }
 
     .approach-label {
+      margin-top: 0;
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.2em;
@@ -1469,7 +1470,7 @@ html { scroll-behavior: smooth; }
       stroke: var(--slate);
     }
 
-    .pillar h4 {
+    .pillar h3 {
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--slate);
@@ -1494,6 +1495,7 @@ html { scroll-behavior: smooth; }
     }
 
     .credentials-label {
+      margin-top: 0;
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.2em;
