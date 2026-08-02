@@ -219,6 +219,32 @@ html { scroll-behavior: smooth; }
 
     .hero-report { position: relative; }
 
+
+    /* Deliverable render on the services page — same artefact as the hero,
+       used here as evidence for "What You'll Receive". */
+    .deliverable-split {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+    .deliverable-render svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 22px rgba(43, 58, 82, 0.16));
+    }
+    .deliverable-caption {
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .deliverable-caption a { color: var(--gold-text); text-decoration: underline; text-underline-offset: 2px; }
+
     .hero-report svg {
       display: block;
       width: 100%;
@@ -246,7 +272,7 @@ html { scroll-behavior: smooth; }
     .hero-report-caption a:hover { color: var(--ivory); }
 
     /* Report render type — mirrors the .scope-diagram SVG text pattern. */
-    .hero-report .rp-kicker {
+    .rp-kicker {
       font-family: var(--font);
       font-size: 8px;
       font-weight: 700;
@@ -254,7 +280,7 @@ html { scroll-behavior: smooth; }
       fill: var(--gold-text);
     }
 
-    .hero-report .rp-title {
+    .rp-title {
       font-family: var(--font);
       font-size: 15px;
       font-weight: 700;
@@ -262,28 +288,28 @@ html { scroll-behavior: smooth; }
       fill: var(--slate);
     }
 
-    .hero-report .rp-sub {
+    .rp-sub {
       font-family: var(--font);
       font-size: 9.5px;
       font-weight: 400;
       fill: var(--muted);
     }
 
-    .hero-report .rp-subject {
+    .rp-subject {
       font-family: var(--font);
       font-size: 10.5px;
       font-weight: 600;
       fill: var(--slate);
     }
 
-    .hero-report .rp-meta {
+    .rp-meta {
       font-family: var(--font);
       font-size: 8px;
       font-weight: 400;
       fill: var(--muted);
     }
 
-    .hero-report .rp-conf {
+    .rp-conf {
       font-family: var(--font);
       font-size: 7px;
       font-weight: 700;
@@ -2446,12 +2472,40 @@ html { scroll-behavior: smooth; }
       .hero-inner-split .hero-line { margin-left: auto; }
       .hero-inner-split .hero-sub { justify-content: center; }
       .hero-report { order: 2; }
-      .hero-report svg { max-width: 250px; }
+  
+    /* Deliverable render on the services page — same artefact as the hero,
+       used here as evidence for "What You'll Receive". */
+    .deliverable-split {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+    .deliverable-render svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 22px rgba(43, 58, 82, 0.16));
+    }
+    .deliverable-caption {
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .deliverable-caption a { color: var(--gold-text); text-decoration: underline; text-underline-offset: 2px; }
+
+    .hero-report svg { max-width: 250px; }
       .hero-sub { flex-direction: column; align-items: center; gap: 0.75rem; }
       .trigger-grid { grid-template-columns: 1fr; }
       .cards-grid, .cards-grid-two, .cards-grid-equal { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
       .audience-grid { grid-template-columns: 1fr; }
       .tl-detail-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .deliverable-split { grid-template-columns: 1fr; gap: 1.25rem; }
+      .deliverable-render { max-width: 190px; margin: 0 auto; }
       .card-spec > div { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
       .card-spec dd { text-align: left; }
       .steps-grid { flex-direction: column; align-items: center; gap: 0.5rem; }
