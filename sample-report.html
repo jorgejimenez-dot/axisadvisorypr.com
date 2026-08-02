@@ -216,6 +216,94 @@
     }
     .recon-table td:first-child { text-align: left; }
     .recon-table .total-row td { font-weight: 700; border-top: 2px solid #2B3A52; }
+
+    /* ── ANALYST NOTES (D14) ──────────────────────────────────────────────
+       AXIS commentary on the sample report. Deliberately a different visual
+       register from the report pages: ivory ground, gold rule, explicit
+       label. A reader must never mistake these for part of the deliverable.
+       Practices are defined in 03-methodology/defensibility_practices.md. */
+    .an-marker {
+      font-size: 0.62em;
+      line-height: 0;
+      vertical-align: super;
+      margin-left: 0.15em;
+    }
+    .an-marker a {
+      color: #8F6432;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0 0.15em;
+    }
+    .an-marker a:hover { text-decoration: underline; }
+    .an-marker a:focus-visible { outline: 2px solid #C4915C; outline-offset: 2px; }
+
+    .analyst-notes {
+      background: #FAF8F2;
+      border: 1px solid #D6DDE4;
+      border-left: 3px solid #C4915C;
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      margin: -1rem 0 2rem;
+    }
+    .analyst-notes-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8F6432;
+      margin-bottom: 0.85rem;
+    }
+    .analyst-notes-label span {
+      display: block;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: #5A6E82;
+      font-size: 0.72rem;
+      margin-top: 0.2rem;
+    }
+    .analyst-notes ol { margin: 0; padding-left: 1.35rem; }
+    .analyst-notes li {
+      font-size: 0.85rem;
+      color: #333;
+      line-height: 1.65;
+      margin-bottom: 0.7rem;
+    }
+    .analyst-notes li:last-child { margin-bottom: 0; }
+    .analyst-notes li strong { color: #2B3A52; }
+    .analyst-notes li::marker { color: #8F6432; font-weight: 700; }
+
+    /* Four questions every reviewer asks. Question-based, not persona-based:
+       naming professions would imply scope AXIS does not offer. */
+    .reviewer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: #D6DDE4;
+      border: 1px solid #D6DDE4;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 0 2rem;
+    }
+    .rg-cell { background: #fff; padding: 1rem 1.15rem; }
+    .rg-q {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2B3A52;
+      margin-bottom: 0.3rem;
+    }
+    .rg-a { font-size: 0.8rem; color: #5A6E82; line-height: 1.5; }
+    .rg-a a { color: #8F6432; font-weight: 600; text-decoration: none; }
+    .rg-a a:hover { text-decoration: underline; }
+    .rg-head {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5A6E82;
+      margin-bottom: 0.75rem;
+    }
+
     .page-label {
       font-size: 0.7rem;
       color: #5A6E82;
@@ -280,6 +368,8 @@
       .report-page::before { font-size: 3rem; }
 
       .incl-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+      .reviewer-grid { grid-template-columns: 1fr; }
+      .analyst-notes { padding: 1rem 1.1rem; margin-top: -0.5rem; }
 
       /* ── M1: 6-column financial trend table ──
          Kept as a grid because side-by-side year comparison IS the exhibit.
@@ -396,6 +486,27 @@
       <strong>About this sample:</strong> This preview shows selected pages from a Calculation of Value report — our core deliverable. The actual report typically runs 15–25 pages and includes additional sections not shown here, including a detailed company overview, economic and industry analysis, comparable transaction exhibit, glossary of terms, and analyst certification. Every engagement is governed by NACVA Professional Standards and tailored to the subject company.
     </div>
 
+
+    <div class="rg-head">What a reviewer checks</div>
+    <div class="reviewer-grid">
+      <div class="rg-cell">
+        <div class="rg-q">Can I trace it?</div>
+        <div class="rg-a">Every figure names its source, and related-party and non-recurring items are handled explicitly. Notes <a href="#an-1">1</a>, <a href="#an-3">3</a>, <a href="#an-4">4</a>, <a href="#an-5">5</a>.</div>
+      </div>
+      <div class="rg-cell">
+        <div class="rg-q">Is the judgment documented?</div>
+        <div class="rg-a">Weighting, benefit-stream selection, and the chosen multiple each carry a stated reason. Notes <a href="#an-2">2</a>, <a href="#an-6">6</a>, <a href="#an-8">8</a>.</div>
+      </div>
+      <div class="rg-cell">
+        <div class="rg-q">What was ruled out — and why?</div>
+        <div class="rg-a">Approaches not applied and discounts not taken are recorded with their basis. Notes <a href="#an-7">7</a>, <a href="#an-9">9</a>.</div>
+      </div>
+      <div class="rg-cell">
+        <div class="rg-q">What is this not?</div>
+        <div class="rg-a">A Calculation of Value is not a Conclusion of Value, and the report says so. Note <a href="#an-10">10</a>.</div>
+      </div>
+    </div>
+
     <!-- ═══ COVER PAGE ═══ -->
     <div class="report-page">
       <div class="cover-rule"></div>
@@ -422,11 +533,11 @@
     <div class="report-page">
       <div class="section-title">Executive Summary</div>
 
-      <p class="report-text"><strong>Clinica del Valle Medical Group, PSC</strong> | Professional Services Corp | Valuation Date: December 31, 2025 | Standard: Fair Market Value</p>
+      <p class="report-text"><strong>Clinica del Valle Medical Group, PSC</strong> | Professional Services Corp | Valuation Date: December 31, 2025 | Standard: Fair Market Value<sup class="an-marker"><a href="#an-1" id="an-ref-1" aria-label="Analyst note 1">1</a></sup></p>
 
       <p class="report-text">AXIS Independent Advisory was retained to provide a calculation of value of 100% of the ownership interests of Clinica del Valle Medical Group, PSC ("the Company"), a multi-physician general medical practice operating in Ponce, Puerto Rico. This engagement was performed under NACVA Professional Standards and AICPA SSVS No. 1 as a Calculation of Value for internal succession planning purposes.</p>
 
-      <p class="report-text">The Analyst considered the market, income, and asset-based approaches, and applied the market approach using comparable transaction data from market transaction databases. The basis for the approaches applied and not applied is set out in the Valuation Conclusion. The SDE Multiple Method received 70% weighting based on 6 selected comparable transactions (observed median 1.85x SDE). The Revenue Multiple Method received 30% weighting as a corroborating indicator. Historical financial data for fiscal years 2021 through 2025 was analyzed, with normalizing adjustments applied to reported earnings to reflect the economic benefit available to a single owner-operator.</p>
+      <p class="report-text">The Analyst considered the market, income, and asset-based approaches, and applied the market approach using comparable transaction data from market transaction databases. The basis for the approaches applied and not applied is set out in the Valuation Conclusion. The SDE Multiple Method received 70% weighting based on 6 selected comparable transactions (observed median 1.85x SDE). The Revenue Multiple Method received 30% weighting as a corroborating indicator.<sup class="an-marker"><a href="#an-2" id="an-ref-2" aria-label="Analyst note 2">2</a></sup> Historical financial data for fiscal years 2021 through 2025 was analyzed, with normalizing adjustments applied to reported earnings to reflect the economic benefit available to a single owner-operator.</p>
 
       <div class="value-box">
         <div class="value-label">Calculated Value — 100% Ownership Interest (Illustrative)</div>
@@ -436,6 +547,16 @@
       <p class="page-note">The sections that follow provide the detailed analyses, data, and rationale supporting this conclusion.</p>
 
       <div class="page-label">Executive Summary — Page 1</div>
+    </div>
+
+    <div class="analyst-notes">
+      <div class="analyst-notes-label">Analyst Notes
+        <span>AXIS commentary on the executive summary. Not part of the report a client receives.</span>
+      </div>
+      <ol start="1">
+          <li id="an-1"><strong>Basis before number.</strong> The standard of value, the premise, and the valuation date appear before any figure. A reader can confirm what the engagement measured before seeing what it concluded.</li>
+          <li id="an-2"><strong>Weighting disclosed in the summary.</strong> Method weighting appears here, not buried in a later exhibit. The reader sees how the conclusion was reached before seeing the conclusion.</li>
+      </ol>
     </div>
 
     <div style="text-align:center; padding:1.25rem; margin-bottom:2rem;">
@@ -542,7 +663,7 @@
           <tr>
             <td data-label="Adjustment">+ Depreciation &amp; Amortization</td>
             <td data-label="Amount">$32,000</td>
-            <td data-label="Rationale">Non-cash. Per Form 4562.</td>
+            <td data-label="Rationale">Non-cash. Per Form 4562.<sup class="an-marker"><a href="#an-3" id="an-ref-3" aria-label="Analyst note 3">3</a></sup></td>
           </tr>
           <tr>
             <td data-label="Adjustment">+ Interest Expense</td>
@@ -557,12 +678,12 @@
           <tr>
             <td data-label="Adjustment">+ Non-Recurring Items</td>
             <td data-label="Amount">$22,000</td>
-            <td data-label="Rationale">FY2025: one-time EHR system migration costs</td>
+            <td data-label="Rationale">FY2025: one-time EHR system migration costs<sup class="an-marker"><a href="#an-5" id="an-ref-5" aria-label="Analyst note 5">5</a></sup></td>
           </tr>
           <tr>
             <td data-label="Adjustment">+ Rent Adjustment</td>
             <td data-label="Amount">$6,000</td>
-            <td data-label="Rationale">Related-party lease below market ($3,500/mo vs. $4,000/mo est.)</td>
+            <td data-label="Rationale">Related-party lease below market ($3,500/mo vs. $4,000/mo est.)<sup class="an-marker"><a href="#an-4" id="an-ref-4" aria-label="Analyst note 4">4</a></sup></td>
           </tr>
           <tr class="total-row">
             <td data-label="Adjustment">Normalized SDE</td>
@@ -572,9 +693,21 @@
         </tbody>
       </table>
 
-      <p class="report-text">The normalized SDE of $683,000 for fiscal year 2025 was selected as the representative benefit stream, reflecting the Company's current operating performance and steady revenue growth over the analysis period.</p>
+      <p class="report-text">The normalized SDE of $683,000 for fiscal year 2025 was selected as the representative benefit stream, reflecting the Company's current operating performance and steady revenue growth over the analysis period.<sup class="an-marker"><a href="#an-6" id="an-ref-6" aria-label="Analyst note 6">6</a></sup></p>
 
       <div class="page-label">Financial Summary — Page 5</div>
+    </div>
+
+    <div class="analyst-notes">
+      <div class="analyst-notes-label">Analyst Notes
+        <span>AXIS commentary on the financial summary. Not part of the report a client receives.</span>
+      </div>
+      <ol start="3">
+          <li id="an-3"><strong>Source traceability.</strong> Every normalizing adjustment names its source document — Form 1120-S, Form 4562, general ledger detail. A reviewer traces each figure without having to ask.</li>
+          <li id="an-4"><strong>Related-party terms adjusted to market.</strong> The lease is adjusted to market and the delta is shown. Undisclosed related-party terms are among the most common defects in owner-prepared financials.</li>
+          <li id="an-5"><strong>Non-recurring items removed once.</strong> Identified individually and removed once. They are not used to smooth a trend.</li>
+          <li id="an-6"><strong>The benefit stream is a stated selection.</strong> FY2025 was selected rather than a multi-year average, and the reason is on the page. A default is not a decision.</li>
+      </ol>
     </div>
 
     <!-- ═══ VALUATION CONCLUSION ═══ -->
@@ -602,7 +735,7 @@
           <tr>
             <td data-label="Approach">Income Approach</td>
             <td data-label="Applied">No</td>
-            <td data-label="Basis">Management did not prepare forecasts, and historical earnings do not support a reliable projection independent of the current owner-physician. A capitalized-earnings indication would restate the same benefit stream already captured in the SDE multiple.</td>
+            <td data-label="Basis">Management did not prepare forecasts, and historical earnings do not support a reliable projection independent of the current owner-physician. A capitalized-earnings indication would restate the same benefit stream already captured in the SDE multiple.<sup class="an-marker"><a href="#an-7" id="an-ref-7" aria-label="Analyst note 7">7</a></sup></td>
           </tr>
           <tr>
             <td data-label="Approach">Asset-Based Approach</td>
@@ -645,9 +778,9 @@
         </tbody>
       </table>
 
-      <p class="report-text">The SDE Multiple Method received 70% weight based on a set of 6 transactions in NAICS 621111 (Offices of Physicians) meeting the screening criteria described in the Comparable Transactions exhibit. The selected multiple of 1.68x falls below the observed median of 1.85x, reflecting the Company's owner-physician dependency, limited management depth, and Puerto Rico-specific geographic risk factors. The Revenue Multiple Method received 30% weight as a corroborating indicator; it is weighted lower because revenue multiples do not capture differences in margin structure between the subject and the comparable set.</p>
+      <p class="report-text">The SDE Multiple Method received 70% weight based on a set of 6 transactions in NAICS 621111 (Offices of Physicians) meeting the screening criteria described in the Comparable Transactions exhibit. The selected multiple of 1.68x falls below the observed median of 1.85x, reflecting the Company's owner-physician dependency, limited management depth, and Puerto Rico-specific geographic risk factors.<sup class="an-marker"><a href="#an-8" id="an-ref-8" aria-label="Analyst note 8">8</a></sup> The Revenue Multiple Method received 30% weight as a corroborating indicator; it is weighted lower because revenue multiples do not capture differences in margin structure between the subject and the comparable set.</p>
 
-      <p class="report-text">No discount for lack of control (DLOC) was applied because the subject interest is a 100% controlling interest. No separate discount for lack of marketability (DLOM) was applied because the selected multiples derive from completed sales of whole, privately held practices, in which limited marketability is already reflected in the observed transaction pricing. Applying a further DLOM would double-count that factor.</p>
+      <p class="report-text">No discount for lack of control (DLOC) was applied because the subject interest is a 100% controlling interest. No separate discount for lack of marketability (DLOM) was applied because the selected multiples derive from completed sales of whole, privately held practices, in which limited marketability is already reflected in the observed transaction pricing. Applying a further DLOM would double-count that factor.<sup class="an-marker"><a href="#an-9" id="an-ref-9" aria-label="Analyst note 9">9</a></sup></p>
 
       <div class="value-box">
         <div class="value-label">Calculated Value — 100% Ownership Interest (Illustrative)</div>
@@ -655,9 +788,21 @@
         <div class="value-sub">Standard of Value: Fair Market Value &nbsp;·&nbsp; Premise of Value: Going Concern</div>
       </div>
 
-      <p class="page-note">(Rounded to reflect the imprecision inherent in the valuation process.) This is a Calculation of Value performed under NACVA Professional Standards using approaches and procedures agreed in advance with the client. It is not a Conclusion of Value, and a Conclusion of Value may have differed had one been performed.</p>
+      <p class="page-note">(Rounded to reflect the imprecision inherent in the valuation process.) This is a Calculation of Value performed under NACVA Professional Standards using approaches and procedures agreed in advance with the client. It is not a Conclusion of Value, and a Conclusion of Value may have differed had one been performed.<sup class="an-marker"><a href="#an-10" id="an-ref-10" aria-label="Analyst note 10">10</a></sup></p>
 
       <div class="page-label">Valuation Conclusion — Page 8</div>
+    </div>
+
+    <div class="analyst-notes">
+      <div class="analyst-notes-label">Analyst Notes
+        <span>AXIS commentary on the valuation conclusion. Not part of the report a client receives.</span>
+      </div>
+      <ol start="7">
+          <li id="an-7"><strong>Approaches considered, and non-application explained.</strong> All three approaches are addressed in a table stating whether each was applied and on what basis. The income approach was not applied, and the reason is given rather than left to inference.</li>
+          <li id="an-8"><strong>The multiple is justified against the observed median.</strong> The selected 1.68x sits below the observed median of 1.85x, and the reasons are named. A multiple without a reason is an assertion.</li>
+          <li id="an-9"><strong>Discounts considered and ruled out, with reason.</strong> DLOM and DLOC were each considered and not applied, with the basis stated. What was ruled out matters as much as what was applied.</li>
+          <li id="an-10"><strong>Engagement type and rounding stated plainly.</strong> The report states this is a Calculation of Value, not a Conclusion of Value, and that a Conclusion may have differed. Rounding is disclosed as inherent imprecision rather than presented as precision.</li>
+      </ol>
     </div>
 
     <!-- ═══ WHAT'S INCLUDED ═══ -->
