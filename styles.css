@@ -413,46 +413,47 @@ html { scroll-behavior: smooth; }
       background: var(--slate);
       border-top: 1px solid rgba(250,248,242,0.08);
       border-bottom: 1px solid rgba(250,248,242,0.08);
-      padding: 1.5rem 2rem;
+      padding: 2.25rem 2rem;
     }
-
-    .cred-bar-inner {
-      max-width: 960px;
+    .cred-bar-wrap {
+      max-width: 1040px;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.5rem 0;
     }
-
+    /* Page-level spec strip. Same reading pattern as .card-spec on the service
+       cards: value, label, hairline separation. The pipes were doing the work
+       of a rule and the row read as run-on text. */
+    .cred-bar-inner {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
     .cred-item {
       text-align: center;
-      padding: 0 2rem;
+      padding: 0.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-
+    .cred-item + .cred-item {
+      border-left: 1px solid rgba(250,248,242,0.12);
+    }
     .cred-value {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--ivory);
-      line-height: 1.2;
+      line-height: 1.25;
     }
-
     .cred-detail {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 400;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(250,248,242,0.5);
-      margin-top: 0.2rem;
-    }
-
-    .cred-sep {
-      color: rgba(250,248,242,0.15);
-      font-size: 1.25rem;
-      font-weight: 200;
-      align-self: center;
+      color: rgba(250,248,242,0.52);
+      margin-top: 0.4rem;
+      line-height: 1.45;
     }
 
     /* ── SECTIONS ──────────────────────────────── */
@@ -2512,8 +2513,11 @@ html { scroll-behavior: smooth; }
       .step-connector { transform: rotate(90deg); width: 32px; }
       .step { padding: 0; max-width: 360px; }
       .features-grid { grid-template-columns: 1fr 1fr; }
-      .cred-item { padding: 0.25rem 1rem; }
-      .cred-sep { display: none; }
+      .cred-bar { padding: 1.5rem 1.25rem; }
+      .cred-bar-inner { grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(250,248,242,0.12); }
+      .cred-item { padding: 0.85rem 0.5rem; background: var(--slate); }
+      .cred-item + .cred-item { border-left: none; }
+      .cred-item:last-child { grid-column: span 2; }
 
       /* Services */
       .service-section { padding: 2.5rem 1.5rem; }
