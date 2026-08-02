@@ -2157,7 +2157,7 @@ html { scroll-behavior: smooth; }
     .article-audience { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: var(--slate); padding: 0.2rem 0.6rem; border-radius: 3px; display: inline-block; margin-bottom: 0.75rem; align-self: flex-start; }
     .article-audience.cpa { background: var(--muted); }
     .article-audience.both { background: var(--gold-text); color: var(--white); }
-    .article-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--slate); margin-bottom: 0.5rem; line-height: 1.35; }
+    .article-card h2 { font-size: 1.05rem; font-weight: 600; color: var(--slate); margin-bottom: 0.5rem; line-height: 1.35; }
     .article-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; flex: 1; }
     .article-link { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.25rem; font-size: 0.82rem; font-weight: 600; color: var(--slate); transition: gap 0.2s; }
     .article-link:hover { gap: 0.6rem; }
