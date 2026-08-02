@@ -2106,6 +2106,14 @@ html { scroll-behavior: smooth; }
       line-height: 1.5;
     }
 
+    .compare-sub {
+      display: inline-block;
+      margin-top: 0.2rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
     /* ── PARTNERSHIP STEPS ──────────────────────── */
     .partnership-steps {
       display: grid;
