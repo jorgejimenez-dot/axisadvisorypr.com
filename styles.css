@@ -356,6 +356,20 @@ html { scroll-behavior: smooth; }
       animation: fadeUp 0.8s 0.2s ease both;
     }
 
+    .hero-commercial {
+      font-size: 0.95rem;
+      color: rgba(250, 248, 242, 0.78);
+      line-height: 1.55;
+      margin: 0.85rem auto 0;
+      max-width: 34rem;
+    }
+
+    .hero-inner-split .hero-commercial {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 32rem;
+    }
+
     .hero-sub {
       margin-top: 1.5rem;
       display: flex;
@@ -428,7 +442,9 @@ html { scroll-behavior: smooth; }
 
     .cred-item {
       text-align: center;
-      padding: 0 2rem;
+      padding: 0 1.25rem;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .cred-value {
@@ -815,6 +831,101 @@ html { scroll-behavior: smooth; }
       border-radius: 0 0 4px 4px;
     }
 
+    /* ── OFFER HIERARCHY (PVA entry / CoV core / OVS secondary) ── */
+    .cards-grid-offers {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .offer-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.7rem;
+      border-radius: 3px;
+      margin-bottom: 1rem;
+    }
+
+    .offer-badge-entry {
+      color: var(--slate);
+      background: rgba(196, 145, 92, 0.18);
+      border: 1px solid rgba(196, 145, 92, 0.45);
+    }
+
+    .offer-badge-core {
+      color: var(--white);
+      background: var(--gold-text);
+    }
+
+    .offer-badge-secondary {
+      color: var(--muted);
+      background: var(--ivory);
+      border: 1px solid var(--light-rule);
+    }
+
+    .card-entry {
+      border: 1.5px solid rgba(196, 145, 92, 0.55);
+      box-shadow: 0 4px 18px rgba(196, 145, 92, 0.08);
+      position: relative;
+    }
+
+    .card-entry:hover {
+      border-left: 3px solid var(--gold);
+      box-shadow: 0 8px 28px rgba(196, 145, 92, 0.14);
+    }
+
+    .card-core {
+      /* flagship border retained via .card-flagship */
+      transform: none;
+    }
+
+    .card-core.card-flagship {
+      /* Core keeps strongest chrome; badge replaces old absolute card-flag */
+      padding-top: 2.5rem;
+    }
+
+    .card-core .offer-badge {
+      margin-bottom: 1.1rem;
+    }
+
+    .card-secondary {
+      background: var(--ivory);
+      border-color: var(--light-rule);
+      opacity: 0.96;
+      padding: 2rem 1.5rem 1.75rem;
+      font-size: 0.95em;
+    }
+
+    .card-secondary .card-icon {
+      width: 30px;
+      height: 30px;
+      background: var(--muted);
+    }
+
+    .card-secondary .card-icon svg { width: 15px; height: 15px; }
+
+    .card-secondary h3 {
+      font-size: 1.02rem;
+    }
+
+    .card-secondary p,
+    .card-secondary .card-tagline {
+      font-size: 0.88rem;
+    }
+
+    .card-secondary .card-spec dd {
+      font-size: 0.82rem;
+    }
+
+    .card-secondary:hover {
+      border-left: 3px solid var(--muted);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(43, 58, 82, 0.05);
+    }
+
     /* ── HOW IT WORKS ──────────────────────────── */
     .how-it-works { background: var(--white); }
 
@@ -1003,7 +1114,10 @@ html { scroll-behavior: smooth; }
 
     .footer-links {
       display: flex;
-      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.75rem 1.25rem;
+      max-width: 100%;
     }
 
     .footer-links a {
@@ -2272,7 +2386,10 @@ html { scroll-behavior: smooth; }
     .tl-label {
       font-size: 0.72rem;
       color: var(--muted);
-      white-space: nowrap;
+      white-space: normal;
+      text-align: center;
+      max-width: 7.5rem;
+      line-height: 1.25;
     }
 
     .tl-connector {
@@ -2410,6 +2527,7 @@ html { scroll-behavior: smooth; }
     @media (max-width: 960px) {
       .features-grid { grid-template-columns: 1fr 1fr; }
       .cards-grid { grid-template-columns: 1fr 1fr; }
+      .cards-grid-offers { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
       .pillar-grid { grid-template-columns: 1fr 1fr; }
       .cpa-features { grid-template-columns: 1fr; }
     }
@@ -2501,7 +2619,8 @@ html { scroll-behavior: smooth; }
     .hero-report svg { max-width: 250px; }
       .hero-sub { flex-direction: column; align-items: center; gap: 0.75rem; }
       .trigger-grid { grid-template-columns: 1fr; }
-      .cards-grid, .cards-grid-two, .cards-grid-equal { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .cards-grid, .cards-grid-two, .cards-grid-equal, .cards-grid-offers { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .card-core.card-flagship { padding-top: 2.5rem; }
       .audience-grid { grid-template-columns: 1fr; }
       .tl-detail-grid { grid-template-columns: 1fr; gap: 1rem; }
       .deliverable-split { grid-template-columns: 1fr; gap: 1.25rem; }
@@ -2526,7 +2645,8 @@ html { scroll-behavior: smooth; }
       .pricing-highlight-details { flex-direction: column; gap: 0.75rem; align-items: center; }
       .cpa-features { grid-template-columns: 1fr; }
       .compare-table { font-size: 0.8rem; }
-      .timeline-bar { gap: 0.25rem; padding: 1rem 0.75rem; display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; }
+      .timeline-bar { gap: 0.5rem; padding: 1rem 0.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); text-align: center; max-width: 100%; }
+      .tl-label { max-width: none; }
       .tl-connector { display: none; }
       .compare-table thead th, .compare-table tbody td { padding: 0.5rem 0.6rem; }
 
@@ -2806,3 +2926,45 @@ html { scroll-behavior: smooth; }
   .hero-eyebrow { font-size: 0.78rem; }
   .nav-cta { font-size: 0.82rem; padding-left: 0.75rem; padding-right: 0.75rem; }
 }
+
+    /* P0 mobile overflow: footer link row + cred chips were primary width offenders
+       (flex nowrap / wide padding). Prefer root-cause fixes over body { overflow-x:hidden }. */
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem 0.5rem;
+      padding: 0 0.5rem;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+      .footer-links {
+        justify-content: center;
+        gap: 0.55rem 0.9rem;
+      }
+      .footer-inner {
+        max-width: 100%;
+        padding: 0;
+      }
+      .cred-bar {
+        padding: 1.25rem 1rem;
+      }
+      .cred-item {
+        padding: 0.25rem 0.65rem;
+        flex: 1 1 auto;
+      }
+      .hero-commercial {
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+      }
+      .card-spec dt { white-space: normal; }
+    }
+
+    /* Containment without hiding legitimate scroll containers (tables use overflow-x:auto). */
+    html {
+      max-width: 100%;
+      overflow-x: clip; /* root-cause companions above; clip avoids scrollbar from subpixel/absolute bleed */
+    }
+
