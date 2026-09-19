@@ -37,7 +37,7 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="logo-link">
+      <a class='logo-link' href='/'>
         <img src="logo.png" alt="AXIS" class="logo-mark" width="400" height="485">
         <div class="logo-text">
           AXIS
@@ -45,19 +45,19 @@
         </div>
       </a>
       <div class="lang-switch" role="group" aria-label="Language">
-        <a href="about.html" hreflang="en" lang="en" aria-current="true" data-lang="en"><span class="flag" aria-hidden="true">🇺🇸</span>EN</a>
-        <a href="index-es.html" hreflang="es" lang="es" data-lang="es"><span class="flag" aria-hidden="true">🇵🇷</span>ES</a>
+        <a aria-current='true' data-lang='en' href='/about' hreflang='en' lang='en'><span class="flag" aria-hidden="true">🇺🇸</span>EN</a>
+        <a data-lang='es' href='/index-es' hreflang='es' lang='es'><span class="flag" aria-hidden="true">🇵🇷</span>ES</a>
       </div>
 
       <button class="hamburger" type="button" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <nav id="site-nav">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="about.html" class="active">About</a>
-        <a href="resources.html">Resources</a>
-        <a href="contact.html" class="nav-cta">Let's Talk</a>
+            <nav id="site-nav">
+        <a href="/">Owners</a>
+        <a href="/for-cpas-and-advisors">CPAs &amp; Advisors</a>
+        <a href="/services">Services</a>
+        <a href="/about">About</a>
+        <a class="nav-cta" href="/contact">Request a Valuation Assessment</a>
       </nav>
     </div>
   </header>
@@ -70,13 +70,20 @@
   <!-- NARRATIVE -->
   <section class="narrative">
     <div class="narrative-inner">
+      <div class="about-professional" style="margin:2rem 0; padding:1.5rem; border:1px solid var(--light-rule, #D6DDE4); border-radius:8px;">
+        <h2 style="margin-top:0;">The Valuation Professional</h2>
+        <p><strong>Jorge J. Jiménez Soto, CVA</strong> leads AXIS Independent Advisory. He is a Certified Valuation Analyst (CVA) and performs Calculation of Value engagements under NACVA Professional Standards for closely-held businesses in Puerto Rico.</p>
+        <p>AXIS is an independent advisory practice focused on business valuation. It is not a CPA firm and does not provide attest or audit services. Mentions of professional experience describe individual background and do not imply current employer affiliation or sponsorship.</p>
+        <p><a href="CVA_InfoFull.pdf" target="_blank" rel="noopener">What is a CVA? (PDF) →</a></p>
+      </div>
+
       <p>AXIS Independent Advisory is a credentialed business valuation practice serving Puerto Rico's closely-held businesses.</p>
       <p>Our work is grounded in professional standards and shaped by years of hands-on experience across public accounting advisory, corporate finance, and capital markets operations.</p>
       <p>That range of experience — from valuation and due diligence engagements to managing real-time treasury flows and executive financial reporting — gives our practice a practical edge that pure-accounting firms often lack.</p>
       <p class="closing-line">We don't just model businesses. We understand how they run.</p>
       <p>AXIS was founded to fill a gap we saw firsthand — small businesses in Puerto Rico deserve the same quality of valuation analysis that larger markets take for granted. Business valuation is not a sideline here; it is the entire practice. AXIS pairs the CVA credential with an exclusive focus on closely-held Puerto Rico businesses — most valuation work on the island is done by accounting firms as one service among many, while here it is the only thing we do.</p>
       <div style="text-align:center; margin-top:2rem;">
-        <a href="sample-report.html" style="display:inline-block; background:var(--gold-text); color:#fff; padding:0.6rem 1.5rem; border-radius:4px; text-decoration:none; font-weight:600; font-size:0.9rem;">See What We Deliver →</a>
+        <a href='/sample-report' style='display:inline-block; background:var(--gold-text); color:#fff; padding:0.6rem 1.5rem; border-radius:4px; text-decoration:none; font-weight:600; font-size:0.9rem;'>See What We Deliver →</a>
       </div>
     </div>
   </section>
@@ -127,7 +134,7 @@
     <div class="numbers-inner">
       <div class="number-item">
         <div class="number-value">CVA</div>
-        <div class="number-label">NACVA Certified</div>
+        <div class="number-label">CVA Credential</div>
       </div>
       <div class="number-item">
         <div class="number-value">NCCA + ANAB</div>
@@ -138,8 +145,8 @@
         <div class="number-label">Puerto Rico Focus</div>
       </div>
       <div class="number-item">
-        <div class="number-value">Fixed-Fee</div>
-        <div class="number-label">Transparent Pricing</div>
+        <div class="number-value">Quoted Fee</div>
+        <div class="number-label">Agreed Before Work Begins</div>
       </div>
     </div>
   </section>
@@ -196,7 +203,7 @@
           <p style="font-size:0.92rem; color:var(--muted); line-height:1.6; margin:0;">The Uniform Standards of Professional Appraisal Practice — the ethics and competency framework used across the appraisal profession. Working consistent with USPAP means our independence, documentation, and analytical discipline hold up to scrutiny from anyone in the valuation world.</p>
         </div>
       </div>
-      <p style="text-align:center; margin-top:1.5rem; font-size:0.9rem; color:var(--muted);">And because a valuation ages with the business, most engagements are structured as a program: an initial Calculation of Value with a scheduled annual refresh. <a href="services.html" style="color:var(--slate); text-decoration:underline; text-underline-offset:2px;">See how it works &rarr;</a></p>
+      <p style="text-align:center; margin-top:1.5rem; font-size:0.9rem; color:var(--muted);">And because a valuation ages with the business, owners who already have a Calculation of Value may later ask about Ongoing Valuation Support for continuing valuation needs — distinct from a Preliminary Value Assessment, which is the entry-level preliminary assessment. <a href='/services' style='color:var(--slate); text-decoration:underline; text-underline-offset:2px;'>See how it works &rarr;</a></p>
     </div>
   </section>
 
@@ -211,7 +218,7 @@
   <section class="cta-strip">
     <p>Ready to discuss an engagement?</p>
     <div class="cta-buttons">
-      <a href="contact.html" class="cta-btn-primary">Start a Conversation →</a>
+      <a class='cta-btn-primary' href='/contact'>Start a Conversation →</a>
       <a href="https://wa.me/17878306462" class="cta-btn-secondary" target="_blank" rel="noopener">WhatsApp Us</a>
     </div>
   </section>
@@ -222,10 +229,15 @@
     <div class="footer-contact"><a href="tel:+17878306462">(787) 830-6462</a> · <a href="https://wa.me/17878306462" class="whatsapp-link">WhatsApp</a> · <a href="mailto:info@axisadvisorypr.com">info@axisadvisorypr.com</a></div>
     <div class="footer-inner">
       <div class="footer-left">© 2026 AXIS Independent Advisory. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="disclaimer.html">Disclaimer</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="contact.html">Contact</a>
+            <div class="footer-links">
+        <a href="/services">Services</a>
+        <a href="/for-cpas-and-advisors">CPAs &amp; Advisors</a>
+        <a href="/about">About</a>
+        <a href="/sample-report">Sample Report</a>
+        <a href="/screener/">Valuation Screener</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/contact">Contact</a>
       </div>
     </div>
   </footer>

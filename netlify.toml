@@ -103,6 +103,43 @@
   to = "/screener/index.html"
   status = 200
 
+
+# ── Phase 3.5 English-path + CPA aliases ──
+[[redirects]]
+  from = "/about-es"
+  to = "/about-es.html"
+  status = 200
+
+[[redirects]]
+  from = "/services-es"
+  to = "/services-es.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact-es"
+  to = "/contact-es.html"
+  status = 200
+
+[[redirects]]
+  from = "/index-es"
+  to = "/index-es.html"
+  status = 200
+
+[[redirects]]
+  from = "/sample-report-es"
+  to = "/sample-report-es.html"
+  status = 200
+
+[[redirects]]
+  from = "/for-cpas-and-advisors"
+  to = "/for-cpas-and-advisors.html"
+  status = 200
+
+[[redirects]]
+  from = "/for-cpas-and-advisors-es"
+  to = "/for-cpas-and-advisors-es.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -126,4 +163,4 @@
     #
     # Do NOT promote this to an enforced Content-Security-Policy header until
     # the violation list has been collected and the inline surface refactored.
-    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' https://plausible.io https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://plausible.io; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' https://plausible.io https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://plausible.io; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"

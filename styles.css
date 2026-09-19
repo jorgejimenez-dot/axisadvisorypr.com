@@ -413,47 +413,46 @@ html { scroll-behavior: smooth; }
       background: var(--slate);
       border-top: 1px solid rgba(250,248,242,0.08);
       border-bottom: 1px solid rgba(250,248,242,0.08);
-      padding: 2.25rem 2rem;
+      padding: 1.5rem 2rem;
     }
-    .cred-bar-wrap {
-      max-width: 1040px;
-      margin: 0 auto;
-    }
-    /* Page-level spec strip. Same reading pattern as .card-spec on the service
-       cards: value, label, hairline separation. The pipes were doing the work
-       of a rule and the row read as run-on text. */
+
     .cred-bar-inner {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem 0;
     }
+
     .cred-item {
       text-align: center;
-      padding: 0.25rem 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      padding: 0 2rem;
     }
-    .cred-item + .cred-item {
-      border-left: 1px solid rgba(250,248,242,0.12);
-    }
+
     .cred-value {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       color: var(--ivory);
-      line-height: 1.25;
+      line-height: 1.2;
     }
+
     .cred-detail {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 400;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(250,248,242,0.52);
-      margin-top: 0.4rem;
-      line-height: 1.45;
+      color: rgba(250,248,242,0.5);
+      margin-top: 0.2rem;
+    }
+
+    .cred-sep {
+      color: rgba(250,248,242,0.15);
+      font-size: 1.25rem;
+      font-weight: 200;
+      align-self: center;
     }
 
     /* ── SECTIONS ──────────────────────────────── */
@@ -2157,7 +2156,7 @@ html { scroll-behavior: smooth; }
     .article-audience { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: var(--slate); padding: 0.2rem 0.6rem; border-radius: 3px; display: inline-block; margin-bottom: 0.75rem; align-self: flex-start; }
     .article-audience.cpa { background: var(--muted); }
     .article-audience.both { background: var(--gold-text); color: var(--white); }
-    .article-card h2 { font-size: 1.05rem; font-weight: 600; color: var(--slate); margin-bottom: 0.5rem; line-height: 1.35; }
+    .article-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--slate); margin-bottom: 0.5rem; line-height: 1.35; }
     .article-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; flex: 1; }
     .article-link { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.25rem; font-size: 0.82rem; font-weight: 600; color: var(--slate); transition: gap 0.2s; }
     .article-link:hover { gap: 0.6rem; }
@@ -2513,11 +2512,8 @@ html { scroll-behavior: smooth; }
       .step-connector { transform: rotate(90deg); width: 32px; }
       .step { padding: 0; max-width: 360px; }
       .features-grid { grid-template-columns: 1fr 1fr; }
-      .cred-bar { padding: 1.5rem 1.25rem; }
-      .cred-bar-inner { grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(250,248,242,0.12); }
-      .cred-item { padding: 0.85rem 0.5rem; background: var(--slate); }
-      .cred-item + .cred-item { border-left: none; }
-      .cred-item:last-child { grid-column: span 2; }
+      .cred-item { padding: 0.25rem 1rem; }
+      .cred-sep { display: none; }
 
       /* Services */
       .service-section { padding: 2.5rem 1.5rem; }
@@ -2786,3 +2782,27 @@ html { scroll-behavior: smooth; }
       .scope-diagram .sd-wide { display: none; }
       .scope-diagram .sd-stacked { display: block; }
     }
+
+
+/* Phase 3.5 commercial lock — additive */
+.hero-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-text, #C4915C);
+  margin: 0 0 0.75rem;
+}
+.hero-cred {
+  margin-top: 1rem;
+  font-size: 0.92rem;
+  color: var(--muted, #5c6b7a);
+}
+.hero-cred a { color: var(--slate, #2B3A52); text-underline-offset: 2px; }
+.ovs-secondary a { color: var(--slate, #2B3A52); }
+.sample-disclaimer { line-height: 1.5; }
+.card-flag { /* existing */ }
+@media (max-width: 768px) {
+  .hero-eyebrow { font-size: 0.78rem; }
+  .nav-cta { font-size: 0.82rem; padding-left: 0.75rem; padding-right: 0.75rem; }
+}

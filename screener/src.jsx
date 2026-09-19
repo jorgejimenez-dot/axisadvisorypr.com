@@ -276,13 +276,13 @@ const { useState, useEffect, useRef } = React;
         sublabel: isEN?"Standard Engagement":"Encargo Estándar",
         headline: isEN?"Well-suited for a Calculation of Value.":"Caso apropiado para un Cálculo de Valor.",
         color:"#2B3A52", bg:"#f5f8fb", border:"#b8c8d8", dot:"#2B3A52",
-        fee: isEN?"Fixed-Fee":"Honorario Fijo",
+        fee: isEN?"Quoted fee":"Honorario cotizado",
         feeNote: isEN?"Quoted upfront based on scope · No hourly billing":"Cotizado por adelantado según alcance · Sin cobro por hora",
         points: isEN
           ?["Market approach using owner earnings multiples from comparable transactions; income approach where applicable","Full normalization schedule with documented adjustments","Written Calculation Report delivered in English — bilingual service throughout","Typical delivery: 2–3 weeks from complete data receipt"]
           :["Enfoque de mercado con múltiplos de ganancias del dueño; enfoque de ingresos donde aplique","Programa completo de normalizaciones documentadas","Informe escrito de Cálculo de Valor entregado en inglés — servicio bilingüe durante todo el encargo","Entrega típica: 2–3 semanas tras recibir datos completos"],
-        waText: waText+"\n\nResult: Standard Engagement · Fixed-fee",
-        copyText: copyText+"\n\nResult: Standard · Fixed-fee · ~2–3 weeks" };
+        waText: waText+"\n\nResult: Standard Engagement · Quoted fee",
+        copyText: copyText+"\n\nResult: Standard · Quoted fee · ~2–3 weeks" };
     }
 
     const REQUIRED_STEPS = 5;
