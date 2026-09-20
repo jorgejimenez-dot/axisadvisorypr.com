@@ -14,7 +14,7 @@
   <link rel="canonical" href="https://axisadvisorypr.com/services-es.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="alternate" hreflang="en" href="https://axisadvisorypr.com/services.html">
   <link rel="alternate" hreflang="es" href="https://axisadvisorypr.com/services-es.html">
   <link rel="alternate" hreflang="x-default" href="https://axisadvisorypr.com/services.html">
@@ -41,7 +41,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a class='logo-link' href='/'>
-        <img src="logo.png" alt="AXIS" class="logo-mark" width="400" height="485">
+        <img src="logo-ink.png" alt="AXIS" class="logo-mark" width="400" height="485">
         <div class="logo-text">
           AXIS
           <span>Independent Advisory</span>
@@ -55,10 +55,10 @@
       <button class="hamburger" type="button" aria-label="Abrir menú" aria-controls="site-nav" aria-expanded="false">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-            <nav id="site-nav">
-        <a href="/index-es">Propietarios</a>
+                  <nav id="site-nav">
+        <a class="active" href="/services-es">Servicios</a>
         <a href="/for-cpas-and-advisors-es">CPAs y Asesores</a>
-        <a href="/services-es">Servicios</a>
+        <a href="/sample-report-es">Informe de Muestra</a>
         <a href="/about-es">Nosotros</a>
         <a class="nav-cta" href="/contact-es">Comience con una Evaluación</a>
       </nav>
@@ -74,7 +74,7 @@
   <!-- CALCREPORT -->
   <section class="service-section" id="calcreport">
     <div class="service-inner">
-      <div class="service-badge">Cálculo de Valor</div>
+      <div class="service-badge" id="cov">Cálculo de Valor (CoV)</div>
       <h2>Una respuesta clara a la pregunta: ¿cuánto vale mi negocio?</h2>
       <p class="service-desc">Un encargo de alcance definido realizado conforme a los Estándares Profesionales de NACVA — la herramienta práctica que los dueños de negocio y sus asesores necesitan para las decisiones que no requieren una opinión formal de valor, pero sí exigen rigor y credibilidad.</p>
       <p class="service-owner-note">Ideal para planificación, negociaciones y decisiones internas donde necesita una cifra creíble respaldada por estándares profesionales. No está diseñado para litigios, radicaciones regulatorias ni financiamiento donde se exige una opinión formal. Para esas situaciones, podemos referirle a un colega de confianza que ofrece servicios de valoración integral. ¿No está seguro qué alcance requiere su situación? Lea nuestra <a href='/article-calcreport-vs-full' hreflang='en' style='color:var(--slate); text-decoration:underline; text-underline-offset:2px;' title='Página disponible en inglés'>guía de decisión en lenguaje claro</a>.</p>
@@ -139,7 +139,7 @@
   <!-- PRELIMINARY VALUE ASSESSMENT -->
   <section class="service-section" id="evaluacion-preliminar-de-valor">
     <div class="service-inner">
-      <div class="service-badge">Evaluación Preliminar de Valor</div>
+      <div class="service-badge" id="pva">Evaluación Preliminar de Valor (PVA)</div>
       <h2>Una evaluación inicial enfocada cuando necesita orientación de valor.</h2>
       <p class="service-desc">La Evaluación Preliminar de Valor es la oferta de entrada: un encargo de alcance más acotado cuando necesita un punto de partida informado antes de comprometerse con un Cálculo de Valor completo. No equivale a un Informe de Cálculo cuando se requiere un Cálculo de Valor.</p>
       <p class="service-owner-note">El alcance y los entregables se definen en la carta de encargo. No exige un Cálculo de Valor previo ni una relación de cliente existente. Quienes ya tienen un Cálculo de Valor de AXIS y buscan continuidad pueden preguntar por el Soporte Continuo de Valoración más abajo.</p>
@@ -195,7 +195,7 @@
   <section class="service-section" id="soporte-continuo-de-valoracion">
     <div class="service-inner">
       <div class="service-badge">Secundario</div>
-      <h2>Soporte Continuo de Valoración</h2>
+      <h2 id="ovs">Soporte Continuo de Valoración (OVS)</h2>
       <p class="service-desc">Continuidad y actualización para clientes con un Cálculo de Valor previo de AXIS. No es un programa automatizado.</p>
       <p class="service-owner-note">No se publica precio para esta oferta secundaria. Pregunte por el soporte continuo de valoración al contactarnos.</p>
       <a class='service-cta' href='/contact-es'>Preguntar por soporte continuo de valoración →</a>
@@ -349,6 +349,28 @@
         <p class="sd-caption">Declinamos los encargos que requieren una Conclusión de Valor en lugar de reducir su alcance para que encajen. Saber dónde está el límite es parte del trabajo.</p>
       </div>
 
+    </div>
+  </section>
+
+
+  <!-- CÓMO FUNCIONA (reubicado desde la página de inicio) -->
+  <section class="service-section" id="how-it-works" style="background: var(--ivory);">
+    <div class="service-inner" style="max-width:860px;">
+      <div class="section-label-sm">Cómo Funciona</div>
+      <h2 style="text-align:center; margin-bottom:0.75rem;">Cómo se ve un encargo, semana por semana.</h2>
+      <p class="service-desc" style="text-align:center; max-width:36rem; margin:0 auto 1.5rem;">Evaluación → Encargo → Análisis → Informe. Sin facturación por horas. Sin cambios de alcance inesperados. Usted conoce el honorario y el calendario antes de comenzar.</p>
+      <div class="timeline-bar" style="margin-top:1rem;">
+        <div class="tl-step"><span class="tl-day">Semana 1</span><span class="tl-label">Alcance y documentos</span></div>
+        <span class="tl-connector" aria-hidden="true">&rarr;</span>
+        <div class="tl-step"><span class="tl-day">Semana 2</span><span class="tl-label">Análisis</span></div>
+        <span class="tl-connector" aria-hidden="true">&rarr;</span>
+        <div class="tl-step"><span class="tl-day">Semana 3</span><span class="tl-label">Entrega del informe</span></div>
+      </div>
+      <div class="tl-detail-grid">
+        <div class="tl-detail"><h3>Alcance y documentos</h3><p>Carta de compromiso a honorario fijo y una solicitud enfocada de documentos. La mayoría de los dueños reúne todo en pocas horas.</p></div>
+        <div class="tl-detail"><h3>Análisis</h3><p>Normalización de utilidades, comparables de mercado y evaluación de riesgo. Una llamada de seguimiento cubre las preguntas abiertas.</p></div>
+        <div class="tl-detail"><h3>Entrega del informe</h3><p>Un Informe de Cálculo conforme a los Estándares Profesionales de NACVA por enlace seguro, con una sesión explicativa del analista sobre el resultado del cálculo.</p></div>
+      </div>
     </div>
   </section>
 
