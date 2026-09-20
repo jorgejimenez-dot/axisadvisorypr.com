@@ -431,6 +431,17 @@ html { scroll-behavior: smooth; }
 
     .hero-btn.secondary:hover { border-color: var(--ink); background: rgba(30,45,66,0.03); }
 
+    /* Dark page-hero (slate): secondary must use light text/border.
+       Default .hero-btn.secondary uses --ink for light FRB heroes; ink-on-slate fails contrast (CPA Screener CTA). */
+    .page-hero .hero-btn.secondary {
+      color: var(--ivory);
+      border-color: rgba(250, 248, 242, 0.55);
+    }
+    .page-hero .hero-btn.secondary:hover {
+      color: var(--ivory);
+      border-color: var(--ivory);
+      background: rgba(250, 248, 242, 0.08);
+    }
 
     .hero-education {
       margin-top: 1.25rem;
