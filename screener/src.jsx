@@ -37,7 +37,7 @@ const { useState, useEffect, useRef } = React;
       en: {
         langToggle: "Español",
         headerSub: "CVA · NACVA Certified",
-        toolTag: "Valuation Fit Check",
+        toolTag: "Fit Check",
         eyebrow: "For CPA & Attorney Referral Partners",
         title: "Does your client need",
         titleEm: "a business valuation?",
