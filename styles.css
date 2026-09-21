@@ -2562,6 +2562,81 @@ html { scroll-behavior: smooth; }
       margin-bottom: 0.15rem;
     }
 
+    /* ── CLIENT PROCESS STEPS ───────────────────── */
+    .process-steps {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--light-rule);
+      border-radius: 5px;
+    }
+
+    .service-section:nth-child(odd) .process-step {
+      background: var(--ivory);
+    }
+
+    .process-step-num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--slate);
+      color: var(--ivory);
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .process-step-text {
+      font-size: 0.88rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    .process-step-text strong {
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .client-process-notes {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--light-rule);
+    }
+
+    .client-process-notes p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0 0 0.65rem;
+    }
+
+    .client-process-notes p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tl-detail-grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .secure-exchange-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0.85rem 0 0;
+    }
+
     /* ── RESPONSIVE: TABLET ─────────────────────── */
     @media (max-width: 960px) {
       .features-grid { grid-template-columns: 1fr 1fr; }
@@ -3409,6 +3484,41 @@ a.process-step:hover h3 { color: var(--gold-text); }
 
 @media (max-width: 640px) {
   .process-steps { grid-template-columns: 1fr; }
+}
+
+/* t527: #client-process card list must win over legacy EOF .process-steps link-grid */
+#client-process .process-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  counter-reset: none;
+}
+
+#client-process .process-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--light-rule);
+  border-radius: 5px;
+  position: static;
+  text-decoration: none;
+  color: inherit;
+}
+
+#client-process .process-step::before {
+  content: none;
+  display: none;
+  margin: 0;
+  counter-increment: none;
+}
+
+#client-process.service-section:nth-child(odd) .process-step,
+.service-section#client-process:nth-child(odd) .process-step {
+  background: var(--ivory);
 }
 
 @media (max-width: 430px) {
