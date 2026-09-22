@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AXIS QuickBooks OAuth callback — AXIS Advisory</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:42rem;margin:3rem auto;padding:0 1.25rem;line-height:1.5;color:#1a1a1a}
+h1{font-size:1.35rem}
+code,textarea{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85rem}
+textarea{width:100%;min-height:5.5rem;padding:.75rem;box-sizing:border-box}
+.muted{color:#555;font-size:.95rem}
+.ok{color:#0a7a32;font-weight:600}
+.err{color:#a11}
+</style>
+</head>
+<body>
+<h1>AXIS QuickBooks OAuth callback</h1>
+<p>Intuit redirected here after authorization. This page does <strong>not</strong> store tokens or secrets. Paste the full URL below into the AXIS production OAuth tool on the workstation to finish the token exchange locally.</p>
+<p id="status" class="muted">Reading redirect…</p>
+<textarea id="urlbox" readonly></textarea>
+<p class="muted">Privacy: <a href="/privacy">/privacy</a> · Terms: <a href="/disclaimer">/disclaimer</a></p>
+<script>
+(function () {
+  var box = document.getElementById('urlbox');
+  var status = document.getElementById('status');
+  var href = window.location.href;
+  box.value = href;
+  var q = new URLSearchParams(window.location.search);
+  if (q.get('error')) {
+    status.className = 'err';
+    status.textContent = 'Authorization error: ' + (q.get('error_description') || q.get('error'));
+    return;
+  }
+  if (q.get('code') && q.get('state')) {
+    status.className = 'ok';
+    status.textContent = 'Authorization code received. Copy the URL above into the AXIS production OAuth exchange step, then close this window.';
+    try { box.select(); } catch (e) {}
+    return;
+  }
+  status.textContent = 'No authorization code in this URL yet. If you opened this page directly, start Production OAuth from the AXIS workstation instead.';
+})();
+</script>
+</body>
+</html>

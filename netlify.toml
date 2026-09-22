@@ -140,6 +140,27 @@
   to = "/for-cpas-and-advisors-es.html"
   status = 200
 
+# ── AXIS QBO private-app App Details / OAuth callback (production) ──
+[[redirects]]
+  from = "/qbo/launch"
+  to = "/qbo/launch.html"
+  status = 200
+
+[[redirects]]
+  from = "/qbo/disconnect"
+  to = "/qbo/disconnect.html"
+  status = 200
+
+[[redirects]]
+  from = "/qbo/connect"
+  to = "/qbo/connect.html"
+  status = 200
+
+[[redirects]]
+  from = "/qbo/callback"
+  to = "/qbo/callback.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

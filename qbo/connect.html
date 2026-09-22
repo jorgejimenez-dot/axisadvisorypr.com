@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AXIS QuickBooks connect / reconnect — AXIS Advisory</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1.25rem;line-height:1.5;color:#1a1a1a}
+h1{font-size:1.35rem;margin-bottom:.5rem}
+p{margin:.75rem 0}
+.muted{color:#555;font-size:.95rem}
+a{color:#0b5fff}
+</style>
+</head>
+<body>
+<h1>AXIS QuickBooks connect / reconnect</h1>
+
+<p>Use this page when Intuit asks for a Connect or Reconnect URL for AXIS’s private QuickBooks Online app.</p>
+<p>Reconnect is an operator procedure (not a public signup):</p>
+<ol>
+<li>Ensure Production Client ID/Secret are in the AXIS production token store (never in chat or source).</li>
+<li>Register an exact HTTPS <code>/callback</code> redirect URI in Intuit Production Redirect URIs.</li>
+<li>Run the AXIS production OAuth script with the matching redirect, complete browser consent + MFA as Jorge.</li>
+<li>Confirm refresh token and realm ID were written to the production token store (lengths only), then use the read-only <code>AXIS-QBO-Production</code> MCP.</li>
+</ol>
+<p class="muted">This integration is read-only (no create/update/delete tools). Privacy Policy: <a href="/privacy">/privacy</a>. Site terms: <a href="/disclaimer">/disclaimer</a>.</p>
+
+<p class="muted"><a href="https://axisadvisorypr.com/">axisadvisorypr.com</a></p>
+</body>
+</html>
